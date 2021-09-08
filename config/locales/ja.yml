@@ -1,0 +1,7 @@
+ja:
+  enums:
+    message:
+      type:
+        contact: '問い合わせ'
+        violation_report: '違反報告'
+        from_admin: '管理者'

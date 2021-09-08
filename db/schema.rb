@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_190011) do
+ActiveRecord::Schema.define(version: 2021_09_08_143438) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -36,6 +36,106 @@ ActiveRecord::Schema.define(version: 2021_09_07_190011) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "manual_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manual_id"], name: "index_bookmarks_on_manual_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "manuals", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.string "image_id"
+    t.text "description"
+    t.boolean "status", default: false, null: false
+    t.datetime "release_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_manuals_on_user_id"
+  end
+
+  create_table "memo_links", force: :cascade do |t|
+    t.integer "procedure_id", null: false
+    t.integer "memo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memo_id"], name: "index_memo_links_on_memo_id"
+    t.index ["procedure_id"], name: "index_memo_links_on_procedure_id"
+  end
+
+  create_table "memos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "category_id"
+    t.string "name", null: false
+    t.text "description"
+    t.text "url"
+    t.text "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_memos_on_category_id"
+    t.index ["user_id"], name: "index_memos_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "manual_id"
+    t.integer "review_id"
+    t.text "comment", null: false
+    t.integer "type", null: false
+    t.boolean "is_replied", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manual_id"], name: "index_messages_on_manual_id"
+    t.index ["review_id"], name: "index_messages_on_review_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.integer "manual_id", null: false
+    t.string "title", null: false
+    t.integer "position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manual_id"], name: "index_procedures_on_manual_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "manual_id", null: false
+    t.text "comment"
+    t.integer "rate", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manual_id"], name: "index_reviews_on_manual_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tag_maps", force: :cascade do |t|
+    t.integer "manual_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manual_id"], name: "index_tag_maps_on_manual_id"
+    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

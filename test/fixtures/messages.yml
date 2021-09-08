@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  manual: one
+  review: one
+  comment: MyText
+  type: 1
+  is_replied: false
+
+two:
+  user: two
+  manual: two
+  review: two
+  comment: MyText
+  type: 1
+  is_replied: false
