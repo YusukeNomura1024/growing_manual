@@ -6,6 +6,7 @@ class Manual < ApplicationRecord
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
   has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   attachment :image
 end
