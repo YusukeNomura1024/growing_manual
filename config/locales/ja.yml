@@ -5,3 +5,8 @@ ja:
         contact: '問い合わせ'
         violation_report: '違反報告'
         from_admin: '管理者'
+    notification:
+      type:
+        bookmarking: 'お気に入り'
+        reviewing: '評価'
+        from_admin: '管理者から'

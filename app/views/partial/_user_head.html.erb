@@ -2,3 +2,4 @@
 <li><%= link_to '商品一覧', '#' %></li>
 <li><%= link_to 'カート', '#' %></li>
 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+<li><%= link_to '会員情報', user_path(current_user) %></li>

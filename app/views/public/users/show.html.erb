@@ -1,0 +1,31 @@
+<h2>会員ページ</h2>
+<h3>会員情報</h3>
+<% if @user.id == current_user.id %>
+  <%= link_to '編集する', edit_user_path(current_user) %>
+<% end %>
+<table>
+  <% if @oneself %>
+  <tr>
+    <th>名前</th>
+    <td><%= @user.full_name %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <th>ペンネーム</th>
+    <td><%= @user.pen_name %></td>
+  </tr>
+  <% if @oneself %>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <th>公開中のマニュアルの数</th>
+    <td><%= @user.manuals.count %></td>
+  </tr>
+  <tr>
+    <th>ブックマークされた数</th>
+    <td><%= @user.bookmarked_count %></td>
+  </tr>
+</table>

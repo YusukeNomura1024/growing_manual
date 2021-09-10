@@ -1,0 +1,8 @@
+<h2>本当に退会しますか？</h2>
+<h3>
+  退会すると、作成したマニュアルやメモが削除されます。<br>
+  お気に入りリストも削除されます。
+  退会する場合は、「退会する」をクリックしてください。
+</h3>
+<%= link_to '退会しない', edit_user_path(current_user) %>
+<%= link_to '退会する', user_withdraw_path(current_user), method: :patch, data: {confirm: '退会しますか？'} %>

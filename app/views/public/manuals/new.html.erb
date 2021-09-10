@@ -1,0 +1,33 @@
+<h2>マニュアル作成</h2>
+<%= form_with model: @manual, local: true do |f| %>
+  <div>
+    <%= f.label :image, '画像' %>
+    <%= f.attachment_field :image %>
+  </div>
+  <div>
+    <%= f.label :title, 'タイトル' %>
+    <%= f.text_field :title, placeholder: "タイトル" %>
+  </div>
+  <div>
+    <%= f.label :description, '説明' %>
+    <%= f.text_area :description, placeholder: "マニュアルの説明を入力" %>
+  </div>
+  <div>
+    <%= f.label :tag_name, 'タグ' %>
+    <%= f.text_area :tag_name, placeholder: "半角スペースで複数登録可能　例：音楽 文芸 スポーツ" %>
+    <br>※半角スペースを入力することで複数のタグを付けることができます。
+  </div>
+  <div>
+    <label>公開ステータス</label>
+    <div>
+      <%= f.radio_button :status, false %>
+      <%= f.label :status, '非公開', value: false %>
+    </div>
+    <div>
+      <%= f.radio_button :status, true %>
+      <%= f.label :status, '公開', value: true %>
+    </div>
+  </div>
+  <%= f.submit '作成する' %>
+
+<% end %>

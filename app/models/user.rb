@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :bookmarks, dependent: :destroy
+  has_many :manuals, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :categories, dependent: :destroy
@@ -13,4 +14,12 @@ class User < ApplicationRecord
 
 
   attachment :image
+
+  def bookmarked_count
+    manuals.inject(0) do |result, manual|
+      result + manual.bookmarks.count
+    end
+  end
+
+
 end
