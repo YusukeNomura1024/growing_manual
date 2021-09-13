@@ -6,6 +6,9 @@ class Public::MemosController < ApplicationController
   end
 
   def new
+    @memo = Memo.new
+    @categories = Category.where(user_id: current_user.id)
+    @category = Category.new
   end
 
   def create

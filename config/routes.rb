@@ -15,13 +15,16 @@ Rails.application.routes.draw do
     resources :users, only: [:edit, :show, :update] do
       resources :messages, only: [:create, :index]
     end
-    resources :tags, only: [:create, :destroy]
+    resources :tags, only: [:create, :destroy, :show]
+    patch 'manuals/:id/sort', to: 'manuals#sort'
+    get 'manuals/search', to: 'manuals#search', as: 'search_manual'
     resources :manuals do
       resource :bookmark, only: [:create, :destroy]
       resources :reviews, only: [:index, :create, :destroy, :update]
-      post 'manuals/:id/procedures', to: 'procedures#all_save'
-      resources :procedures, only: [:index]
+      resources :procedures, only: [:index, :create, :destroy, :edit, :update]
     end
+    get 'procedures/:id/memo_links/new', to: 'memo_links#new', as: 'new_procedure_memo_links'
+    get 'procedures/:id/memos/new', to: 'memos#new_link', as: 'new_link_procedure_memos'
     resources :memos
     resources :memo_links, only: [:index, :create, :destroy]
     resources :notifications, only: :index

@@ -1,5 +1,5 @@
-<li><%= link_to 'マイページ', '#' %></li>
-<li><%= link_to '商品一覧', '#' %></li>
-<li><%= link_to 'カート', '#' %></li>
+<li><%= link_to 'マニュアル一覧', '/' %></li>
 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+<li><%= link_to 'マニュアル管理', manuals_path%></li>
+<li><%= link_to 'メモ管理', memos_path %></li>
 <li><%= link_to '会員情報', user_path(current_user) %></li>

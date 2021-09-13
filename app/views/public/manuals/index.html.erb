@@ -1,0 +1,38 @@
+<h2>人気順 ｜ <%= link_to '新着順', manuals_path %></h2>
+<div>
+  <% if @list_title.nil? %>
+    <h2>作成マニュアル一覧</h2>
+  <% else %>
+    <h2><%= @list_title %></h2>
+  <% end %>
+</div>
+
+<%= render 'public/tags/list', tags: @tags %>
+
+<%= link_to '新規作成', new_manual_path %>
+自分のマニュアルを検索
+<div class="search_box">
+  <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
+    <%= button_tag "検索", type: 'submit', class: "search_bottun" %>
+  <% end %>
+</div>
+<ul>
+  <li>作成日</li>
+  <li>タイトル</li>
+  <li>お気に入り件数</li>
+  <li>評価</li>
+  <li>公開ステータス</li>
+</ul>
+<% @manuals.each do |manual| %>
+<ul>
+ <li><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+ <li><%= link_to "#{manual.title}", manual_path(manual) %></li>
+ <li>♥<%= manual.bookmarks.count %></li>
+ <li>☆☆☆☆☆</li>
+ <li style="<%= manual.status_style %>"><%= manual.status_text %></li>
+</ul>
+<% end %>
+
+
+<%= paginate @manuals %>

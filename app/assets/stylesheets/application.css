@@ -13,3 +13,86 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.procedure-form{
+  display: flex;
+}
+
+.procedure-form__position{
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.procedure-form__title{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+#procedure-form__title-input{
+    width: 100%;
+  }
+
+.procedure-form__submit{
+  display: flex;
+  align-items: flex-end;
+  padding-left: 10px;
+}
+
+.sortable-list__item{
+  cursor: pointer;
+}
+
+
+.tab {
+  cursor: pointer;
+  border-bottom: solid 1px #CCC;
+}
+.tab:first-child {
+  border-left: none;
+}
+
+.tab-active {
+  color: #FFF;
+  background: #19b5d1;
+  transition: all 0.2s ease-in-out;
+}
+
+.tabbox {
+  display: none;
+  padding: 15px;
+}
+
+.box-show {
+  display: block;
+}
+
+.tab:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.d-flex{
+  display: flex;
+}
+
+.category__form-group{
+  position: relative;
+}
+
+.category__form{
+  display: flex;
+  position: absolute;
+  top: -50px;
+  left: 150px;
+}
+

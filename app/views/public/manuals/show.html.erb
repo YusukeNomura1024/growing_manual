@@ -1,0 +1,54 @@
+<h2><%= @manual.title %> マニュアル詳細</h2>
+<% if @manual.user_id == current_user.id %>
+  <%= link_to 'マニュアル編集', edit_manual_path(@manual) %>
+  <%= link_to '手順追加', manual_procedures_path(@manual) %>
+<% end %>
+<%= link_to '#bookmark' do %>
+  お気に入り
+  <% if @bookmarked %>
+    <%= '♥' %>
+  <% else %>
+    <%= '♡' %>
+  <% end %>
+<% end %>
+<%= link_to 'レビューする', '#review' %>
+<%= link_to '通報する', '#message' %>
+
+ここに手順一覧を表示させて、備忘録を登録できるようにします。
+<div>
+<%= 'マニュアルタイトル：' + @manual.title %>
+</div>
+<div>
+<%= '説明：' + @manual.description %>
+</div>
+<div>
+タグ：
+<% @manual.tags.each do |tag| %>
+  <%= tag.name %>
+<% end %>
+</div>
+
+<h3>手順</h3>
+<div class="tab-group d-flex">
+<ul class="tab-list" style="list-style: none;">
+<% @procedures.each do |procedure| %>
+  <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
+      <%= procedure.position %>
+      <%= procedure.title %>
+  </li>
+<% end %>
+</ul>
+
+
+
+<ul class="tab-list" style="list-style: none;">
+<% @procedures.each do |procedure| %>
+  <li class="tabbox" id="<%= 'tab' + procedure.id.to_s %>">
+    <%= link_to '検索でメモを登録する', new_procedure_memo_links_path(procedure) %>
+    <%= link_to '新規でメモを作成・登録する', new_link_procedure_memos_path(procedure) %>
+    <%= render 'public/memos/list', memo_links: procedure.memo_links %>
+  </li>
+<% end %>
+</ul>
+</div>
+

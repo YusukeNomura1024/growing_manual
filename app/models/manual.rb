@@ -7,6 +7,7 @@ class Manual < ApplicationRecord
   has_many :tags, through: :tag_maps
   has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :procedures, -> {order(position: :asc)}, dependent: :destroy
 
   attachment :image
 
@@ -35,8 +36,30 @@ class Manual < ApplicationRecord
     end
 
     new_tags.each do |new_name|
-      manual_tag = Tag.find_or_create_by(name: new_name)
+      manual_tag = Tag.find_or_create_by(name: new_name, user_id: self.user_id)
       self.tags << manual_tag
+    end
+  end
+
+  def self.search(keyword)
+    where(["title like? OR description like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
+  def status_text
+    case status
+    when true
+      '公開中'
+    when false
+      '非公開'
+    end
+  end
+
+  def status_style
+    case status
+    when true
+      'color:#19b5d1;'
+    when false
+      'color:gray;'
     end
   end
 
