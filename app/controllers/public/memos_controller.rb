@@ -1,5 +1,6 @@
 class Public::MemosController < ApplicationController
   def index
+    @memos = Memo.where(user_id: current_user.id)
   end
 
   def show
@@ -12,6 +13,9 @@ class Public::MemosController < ApplicationController
   end
 
   def create
+    @memo = Memo.new(memo_params)
+    @memo.save
+    redirect_to memos_path
   end
 
   def edit
@@ -22,4 +26,11 @@ class Public::MemosController < ApplicationController
 
   def destroy
   end
+
+private
+
+  def memo_params
+    params.require(:memo).permit(:category_id, :name, :description, :url, :code).merge(user_id: current_user.id)
+  end
+
 end

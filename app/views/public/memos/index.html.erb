@@ -1,0 +1,4 @@
+<% @memos.each do |memo| %>
+  <%= markdown(memo.description) %>
+  <%= markdown(memo.code) %>
+<% end %>

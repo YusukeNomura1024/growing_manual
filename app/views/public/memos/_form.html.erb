@@ -1,0 +1,25 @@
+<%= form_with model: memo, local: true do |f| %>
+  <div>
+    <%= f.label :name, '題名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :url, '参考URL' %>
+    <%= f.text_field :url %>
+  </div>
+  <div>
+    <%= f.label :description, '説明' %>
+    <%= f.text_area :description, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4" %>
+  </div>
+  <div>
+    <%= f.label :code, 'コード' %>
+    <%= f.text_area :code, placeholder: "マークダウン記法ができます\nHTMLタグはバッククォートでエスケープできます\n `<h1>`タイトル`</h1>`" %>
+  </div>
+  <div>
+    <%= f.label :category_id, 'カテゴリー' %>
+    <%= f.select :category_id, options_from_collection_for_select(categories, :id, :name) %>
+  </div>
+
+  <%= f.submit '新規作成' %>
+
+<% end %>

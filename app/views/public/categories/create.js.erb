@@ -1,2 +1,2 @@
-$('#categories_list').html("<%= j(render 'public/categories/list', memo: @memo,categories: @categories) %>");
+$('#memo_form').html("<%= j(render 'public/memos/form', memo: @memo, categories: @categories) %>");
 document.getElementById('category_form').value = ''
