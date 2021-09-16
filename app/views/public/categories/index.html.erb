@@ -1,0 +1,10 @@
+<div>
+<h3>カテゴリー一覧</h3>
+<%= link_to 'メモ一覧ページへ', memos_path %>
+  <ul>
+  <% @categories.each do |category| %>
+    <li><%= link_to "#{category.name} (#{category.memos.count}件)", category_path(category) %></li>
+    <li><%= link_to "削除する", category_path(category), method: :delete, data: { confirm: '削除しますか？' } %> </li>
+  <% end %>
+  </ul>
+</div>

@@ -1,0 +1,9 @@
+<div>
+<h3>カテゴリー検索</h3>
+<%= link_to 'カテゴリー管理ページへ', categories_path %>
+  <ul>
+  <% categories.each do |category| %>
+    <li><%= link_to "#{category.name} (#{category.memos.count}件)", category_path(category) %></li>
+  <% end %>
+  </ul>
+</div>

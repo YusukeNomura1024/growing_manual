@@ -44,8 +44,12 @@
 <ul class="tab-list" style="list-style: none;">
 <% @procedures.each do |procedure| %>
   <li class="tabbox" id="<%= 'tab' + procedure.id.to_s %>">
-    <%= link_to '検索でメモを登録する', new_procedure_memo_links_path(procedure) %>
-    <%= link_to '新規でメモを作成・登録する', new_link_procedure_memos_path(procedure) %>
+    <%= link_to '検索でメモを登録する', new_procedure_memo_link_path(procedure) %>
+    <%= link_to '新規でメモを作成・登録する', new_memo_path %>
+    <%= form_with url: new_memo_path, method: :get, local: true do |f| %>
+      <%= f.hidden_field :procedure_id, value: procedure.id %>
+      <%= button_tag "新規でメモを作成・登録する", type: 'submit' %>
+    <% end %>
     <%= render 'public/memos/list', memo_links: procedure.memo_links %>
   </li>
 <% end %>

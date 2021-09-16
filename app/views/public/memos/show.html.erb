@@ -1,0 +1,27 @@
+<h2>メモ詳細</h2>
+
+  <div>
+    <div>題名</div>
+    <div>
+      <div><%= @memo.name %></div>
+      <div><%= "リンク件数：#{@memo.memo_links.count}件" %></div>
+    </div>
+  </div>
+  <div>
+    <div>参考URL</div>
+    <dif><%= @memo.url %></dif>
+  </div>
+  <div>
+    <div>説明</div>
+    <div><%= @memo.description %></div>
+  </div>
+  <div>
+    <div>コード</div>
+    <div><%= markdown(@memo.code) %></div>
+  </div>
+  <div>
+    <div>カテゴリー</div>
+    <div><%= @memo.category.name %></div>
+  </div>
+  <%= link_to '一覧へ', memos_path %>
+  <%= link_to '編集する', edit_memo_path(@memo) %>
