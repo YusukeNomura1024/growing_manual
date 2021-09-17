@@ -2,7 +2,7 @@ class Public::ReviewsController < ApplicationController
   before_action :manual_get
 
   def index
-    @reviews = Review.all
+    @reviews = Review.where.not(user_id: current_user.id).page(params[:page]).per(3)
     @review = Review.find_by(user_id: current_user.id)
     if @review.nil?
       @review = Review.new
@@ -25,7 +25,7 @@ class Public::ReviewsController < ApplicationController
     @manual = Manual.find(params[:manual_id])
     redirect_to manual_reviews_path(@manual)
   end
-  
+
   def update
     review = Review.find(params[:id])
     review.update(review_params)

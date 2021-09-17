@@ -3,16 +3,14 @@
   <%= link_to 'マニュアル編集', edit_manual_path(@manual) %>
   <%= link_to '手順追加', manual_procedures_path(@manual) %>
 <% end %>
-<%= link_to '#bookmark' do %>
-  お気に入り
-  <% if @bookmarked %>
-    <%= '♥' %>
-  <% else %>
-    <%= '♡' %>
-  <% end %>
+お気に入り
+<% if @manual.bookmarked_by?(current_user.id) %>
+  <%= link_to '♥ブックマークを外す', manual_bookmark_path(@manual), method: :delete, remote: true %>
+<% else %>
+  <%= link_to '♡ブックマークする', manual_bookmark_path(@manual), method: :post, remote: true %>
 <% end %>
 <%= link_to 'レビューする', manual_reviews_path(@manual) %>
-<%= link_to '通報する', '#message' %>
+<%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id), remote: true %>
 
 ここに手順一覧を表示させて、備忘録を登録できるようにします。
 <div>
@@ -54,5 +52,10 @@
   </li>
 <% end %>
 </ul>
+</div>
+
+<div id="mask" class="hidden"></div>
+<div id="form-area" class="hidden">
+  <%= render 'public/messages/form', user: @user, message: @message, manual: @manual %>
 </div>
 

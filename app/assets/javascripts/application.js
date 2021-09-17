@@ -19,16 +19,17 @@
 
 /*global $*/
 
-$(document).ready(function() {
-  $(function() {
-    $('.tab').click(function(){
-      $('.tab-active').removeClass('tab-active');
-      $(this).addClass('tab-active');
-      $('.box-show').removeClass('box-show');
-      var $this = $(this);
-      $($this.attr('href')).addClass('box-show');
+window.document.addEventListener('turbolinks:load', function(){
+  $(document).ready(function() {
+    $(function() {
+      $('.tab').click(function(){
+        $('.tab-active').removeClass('tab-active');
+        $(this).addClass('tab-active');
+        $('.box-show').removeClass('box-show');
+        var $this = $(this);
+        $($this.attr('href')).addClass('box-show');
+      });
     });
   });
-});
-
+})
 

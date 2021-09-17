@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     patch 'users/:id/withdraw', to: 'users#withdraw', as: 'user_withdraw'
     resources :categories, only: [:create, :destroy, :show, :index]
     resources :users, only: [:edit, :show, :update] do
-      resources :messages, only: [:create, :index]
+      resources :messages, only: [:create, :index, :new]
     end
     resources :tags, only: [:create, :destroy, :show]
     patch 'manuals/:id/sort', to: 'manuals#sort'

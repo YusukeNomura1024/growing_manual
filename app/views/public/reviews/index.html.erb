@@ -1,11 +1,18 @@
-<h2><%= @manual.title %></h2>
+<h2><%= @manual.title + "の評価一覧" %></h2>
+<h3><%= link_to 'マニュアルに戻る', manual_path(@manual) %></h3>
+<div>
+  <%= "平均評価：#{@manual.average_rate}" %>
+  <%= @manual.average_star %>
+  <%= "評価件数：#{@manual.reviews.count}" %>
+</div>
 
   <div>
     <% if @review.id.nil? %>
-      あなたの評価はまだありません
+      <h3>あなたの評価はまだありません</h3>
       <%= link_to '評価する', new_manual_review_path, remote: true %>
     <% else %>
       <div>
+        <h3>あなたの評価</h3>
         <span><%= @review.star %></span>
       </div>
       <%= @review.comment %>
@@ -20,5 +27,16 @@
   <%= render 'public/reviews/form', review: @review, manual: @manual, button_name: @button_name %>
 </div>
 
+<h3>みんなの評価</h3>
+<% @reviews.each do |review| %>
+  <ul>
+    <li><%= review.user.full_name %></li>
+    <li><%= "評価：#{review.star}" %></li>
+    <li><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></li>
+    <li><%= review.comment %></li>
+    <li><%= link_to '通報する', '#' %></li>
 
+  </ul>
+<% end %>
 
+<%= paginate @reviews %>

@@ -11,6 +11,30 @@ class Manual < ApplicationRecord
 
   attachment :image
 
+  def bookmarked_by?(your_id)
+    bookmarks.where(user_id: your_id).exists?
+  end
+
+  def average_rate
+    rate_hash = Review.group(:manual_id).average(:rate)
+    BigDecimal(rate_hash[self.id].to_s).floor(2).to_f
+  end
+
+  def average_star
+    case self.average_rate.floor
+    when 1
+      "★☆☆☆☆"
+    when 2
+      "★★☆☆☆"
+    when 3
+      "★★★☆☆"
+    when 4
+      "★★★★☆"
+    when 5
+      "★★★★★"
+    end
+  end
+
   def create_notification_bookmark!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and manual_id = ? and type = ? ", current_user.id, user_id, id, 'bookmarking'])
     if temp.blank?

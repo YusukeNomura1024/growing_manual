@@ -6,8 +6,9 @@ class Public::ManualsController < ApplicationController
 
   def show
     @manual = Manual.find(params[:id])
-    @bookmarked = true
     @procedures = @manual.procedures
+    @user = current_user
+    @message = Message.new
   end
 
   def new
