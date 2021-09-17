@@ -71,3 +71,4 @@ gem 'acts_as_list'
 gem "jquery-rails"
 gem 'kaminari', '~> 1.2.1'
 gem 'redcarpet'
+gem 'rails-i18n'

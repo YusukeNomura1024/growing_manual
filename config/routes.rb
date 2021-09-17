@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'manuals/search', to: 'manuals#search', as: 'search_manual'
     resources :manuals do
       resource :bookmark, only: [:create, :destroy]
-      resources :reviews, only: [:index, :create, :destroy, :update]
+      resources :reviews, only: [:index, :create, :destroy, :update, :edit, :new]
       resources :procedures, only: [:index, :create, :destroy, :edit, :update]
     end
     get 'procedures/:id/memo_links/new', to: 'memo_links#new', as: 'new_procedure_memo_link'

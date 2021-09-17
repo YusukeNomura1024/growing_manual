@@ -26,6 +26,7 @@
     <%= f.submit '新規作成' %>
   <% else %>
     <%= f.submit '更新する' %>
+    <%= link_to '削除する', memo_path(memo), method: :delete, data: { confirm: '削除しますか？' } %>
   <% end %>
 
 

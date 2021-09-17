@@ -1,0 +1,24 @@
+<h2><%= @manual.title %></h2>
+
+  <div>
+    <% if @review.id.nil? %>
+      あなたの評価はまだありません
+      <%= link_to '評価する', new_manual_review_path, remote: true %>
+    <% else %>
+      <div>
+        <span><%= @review.star %></span>
+      </div>
+      <%= @review.comment %>
+      <%= link_to '編集する', edit_manual_review_path(@manual, @review), remote: true %>
+    <% end %>
+  </div>
+
+
+<div id="mask" class="hidden"></div>
+
+<div id="form-area" class="hidden">
+  <%= render 'public/reviews/form', review: @review, manual: @manual, button_name: @button_name %>
+</div>
+
+
+

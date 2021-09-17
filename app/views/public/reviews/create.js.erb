@@ -1,0 +1,3 @@
+const reviewArea = document.getElementById('review-area');
+
+reviewArea.innerHTML = <%= j(render 'public/reviews/form', review: @review, manual: @manual) %>
