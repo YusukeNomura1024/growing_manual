@@ -9,6 +9,7 @@
     <%= f.text_area :comment %>
   </div>
   <%= f.hidden_field :type, value: 'violation_report' %>
+  <%= f.hidden_field :report_target, value: 'manual' %>
   <%= f.submit '報告する', id: "send_button" %>
   <div id="cancel_button">キャンセル</div>
 <% end %>

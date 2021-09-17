@@ -1,0 +1,17 @@
+var reportFormArea = document.getElementById('report-form-area');
+var mask = document.getElementById('mask');
+reportFormArea.innerHTML = "<%= j(render 'public/messages/report_form', user: @user, message: @message, review: @review) %>"
+
+reportFormArea.classList.remove('hidden');
+mask.classList.remove('hidden');
+
+mask.addEventListener('click', function(){
+  reportFormArea.classList.add('hidden');
+  mask.classList.add('hidden');
+});
+
+var reportCancelButton = document.getElementById('report_cancel_button');
+report_cancel_button.addEventListener('click', function(){
+  reportFormArea.classList.add('hidden');
+  mask.classList.add('hidden');
+});

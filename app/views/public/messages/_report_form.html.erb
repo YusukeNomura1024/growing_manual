@@ -1,0 +1,15 @@
+<h3>違反報告フォーム</h3>
+<%= form_with model: [user, message], remote: true do |f| %>
+  <div>
+    <%= f.label :review_id, review.user.pen_name + "を違反報告する" %>
+    <%= f.hidden_field :review_id, value: review.id %>
+  </div>
+  <div>
+    <%= f.label :comment, '報告内容' %>
+    <%= f.text_area :comment %>
+  </div>
+  <%= f.hidden_field :type, value: 'violation_report' %>
+  <%= f.hidden_field :report_target, value: 'review' %>
+  <%= f.submit '報告する', id: "report_send_button" %>
+  <div id="report_cancel_button">キャンセル</div>
+<% end %>

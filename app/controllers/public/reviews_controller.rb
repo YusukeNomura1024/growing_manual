@@ -4,10 +4,13 @@ class Public::ReviewsController < ApplicationController
   def index
     @reviews = Review.where.not(user_id: current_user.id).page(params[:page]).per(3)
     @review = Review.find_by(user_id: current_user.id)
+    @user = current_user
+    @message = Message.new
     if @review.nil?
       @review = Review.new
       @review.rate = 0
     end
+
 
   end
 
