@@ -1,0 +1,6 @@
+function noticeMessage(){
+  const notice = document.getElementById('notice');
+  notice.innerHTML = "<%= j(flash[notice]) %>";
+}
+
+noticeMessage();

@@ -1,5 +1,14 @@
-<li><%= link_to 'マニュアル一覧', '/' %></li>
+<li><%= link_to 'みんなのマニュアル', '/' %></li>
 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+<div class="search_box">
+  <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
+    <%= f.hidden_field :target, value: 'everyone' %>
+    <%= button_tag "検索", type: 'submit', class: "search_bottun" %>
+  <% end %>
+</div>
+
 <li><%= link_to 'マニュアル管理', manuals_path%></li>
 <li><%= link_to 'メモ管理', memos_path %></li>
+<li><%= link_to '問い合わせ', user_messages_path(current_user) %></li>
 <li><%= link_to '会員情報', user_path(current_user) %></li>

@@ -1,4 +1,5 @@
 <h2>人気順 ｜ <%= link_to '新着順', manuals_path %></h2>
+<h2>自分のマニュアル</h2>
 <div>
   <% if @list_title.nil? %>
     <h2>作成マニュアル一覧</h2>
@@ -14,6 +15,7 @@
 <div class="search_box">
   <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
     <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
+    <%= f.hidden_field :target, value: 'mine' %>
     <%= button_tag "検索", type: 'submit', class: "search_bottun" %>
   <% end %>
 </div>

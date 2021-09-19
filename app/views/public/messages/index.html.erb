@@ -1,0 +1,30 @@
+<h2>メッセージ送信</h2>
+<div id="notice">
+  <%= flash[notice] %>
+</div>
+
+<%= form_with model: [current_user, @message], remote: true do |f| %>
+  <%= f.text_area :comment, placeholder: "メッセージを入力してください" %>
+  <!--お問い合わせの場合はtypeは"contact"として送信する-->
+  <%= f.hidden_field :type, value: "contact" %>
+  <%= f.hidden_field :report_target, value: 'no_target' %>
+  <%= f.submit '送信' %>
+<% end %>
+
+<h2>メッセージ一覧</h2>
+<% @messages.each do |message| %>
+<div>
+  <%= message.type_i18n %>：
+  <!--違反報告の場合のみ報告対象とURLを付ける-->
+  <% if message.violation_report? %>
+    <%= link_to message.report_target, message.report_target_link %>
+  <% end %>
+  <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+</div>
+<div>
+  <%= message.comment %>
+</div>
+<% end %>
+
+<%= paginate @messages %>
+

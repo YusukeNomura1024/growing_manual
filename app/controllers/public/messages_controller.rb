@@ -1,7 +1,10 @@
 class Public::MessagesController < ApplicationController
   def index
+    @messages = Message.where(user_id: current_user.id).page(params[:page]).per(20).reverse_order
+    @message = Message.new
   end
 
+# マニュアルとレビューの違反報告時のみのアクション
   def new
     @user = current_user
     @message = Message.new
@@ -18,12 +21,16 @@ class Public::MessagesController < ApplicationController
   def create
     message = Message.new(message_params)
     message.save
+    # 違反報告時とお問い合わせの処理
     case params[:message][:report_target]
     when 'manual'
       manual = Manual.find(params[:message][:manual_id])
       redirect_to manual_path(manual)
     when 'review'
       redirect_to request.referer
+    when 'no_target'
+      flash[notice] = "送信しました"
+      redirect_to user_messages_path(current_user)
     end
   end
 

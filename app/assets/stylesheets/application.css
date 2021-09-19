@@ -181,3 +181,8 @@
 #report_cancel_button{
   cursor: pointer;
 }
+
+#notice {
+  background-color: green;
+  color: white;
+}

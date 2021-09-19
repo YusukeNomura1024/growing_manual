@@ -1,6 +1,6 @@
 class Public::ManualsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tags = Tag.where(user_id: current_user.id)
     @manuals = Manual.where(user_id: current_user.id).page(params[:page]).reverse_order
   end
 
@@ -55,18 +55,34 @@ class Public::ManualsController < ApplicationController
   end
 
   def search
-    @tags = Tag.all
-    @manuals = Manual.where(user_id: current_user.id).search(params[:keyword]).page(params[:page])
+    # みんなのマニュアルを表示させる場合はtargetがeveryone
+    if params[:target] == 'everyone'
+      @tags = Tag.all
+      @manuals = Manual.where(status: true).page(params[:page]).reverse_order
+      list_title_set
+
+      render 'public/homes/top'
+    else
+      @tags = Tag.where(user_id: current_user.id)
+      @manuals = Manual.where(user_id: current_user.id).search(params[:keyword]).page(params[:page])
+      list_title_set
+
+      render :index
+    end
+
+
+  end
+
+  def manual_params
+    params.require(:manual).permit(:title, :image_id, :description, :status, :release_date).merge(user_id: current_user.id)
+  end
+
+  def list_title_set
     if @manuals.count == 0
       @list_title = "「#{params[:keyword]}」 の該当なし"
     else
       @list_title = "#{params[:keyword]} の検索結果一覧 （全 #{@manuals.count}件）"
     end
-    render :index
-  end
-
-  def manual_params
-    params.require(:manual).permit(:title, :image_id, :description, :status, :release_date).merge(user_id: current_user.id)
   end
 
 end
