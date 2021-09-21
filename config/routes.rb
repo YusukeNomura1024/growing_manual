@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:create, :destroy, :show, :index]
     resources :users, only: [:edit, :show, :update] do
       resources :messages, only: [:create, :index, :new]
+      resources :notifications, only: :index
     end
     resources :tags, only: [:create, :destroy, :show]
     patch 'manuals/:id/sort', to: 'manuals#sort'
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
     get 'memos/search', to: 'memos#search', as: 'search_memo'
     resources :memos
     resources :memo_links, only: [:index, :destroy, :create]
-    resources :notifications, only: :index
+    
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

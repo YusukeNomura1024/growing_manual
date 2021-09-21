@@ -44,19 +44,41 @@ class Manual < ApplicationRecord
   end
 
   def create_notification_bookmark!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and manual_id = ? and type = ? ", current_user.id, user_id, id, 'bookmarking'])
+    #ブックマークは１つのマニュアルに１回のみ
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and manual_id = ? and type = ? ", current_user.id, self.user_id, self.id, 'bookmarking'])
     if temp.blank?
       notification = current_user.active_notifications.new(
-        manual_id: id,
-        visited_id: user_id,
+        manual_id: self.id,
+        visited_id: self.user_id,
         type: 'bookmarking'
       )
+      #自分のマニュアルに対する、お気に入りの場合は、通知済みとする
       if notification.visitor_id == notification.visited_id
         notification.is_checked = true
       end
       notification.save if notification.valid?
     end
   end
+
+
+  def create_notification_review!(current_user, review_id, visited_id)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and manual_id = ? and type = ? ", current_user.id, visited_id, self.id, 'reviewing'])
+    #評価は1つのマニュアルに１回のみ（複数回可能にする場合は、if temp.blank?を外す）
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+          manual_id: self.id,
+          review_id: review_id,
+          visited_id: visited_id,
+          type: 'reviewing'
+        )
+      #自分のマニュアルに対する、評価の場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.is_checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
 
   def save_manuals(savemanual_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

@@ -106,12 +106,14 @@ ActiveRecord::Schema.define(version: 2021_09_09_164328) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id"
     t.integer "visited_id", null: false
+    t.integer "review_id"
     t.integer "manual_id"
     t.integer "type", null: false
     t.boolean "is_checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["manual_id"], name: "index_notifications_on_manual_id"
+    t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end

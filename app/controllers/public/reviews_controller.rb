@@ -2,7 +2,8 @@ class Public::ReviewsController < ApplicationController
   before_action :manual_get
 
   def index
-    @reviews = Review.where.not(user_id: current_user.id).page(params[:page]).per(3)
+    @manual = Manual.find(params[:manual_id])
+    @reviews = Review.where(manual_id: @manual.id).where.not(user_id: current_user.id).page(params[:page]).per(20)
     @review = Review.find_by(user_id: current_user.id)
     @user = current_user
     @message = Message.new
@@ -26,6 +27,10 @@ class Public::ReviewsController < ApplicationController
     review = Review.new(review_params)
     review.save
     @manual = Manual.find(params[:manual_id])
+
+    #通知の作成
+    @manual.create_notification_review!(current_user, review.id, @manual.user_id)
+
     redirect_to manual_reviews_path(@manual)
   end
 

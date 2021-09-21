@@ -23,5 +23,10 @@ class User < ApplicationRecord
     end
   end
 
+  def passive_notifications_count
+    passive_notifications.where.not(is_checked: true).count
+  end
+
+
 
 end

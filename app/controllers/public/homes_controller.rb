@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
+
   def top
     @tags = Tag.all
     # トップページを表示する場合は必ずparamsに:sortを追加する

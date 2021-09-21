@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   def after_sign_in_path_for(resource)
     case resource
     when AdminUser
@@ -25,6 +26,8 @@ class ApplicationController < ActionController::Base
       '/'
     end
   end
+
+
 
 
 end

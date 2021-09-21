@@ -1,4 +1,5 @@
 class Public::ManualsController < ApplicationController
+
   def index
     @tags = Tag.where(user_id: current_user.id)
     @manuals = Manual.where(user_id: current_user.id).page(params[:page]).reverse_order

@@ -1,0 +1,19 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<% manual = notification.manual %>
+<% review = notification.review %>
+<ul>
+  <li><%= notification.created_at.strftime('%Y年%m月%d日 %H:%M') %></li>
+  <li>
+    <% case notification.type %>
+    <% when 'from_admin' %>
+      <%= render 'public/notifications/types/from_admin', visited: visited %>
+    <% when 'bookmarking' %>
+      <%= render 'public/notifications/types/bookmarking', visitor: visitor, visited: visited, manual: manual %>
+    <% when 'reviewing' %>
+      <%= render 'public/notifications/types/reviewing', visitor: visitor, visited: visited, manual: manual, review: review %>
+    <% end %>
+  </li>
+</ul>
+
+
