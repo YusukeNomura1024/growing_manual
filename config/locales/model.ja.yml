@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      admin_user: "管理者"
+      comment: "コメント"
+      user: "会員"
+    attributes:
+      admin_user:
+        id: "登録番号"
+        email: "メールアドレス"
+        current_sign_in_at: "ログイン状態"
+        sign_in_count: "ログイン回数"
+        created_at: "作成日"
+      user:
+        id: "登録番号"
+        full_name: "氏名"
+        pen_name: "ペンネーム"
+        is_active: "ステータス"
+        bookmarked: "ブックマークされた数"
+        created_at: "登録日"
+        updated_at: "更新日"

@@ -19,12 +19,20 @@ class User < ApplicationRecord
 
   def bookmarked_count
     manuals.inject(0) do |result, manual|
-      result + manual.bookmarks.count
+      result + manual.bookmarked_users.count
     end
   end
 
   def passive_notifications_count
     passive_notifications.where.not(is_checked: true).count
+  end
+
+  def status_text
+    if is_active
+      "有効"
+    else
+      "無効"
+    end
   end
 
 
