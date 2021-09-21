@@ -2,6 +2,7 @@ class Manual < ApplicationRecord
   belongs_to :user
 
   has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_users, through: :bookmarks, source: :user
   has_many :reviews, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
@@ -15,13 +16,20 @@ class Manual < ApplicationRecord
     bookmarks.where(user_id: your_id).exists?
   end
 
+
   def average_rate
     rate_hash = Review.group(:manual_id).average(:rate)
-    BigDecimal(rate_hash[self.id].to_s).floor(2).to_f
+    if rate_hash[self.id].nil?
+      0
+    else
+      BigDecimal(rate_hash[self.id].to_s).floor(2).to_f
+    end
   end
 
   def average_star
     case self.average_rate.floor
+    when 0
+      "☆☆☆☆☆"
     when 1
       "★☆☆☆☆"
     when 2

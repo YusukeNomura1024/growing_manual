@@ -1,4 +1,10 @@
-<h2>人気順 ｜ <%= link_to '新着順', manuals_path %></h2>
+<!--新着順クリックしたら、paramsにsort:を送る-->
+<% case params[:sort] %>
+<% when 'bookmarks' %>
+  <h2>人気順 ｜ <%= link_to '新着順', root_path(sort: 'created_at') %></h2>
+<% when 'created_at' %>
+  <h2><%= link_to '人気順', root_path(sort: 'bookmarks') %> ｜ 新着順</h2>
+<% end %>
 
 <h2>みんなのマニュアル</h2>
 <div>
@@ -6,6 +12,7 @@
     <h2>一覧</h2>
   <% else %>
     <h2><%= @list_title %></h2>
+    <h3><%= link_to 'トップに戻る', root_path %></h3>
   <% end %>
 </div>
 
@@ -16,15 +23,15 @@
   <li>タイトル</li>
   <li>お気に入り件数</li>
   <li>評価</li>
-  <li>公開ステータス</li>
+  <li>クリエイター</li>
 </ul>
 <% @manuals.each do |manual| %>
 <ul>
  <li><%= manual.created_at.strftime('%Y.%m.%d') %></li>
  <li><%= link_to "#{manual.title}", manual_path(manual) %></li>
- <li>♥<%= manual.bookmarks.count %></li>
- <li>☆☆☆☆☆</li>
- <li style="<%= manual.status_style %>"><%= manual.status_text %></li>
+ <li>♥<%= manual.bookmarked_users.count %></li>
+ <li><%= manual.average_star %>>
+ <li><%= link_to manual.user.pen_name, user_path(manual.user) %></li>
 </ul>
 <% end %>
 
