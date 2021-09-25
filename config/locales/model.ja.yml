@@ -4,6 +4,9 @@ ja:
       admin_user: "管理者"
       comment: "コメント"
       user: "会員"
+      manual: "マニュアル"
+      review: "評価"
+      message: "メッセージ"
     attributes:
       admin_user:
         id: "登録番号"
@@ -19,3 +22,21 @@ ja:
         bookmarked: "ブックマークされた数"
         created_at: "登録日"
         updated_at: "更新日"
+      manual:
+        title: "タイトル"
+        user: "作成者"
+        status: "ステータス"
+        release_date: "公開予定日"
+        description: "説明"
+        bookmarked: "ブックマーク数"
+        created_at: "登録日"
+      review:
+        user: "評価した人"
+        manual: "評価マニュアル"
+        comment: "コメント"
+        rate: "評価"
+        created_at: "評価日"
+        updated_at: "更新日"
+      message:
+        user: "送り主"
+

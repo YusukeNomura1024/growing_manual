@@ -1,4 +1,6 @@
 class Public::MessagesController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about]
+  
   def index
     @messages = Message.where(user_id: current_user.id).page(params[:page]).per(20).reverse_order
     @message = Message.new

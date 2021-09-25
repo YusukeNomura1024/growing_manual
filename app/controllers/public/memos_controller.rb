@@ -1,4 +1,6 @@
 class Public::MemosController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about]
+
   def index
     @categories = Category.where(user_id: current_user)
     @memos = Memo.where(user_id: current_user.id).page(params[:page]).reverse_order
@@ -18,6 +20,11 @@ class Public::MemosController < ApplicationController
 
   def show
     @memo = Memo.find(params[:id])
+    respond_to do |format|
+      format.html
+
+      format.js { render 'show' }
+    end
   end
 
   def link

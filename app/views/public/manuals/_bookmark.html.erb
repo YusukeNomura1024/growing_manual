@@ -1,0 +1,9 @@
+<% if admin_user_signed_in? %>
+  ブックマーク数<%= manual.bookmarked_users.count %>件
+<% else %>
+  <% if manual.bookmarked_by?(current_user.id) %>
+    <%= link_to '♥ブックマークを外す', manual_bookmark_path(manual), method: :delete, remote: true %>
+  <% else %>
+    <%= link_to '♡ブックマークする', manual_bookmark_path(manual), method: :post, remote: true %>
+  <% end %>
+<% end %>

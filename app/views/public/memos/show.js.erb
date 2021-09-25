@@ -1,0 +1,5 @@
+function memoDisplay(){
+  const memo = document.getElementById('memo-display')
+  memo.innerHTML = "<%= j(render 'public/memos/display', memo: @memo) %>"
+};
+memoDisplay();

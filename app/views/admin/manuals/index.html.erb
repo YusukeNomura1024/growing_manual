@@ -1,0 +1,39 @@
+<!--新着順クリックしたら、paramsにsort:を送る-->
+<% case params[:sort] %>
+<% when 'bookmarks' %>
+  <h2>人気順 ｜ <%= link_to '新着順', root_path(sort: 'created_at') %></h2>
+<% when 'created_at' %>
+  <h2><%= link_to '人気順', root_path(sort: 'bookmarks') %> ｜ 新着順</h2>
+<% end %>
+<div>
+  <% if @list_title.nil? %>
+    <h2>マニュアル一覧</h2>
+  <% else %>
+    <h2><%= @list_title %></h2>
+  <% end %>
+</div>
+
+<%= render 'admin/tags/list', tags: @tags %>
+
+
+<ul>
+  <li>作成日</li>
+  <li>タイトル</li>
+  <li>お気に入り件数</li>
+  <li>評価</li>
+  <li>製作者</li>
+  <li>公開ステータス</li>
+</ul>
+<% @manuals.each do |manual| %>
+<ul>
+  <li><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+  <li><%= link_to "#{manual.title}", admin_manual_path(manual) %></li>
+  <li>♥<%= manual.bookmarks.count %></li>
+  <li><%= manual.average_star %><%= manual.average_rate %></li>
+  <li><%= link_to "#{manual.user.full_name}(#{manual.user.pen_name})", admin_user_path(manual.user) %></li>
+  <li style="<%= manual.status_style %>"><%= manual.status_text %></li>
+</ul>
+<% end %>
+
+
+<%= paginate @manuals %>

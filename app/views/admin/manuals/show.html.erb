@@ -1,0 +1,43 @@
+<h2><%= @manual.title %> マニュアル詳細</h2>
+
+<%= link_to 'マニュアル編集', edit_admin_manual_path(@manual) %>
+
+<%= render 'public/manuals/bookmark', manual: @manual %>
+
+<%= link_to 'レビュー', admin_manual_reviews_path(@manual) %>
+
+<div>
+  <%= 'マニュアルタイトル：' + @manual.title %>
+</div>
+<div>
+  <%= '説明：' + @manual.description %>
+</div>
+<div>
+  タグ：
+  <% @manual.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+</div>
+
+<h3>手順</h3>
+<div class="tab-group d-flex">
+  <ul class="tab-list" style="list-style: none;">
+  <% @procedures.each do |procedure| %>
+    <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
+        <%= procedure.position %>
+        <%= procedure.title %>
+    </li>
+  <% end %>
+  </ul>
+
+
+
+  <ul class="tab-list" style="list-style: none;">
+  <% @procedures.each do |procedure| %>
+    <li class="tabbox" id="<%= 'tab' + procedure.id.to_s %>">
+      <%= render 'public/memos/list', memo_links: procedure.memo_links %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+

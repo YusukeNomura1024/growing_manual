@@ -1,0 +1,16 @@
+<h2>問い合わせ一覧</h2>
+<div class="scroll-area">
+  <% @messages.each do |message| %>
+  <div>
+    <%= message.user.full_name %>(<%= message.user.pen_name %>)
+    <%= message.type_i18n %>：
+    <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+  </div>
+  <div>
+    <%= message.comment %>
+  </div>
+  <div>
+    <%= link_to '返信する', admin_user_messages_path(message.user) %>
+  </div>
+  <% end %>
+</div>

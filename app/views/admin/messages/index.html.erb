@@ -1,0 +1,40 @@
+<div id="flash">
+  <%= render 'partial/flash' %>
+</div>
+
+
+<h2>メッセージ一覧</h2>
+<div class="scroll-area">
+  <% @messages.each do |message| %>
+  <div>
+    <%= message.type_i18n %>：
+    <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+  </div>
+  <div>
+    <%= message.comment %>
+  </div>
+  <div>
+    <% if !message.is_replied %>
+      <%= link_to '返信済みにする', admin_user_message_path(@user, message), method: :patch, data: {confirm: "返信済みにしますか？"}, remote: true %>
+    <% elsif message.type == 'from_admin' %>
+      管理者から送信
+    <% else %>
+      返信済み
+    <% end %>
+    <%= link_to '削除する', admin_user_message_path(@user, message), method: :delete, data: {confirm: "削除しますか？"}, remote: true %>
+  </div>
+  <% end %>
+</div>
+
+<h2>メッセージ送信</h2>
+
+<%= form_with model: [:admin, @user, @message], remote: true do |f| %>
+  <%= f.text_area :comment, placeholder: "メッセージを入力してください" %>
+  <!--管理者側からのメッセージはtypeは"from_admin"、report_targetは'no_target'として送信する-->
+  <%= f.hidden_field :type, value: "from_admin" %>
+  <%= f.hidden_field :report_target, value: 'no_target' %>
+  <%= f.submit '送信', data: {confirm: "送信しますか？"} %>
+<% end %>
+
+
+

@@ -1,25 +1,21 @@
 ActiveAdmin.register User do
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  permit_params :email, :encrypted_password, :full_name, :pen_name, :image_id, :is_active, :reset_password_token, :reset_password_sent_at, :remember_created_at
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:email, :encrypted_password, :full_name, :pen_name, :image_id, :is_active, :reset_password_token, :reset_password_sent_at, :remember_created_at]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:email, :encrypted_password, :full_name, :pen_name, :image_id, :is_active, :reset_password_token, :reset_password_sent_at, :remember_created_at, :id]
+    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted
+  end
 
-  # config.filters = false
   filter :full_name
   filter :email
   filter :is_active, collection:{"有効" => true, "無効" => false}
 
+
+
+
+  action_item :messages, only: :show do
+    link_to 'メッセージ一覧に飛びます', admin_user_messages_path(user)
+  end
 
 
   show do

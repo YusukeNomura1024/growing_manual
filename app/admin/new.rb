@@ -1,5 +1,5 @@
 ActiveAdmin.register_page "newpage" do
   content do
-    para "NewPage"
+    render partial: 'admin/user_messages'
   end
 end

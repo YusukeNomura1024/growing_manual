@@ -31,7 +31,7 @@
  <li><%= manual.created_at.strftime('%Y.%m.%d') %></li>
  <li><%= link_to "#{manual.title}", manual_path(manual) %></li>
  <li>♥<%= manual.bookmarks.count %></li>
- <li>☆☆☆☆☆</li>
+ <li><%= manual.average_star %><%= manual.average_rate %></li>
  <li style="<%= manual.status_style %>"><%= manual.status_text %></li>
 </ul>
 <% end %>

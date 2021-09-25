@@ -1,4 +1,6 @@
 class Public::ProceduresController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about]
+  
   def index
     @manual = Manual.find(params[:manual_id])
     @procedures = @manual.procedures

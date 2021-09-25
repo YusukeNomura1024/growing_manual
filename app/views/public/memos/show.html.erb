@@ -21,7 +21,13 @@
   </div>
   <div>
     <div>カテゴリー</div>
-    <div><%= @memo.category.name %></div>
+    <div>
+      <% if @memo.category.present? %>
+        <%= @memo.category.name %>
+      <% else %>
+        なし
+      <% end %>
+    </div>
   </div>
   <%= link_to '一覧へ', memos_path %>
   <%= link_to '編集する', edit_memo_path(@memo) %>

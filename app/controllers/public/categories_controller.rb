@@ -1,4 +1,6 @@
 class Public::CategoriesController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about]
+  
   def create
     @category = Category.new(category_params)
     @category.user_id = current_user.id

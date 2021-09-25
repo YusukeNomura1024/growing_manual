@@ -1,5 +1,7 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about]
   before_action :manual_get
+  
 
   def index
     @manual = Manual.find(params[:manual_id])

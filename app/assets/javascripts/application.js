@@ -15,7 +15,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require_directory
+//= require_tree ./public
 
 /*global $*/
 
@@ -28,6 +29,8 @@ window.document.addEventListener('turbolinks:load', function(){
         $('.box-show').removeClass('box-show');
         var $this = $(this);
         $($this.attr('href')).addClass('box-show');
+        const memo = document.getElementById('memo-display')
+        memo.innerHTML = ""
       });
     });
   });

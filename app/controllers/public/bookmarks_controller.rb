@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+before_action :authenticate_user!
 
   def create
     @manual = Manual.find(params[:manual_id])

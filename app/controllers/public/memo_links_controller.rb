@@ -1,4 +1,7 @@
 class Public::MemoLinksController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :about]
+  before_action :non_owner_to_root, only: [:destroy, :update, :edit]
+  
   def index
   end
 
@@ -19,6 +22,11 @@ class Public::MemoLinksController < ApplicationController
   end
 
   def destroy
+  end
+
+  def non_owner_to_root
+    @memo_link = MemoLink.find(params[:id])
+    redirect_to root_path
   end
 
   private

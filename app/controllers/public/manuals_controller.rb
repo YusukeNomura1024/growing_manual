@@ -1,4 +1,6 @@
 class Public::ManualsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  before_action :non_owner_to_root, only: [:destroy, :update, :edit]
 
   def index
     @tags = Tag.where(user_id: current_user.id)
@@ -30,6 +32,10 @@ class Public::ManualsController < ApplicationController
 
   def edit
     @manual = Manual.find(params[:id])
+    @procedures = @manual.procedures
+    @user = current_user
+    @message = Message.new
+
   end
 
   def update
@@ -59,7 +65,7 @@ class Public::ManualsController < ApplicationController
     # みんなのマニュアルを表示させる場合はtargetがeveryone
     if params[:target] == 'everyone'
       @tags = Tag.all
-      @manuals = Manual.where(status: true).page(params[:page]).reverse_order
+      @manuals = Manual.where(status: true).search(params[:keyword]).page(params[:page]).reverse_order
       list_title_set
 
       render 'public/homes/top'
@@ -73,6 +79,15 @@ class Public::ManualsController < ApplicationController
 
 
   end
+
+  def non_owner_to_root
+    @manual = Manual.find(params[:id])
+    unless current_user.id == @manual.user_id || admin_user_signed_in?
+      redirect_to '/'
+    end
+  end
+
+  private
 
   def manual_params
     params.require(:manual).permit(:title, :image_id, :description, :status, :release_date).merge(user_id: current_user.id)

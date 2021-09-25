@@ -6,6 +6,8 @@ class Message < ApplicationRecord
 
   enum type: { contact: 0, violation_report: 1, from_admin: 2 }
 
+  validates :comment, presence: true
+
   def violation_report?
     if self.type == 'violation_report'
       true

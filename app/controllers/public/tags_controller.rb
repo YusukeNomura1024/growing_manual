@@ -1,4 +1,7 @@
 class Public::TagsController < ApplicationController
+  
+  before_action :authenticate_user!, except: [:top, :about]
+  
   def create
   end
 

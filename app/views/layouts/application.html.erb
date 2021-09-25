@@ -13,10 +13,12 @@
     <% if user_signed_in? %>
       <%= render 'partial/user_head' %>
       <%= 'こんにちは' + current_user.full_name + 'さん' %>
+    <% elsif admin_user_signed_in? %>
+      <%= render 'partial/admin_head' %>
     <% else %>
       <%= render 'partial/other_head' %>
     <% end %>
-    
+
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,6 @@
+function flashMessage(){
+  const flash = document.getElementById('flash');
+  flash.innerHTML = "<%= j(render 'partial/flash') %>";
+}
+
+flashMessage();

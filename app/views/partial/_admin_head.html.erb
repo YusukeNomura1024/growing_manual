@@ -1,0 +1,12 @@
+<li><%= link_to 'マニュアル一覧', admin_manuals_path %></li>
+<li><%= link_to '会員一覧', admin_users_path %></li>
+<li><%= link_to '問い合わせ一覧', admin_messages_path %></li>
+<li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
+<div class="search_box">
+  <%= form_with url: admin_search_manual_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
+    <%= button_tag "検索", type: 'submit', class: "search_button" %>
+  <% end %>
+</div>
+<h1>管理者としてログイン中です。</h1>
+
