@@ -1,15 +1,16 @@
 class Public::MemosController < ApplicationController
-  before_action :authenticate_user!, except: [:top, :about]
+  before_action :authenticate_user!
+  before_action :non_owner_to_root, only: [:show, :destroy, :update, :edit]
 
   def index
-    @categories = Category.where(user_id: current_user)
-    @memos = Memo.where(user_id: current_user.id).page(params[:page]).reverse_order
+    @categories = Category.where(user_id: current_user.id)
+    @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
 
   end
 
   def search
-    @categories = Category.where(user_id: current_user)
-    @memos = Memo.where(user_id: current_user.id).page(params[:page]).reverse_order
+    @categories = where_user_id_is_current_user_id(Category)
+    @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
     if @memos.count == 0
       @list_title = "「#{params[:keyword]}」 の該当なし"
     else
@@ -20,11 +21,6 @@ class Public::MemosController < ApplicationController
 
   def show
     @memo = Memo.find(params[:id])
-    respond_to do |format|
-      format.html
-
-      format.js { render 'show' }
-    end
   end
 
   def link
@@ -36,7 +32,7 @@ class Public::MemosController < ApplicationController
 
   def new
     @memo = Memo.new
-    @categories = Category.where(user_id: current_user.id)
+    @categories = where_user_id_is_current_user_id(Category)
     @category = Category.new
   end
 
@@ -48,19 +44,29 @@ class Public::MemosController < ApplicationController
       render :new
     else
       @memo.save
-      redirect_to memos_path
+
+      # procedureにも登録するかどうか判断
       if !params[:memo][:procedure_id].nil?
-        memo_link = MemoLink.new
-        memo_link.procedure_id = params[:memo][:procedure_id]
-        memo_link.memo_id = @memo.id
-        memo_link.save
+        manual = Procedure.find(params[:memo][:procedure_id]).manual
+
+        # manualの製作者かどうか判断
+        if manual.user == current_user
+          memo_link = MemoLink.new
+          memo_link.procedure_id = params[:memo][:procedure_id]
+          memo_link.memo_id = @memo.id
+          memo_link.save
+          redirect_to manual_path(manual)
+        else
+          flash[:error] = "他人のマニュアルにメモを登録はできません"
+          redirect_to memo_path(@memo)
+        end
       end
     end
   end
 
   def edit
     @memo = Memo.find(params[:id])
-    @categories = Category.where(user_id: current_user.id)
+    @categories = where_user_id_is_current_user_id(Category)
     @category = Category.new
 
   end
@@ -69,7 +75,7 @@ class Public::MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     if !params[:preview_button].nil?
       @memo = Memo.new(memo_params)
-      @categories = Category.where(user_id: current_user.id)
+      @categories = where_user_id_is_current_user_id(Category)
       @category = Category.new
       render :edit
     else
@@ -85,6 +91,14 @@ class Public::MemosController < ApplicationController
     memo.destroy
     redirect_to memos_path
   end
+
+  def non_owner_to_root
+    @memo = Memo.find(params[:id])
+    unless current_user.id == @memo.user_id || admin_user_signed_in?
+      redirect_to '/'
+    end
+  end
+
 
 private
 

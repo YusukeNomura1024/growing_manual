@@ -1,0 +1,10 @@
+<h2>memoの詳細を表示します。</h2>
+<ul>
+  <li><%= memo_link.memo.name %></li>
+  <li><%= memo_link.memo.description %></li>
+  <li><%= memo_link.memo.url %></li>
+  <li><%= memo_link.memo.code %></li>
+</ul>
+<% if memo_link.memo.user == current_user %>
+  <%= link_to 'メモのリンクを解除する', memo_link_path(memo_link, manual_id: params[:manual_id]), method: :delete, data: {confirm: "リンクを解除しますか？メモ自体は削除されません" } %>
+<% end %>
