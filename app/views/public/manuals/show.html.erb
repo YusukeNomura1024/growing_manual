@@ -11,8 +11,9 @@
 
 <%= render 'public/manuals/bookmark', manual: @manual %>
 
+<%= link_to 'レビュー', manual_reviews_path(@manual) %>
+
 <% unless @manual.user == current_user %>
-  <%= link_to 'レビュー', manual_reviews_path(@manual) %>
   <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true %>
 <% end %>
 

@@ -15,8 +15,9 @@ class Public::CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @categories = Category.where(user_id: current_user.id)
+    @categories = where_user_id_is_current_user_id(Category)
     @memos = @category.memos.page(params[:page])
+
     if @memos.count == 0
       @list_title = "「#{@category.name}」 の該当なし"
     else

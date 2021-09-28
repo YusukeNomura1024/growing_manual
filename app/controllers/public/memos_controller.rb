@@ -3,18 +3,18 @@ class Public::MemosController < ApplicationController
   before_action :non_owner_to_root, only: [:show, :destroy, :update, :edit]
 
   def index
-    @categories = Category.where(user_id: current_user.id)
+    @categories = where_user_id_is_current_user_id(Category)
     @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
 
   end
 
   def search
     @categories = where_user_id_is_current_user_id(Category)
-    @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+    @memos = where_user_id_is_current_user_id(Memo).search(params[:keyword]).page(params[:page]).reverse_order
     if @memos.count == 0
-      @list_title = "「#{params[:keyword]}」 の該当なし"
+      @list_title = "キーワード「#{params[:keyword]}」 の該当なし"
     else
-      @list_title = "#{params[:keyword]} の検索結果一覧 （全 #{@memos.count}件）"
+      @list_title = "キーワード「#{params[:keyword]} 」の検索結果一覧 （全 #{@memos.count}件）"
     end
     render :index
   end

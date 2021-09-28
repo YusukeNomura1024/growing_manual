@@ -1,0 +1,15 @@
+<% if manual.user != current_user %>
+  <div>
+    <% if review.id.nil? %>
+      <h3>あなたの評価はまだありません</h3>
+      <%= link_to '評価する', new_manual_review_path, remote: true %>
+    <% else %>
+      <div>
+        <h3>あなたの評価</h3>
+        <span><%= review.star %></span>
+      </div>
+      <%= review.comment %>
+      <%= link_to '編集する', edit_manual_review_path(manual, review), remote: true %>
+    <% end %>
+  </div>
+<% end %>
