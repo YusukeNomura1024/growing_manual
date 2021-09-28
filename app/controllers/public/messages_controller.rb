@@ -1,8 +1,9 @@
 class Public::MessagesController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
-  
+  before_action :non_owner_to_root, only: [:index, :create]
+
   def index
-    @messages = Message.where(user_id: current_user.id).page(params[:page]).per(20).reverse_order
+    @messages = where_user_id_is_current_user_id(Message).page(params[:page]).per(20).reverse_order
     @message = Message.new
   end
 
@@ -33,6 +34,12 @@ class Public::MessagesController < ApplicationController
     when 'no_target'
       flash[notice] = "送信しました"
       redirect_to user_messages_path(current_user)
+    end
+  end
+
+  def non_owner_to_root
+    if current_user.id != params[:user_id].to_i || admin_user_signed_in?
+      redirect_to '/'
     end
   end
 
