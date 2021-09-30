@@ -1,4 +1,14 @@
-<li><%= link_to 'みんなのマニュアル', root_path %></li>
-<li><%= link_to 'about', '/about' %></li>
-<li><%= link_to '新規登録', new_user_registration_path %></li>
-<li><%= link_to 'ログイン', new_user_session_path %></li>
+<div class="header__top">
+  <h2 class="logo">ロゴ</h2>
+  <nav class="nav">
+    <ul class="nav__left">
+      <li><%= link_to 'みんなのマニュアル', root_path, class: "btn" %></li>
+      <li><%= link_to 'about', '/about', class: "btn" %></li>
+    </ul>
+    <ul class="nav__right">
+      <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-outline-primary" %></li>
+      |
+      <li><%= link_to 'ログイン', new_user_session_path, class: "btn" %></li>
+    </ul>
+  </nav>
+</div>

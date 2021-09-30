@@ -1,15 +1,25 @@
-<li><%= link_to 'みんなのマニュアル', '/' %></li>
-<li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-<div class="search_box">
-  <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
-    <%= f.hidden_field :target, value: 'everyone' %>
-    <%= button_tag "検索", type: 'submit', class: "search_button" %>
-  <% end %>
+<div class="header__top">
+  <h2 class="logo">ロゴ</h2>
+  <nav class="nav">
+    <ul class="nav__left">
+      <li><%= link_to 'みんなのマニュアル', '/', class: "btn" %></li>
+      <li><%= link_to 'マニュアル管理', manuals_path, class: "btn" %></li>
+      <li><%= link_to 'メモ管理', memos_path, class: "btn" %></li>
+    </ul>
+    <ul class="nav__right">
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn_danger" %></li>
+    </ul>
+  </nav>
 </div>
-
-<li><%= link_to 'マニュアル管理', manuals_path%></li>
-<li><%= link_to 'メモ管理', memos_path %></li>
-<li><%= link_to '問い合わせ', user_messages_path(current_user) %></li>
-<li><%= link_to '会員情報', user_path(current_user) %></li>
-<li><%= link_to "通知(未読#{current_user.passive_notifications_count}件）", user_notifications_path(current_user) %></li>
+<div class="header__bottom header_flex-end">
+  <div class="search_box">
+    <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
+      <%= f.hidden_field :target, value: 'everyone' %>
+      <%= button_tag "検索", type: 'submit', class: "search_button" %>
+    <% end %>
+  </div>
+  <li><%= link_to '問い合わせ', user_messages_path(current_user), class: "btn" %></li>
+  <li><%= link_to '会員情報', user_path(current_user), class: "btn" %></li>
+  <li><%= link_to "通知(未読#{current_user.passive_notifications_count}件）", user_notifications_path(current_user), class: "btn" %></li>
+</div>

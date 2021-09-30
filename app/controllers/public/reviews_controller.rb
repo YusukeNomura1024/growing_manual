@@ -1,7 +1,8 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
   before_action :manual_get
-  
+  before_action :non_owner_to_root, only: [:update, :edit, :review]
+
 
   def index
     @manual = Manual.find(params[:manual_id])
@@ -63,6 +64,13 @@ class Public::ReviewsController < ApplicationController
 
 
   private
+
+  def non_owner_to_root
+    @review = Review.find(params[:id])
+    unless @review.user == current_user
+      redirect_to '/'
+    end
+  end
 
   def review_params
     params.require(:review).permit(:rate, :comment).merge(manual_id: params[:manual_id], user_id: current_user.id)
