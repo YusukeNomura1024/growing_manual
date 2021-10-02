@@ -268,6 +268,11 @@
   font-size: 1.2rem;
 }
 
+.btn a{
+  text-decoration: none;
+  color: black;
+}
+
 .btn:hover{
   background-color: black;
   color: white;
@@ -275,6 +280,10 @@
   padding: 3px 8px;
   transition: all 0.3s;
   cursor: pointer;
+}
+
+.btn a:hover{
+  color: white;
 }
 
 .btn_danger {
@@ -322,18 +331,34 @@
 .btn.btn-block {
     display: block;
     width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 
 .btn-outline-primary{
   color: #0d6efd;
-  border-color: #0d6efd;
+  border: 1px solid #0d6efd;
 }
 
 .btn-outline-primary:hover{
   color: white;
   background-color: #0d6efd;
 }
+
+.btn.btn-outline-success{
+  color: #28a745;
+  border: 1px solid #28a745;
+  text-decoration: none;
+}
+
+
+.btn.btn-outline-success:hover{
+  color: white;
+  background-color: #28a745;
+}
+
+
 
 .main__content{
   width: 400px;
@@ -356,7 +381,6 @@
 
 .form__label{
   margin-right: auto;
-  width: 500px;
 }
 
 .field_with_errors{
@@ -369,6 +393,33 @@
 
 .form_check_box input{
   margin-right: 5px;
+}
+
+.info-field{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 0 20px 0 20px;
+}
+
+.info-field .info{
+  padding: 10px 0;
+}
+
+.info-field .info:last-child{
+  border-bottom: none;
+}
+
+
+.info{
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  align-items: center;
+}
+
+.info__label{
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  width: 200px;
 }
 
 

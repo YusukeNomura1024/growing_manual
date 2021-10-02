@@ -1,31 +1,38 @@
-<h2>会員ページ</h2>
-<h3>会員情報</h3>
-<% if @user.id == current_user.id %>
-  <%= link_to '編集する', edit_user_path(current_user) %>
-<% end %>
-<table>
-  <% if @oneself %>
-  <tr>
-    <th>名前</th>
-    <td><%= @user.full_name %></td>
-  </tr>
-  <% end %>
-  <tr>
-    <th>ペンネーム</th>
-    <td><%= @user.pen_name %></td>
-  </tr>
-  <% if @oneself %>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @user.email %></td>
-  </tr>
-  <% end %>
-  <tr>
-    <th>公開中のマニュアルの数</th>
-    <td><%= @user.manuals.count %></td>
-  </tr>
-  <tr>
-    <th>ブックマークされた数</th>
-    <td><%= @user.bookmarked_count %></td>
-  </tr>
-</table>
+<main>
+  <div class="main__content">
+    <h2 class="main__content-title">会員ページ</h2>
+    <% if @user.id == current_user.id %>
+        <%= link_to '編集する', edit_user_path(current_user), class: "btn btn-block btn-outline-success" %>
+    <% end %>
+    <div class="info-field">
+      <% if @oneself %>
+      <ul class="info">
+        <li class="info__label">名前</li>
+        <li><%= @user.full_name %></li>
+      </ul>
+      <% end %>
+      <ul class="info">
+        <li class="info__label">ペンネーム</li>
+        <li><%= @user.pen_name %></li>
+      </ul>
+      <% if @oneself %>
+      <ul class="info">
+        <li class="info__label">メールアドレス</li>
+        <li><%= @user.email %></li>
+      </ul>
+      <% end %>
+      <ul class="info">
+        <li class="info__label">公開中のマニュアルの数</li>
+        <li><%= @user.manuals.count %></li>
+      </ul>
+      <ul class="info">
+        <li class="info__label">作成したメモの数</li>
+        <li><%= @user.memos.count %></li>
+      </ul>
+      <ul class="info">
+        <li class="info__label">ブックマークされた数</li>
+        <li><%= @user.bookmarked_count %></li>
+      </ul>
+    </div>
+  </div>
+</main>
