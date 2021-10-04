@@ -1,39 +1,53 @@
-<!--新着順クリックしたら、paramsにsort:を送る-->
-<% case params[:sort] %>
-<% when 'bookmarks' %>
-  <h2>人気順 ｜ <%= link_to '新着順', root_path(sort: 'created_at') %></h2>
-<% when 'created_at' %>
-  <h2><%= link_to '人気順', root_path(sort: 'bookmarks') %> ｜ 新着順</h2>
-<% end %>
+<main class=main>
 
-<h2>みんなのマニュアル</h2>
-<div>
-  <% if @list_title.nil? %>
-    <h2>一覧</h2>
-  <% else %>
-    <h2><%= @list_title %></h2>
-    <h3><%= link_to 'トップに戻る', root_path %></h3>
-  <% end %>
-</div>
+  <div class="main__top_content">
 
-<%= render 'public/tags/list', tags: @tags %>
+    <h2>みんなのマニュアル
+      <% if @list_title.nil? %>
+        一覧
+      <% else %>
+        <%= @list_title %>
+        <br><%= link_to 'トップに戻る', root_path %>
+      <% end %>
+    </h2>
 
-<ul>
-  <li>作成日</li>
-  <li>タイトル</li>
-  <li>お気に入り件数</li>
-  <li>評価</li>
-  <li>クリエイター</li>
-</ul>
-<% @manuals.each do |manual| %>
-<ul>
- <li><%= manual.created_at.strftime('%Y.%m.%d') %></li>
- <li><%= link_to "#{manual.title}", manual_path(manual) %></li>
- <li>♥<%= manual.bookmarked_users.count %></li>
- <li><%= manual.average_star %>>
- <li><%= link_to manual.user.pen_name, user_path(manual.user) %></li>
-</ul>
-<% end %>
+    <div class="switch_order">
+      <!--新着順クリックしたら、paramsにsort:を送る-->
+      <% case params[:sort] %>
+      <% when 'bookmarks' %>
+        <h2>人気順<%= link_to '新着順', root_path(sort: 'created_at'), class: "switch_order__right_btn" %></h2>
+      <% when 'created_at' %>
+        <h2><%= link_to '人気順', root_path(sort: 'bookmarks'), class: "switch_order__left_btn" %>新着順</h2>
+      <% end %>
+    </div>
 
+  </div>
 
-<%= paginate @manuals %>
+  <div class="main__left_content">
+    <%= render 'public/tags/list', tags: @tags %>
+  </div>
+
+  <div class="main__center_content everyone_manual_list list__group">
+    <ul class="list__head">
+      <li class="list__created_at_date">作成日</li>
+      <li class="list__title">タイトル</li>
+      <li class="list__bookmarked_users"></i>お気に入り</li>
+      <li class="list__rate">評価</li>
+      <li class="list__creator">投稿者</li>
+    </ul>
+    <% @manuals.each do |manual| %>
+    <ul class="list__body">
+     <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+     <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
+     <li class="list__bookmarked_users"><i class="far fa-bookmark"></i> <%= manual.bookmarked_users.count %></li>
+     <li class="list__rate"><%= manual.average_star %></li>
+     <li class="list__creator"><%= link_to manual.user.pen_name, user_path(manual.user) %></li>
+    </ul>
+    <% end %>
+  </div>
+
+  <div class="main__bottom_content">
+    <%= paginate @manuals %>
+  </div>
+
+</main>

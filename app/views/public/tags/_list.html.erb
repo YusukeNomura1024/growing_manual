@@ -1,5 +1,5 @@
-<div>
-  <h3>タグ検索</h3>
+<div class="tag_search">
+  <h3 class="tag_search__title">タグ検索</h3>
   <ul>
   <% tags.each do |tag| %>
     <% if current_page?(root_path) || params[:target] == 'everyone' %>

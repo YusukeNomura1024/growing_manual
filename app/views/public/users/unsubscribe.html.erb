@@ -1,8 +1,16 @@
-<h2>本当に退会しますか？</h2>
-<h3>
-  退会すると、作成したマニュアルやメモが削除されます。<br>
-  お気に入りリストも削除されます。
-  退会する場合は、「退会する」をクリックしてください。
-</h3>
-<%= link_to '退会しない', edit_user_path(current_user) %>
-<%= link_to '退会する', user_withdraw_path(current_user), method: :patch, data: {confirm: '退会しますか？'} %>
+<main>
+  <div class="main__content confirmation">
+    <i class="fas fa-exclamation-circle confirmation__icon confirmation__icon--danger"></i>
+    <h2 class="confirmation__title">本当に退会しますか？</h2>
+    <ul class="confirmation__list_group">
+      <li><span>作成したマニュアルやメモが削除されます</span></li>
+      <li><span>お気に入りリストも削除されます</span></li>
+      <li><span>退会後は同じメールアドレスでログインができなくなります</span></li>
+    </ul>
+    <p>以下をご確認の上、よろしければ「退会する」をクリックしてください。</p>
+    <div class="confirmation__buttons">
+      <%= link_to '退会しない', edit_user_path(current_user), class: "btn btn-outline-primary" %>
+      <%= link_to '退会する', user_withdraw_path(current_user), method: :patch, data: {confirm: '退会しますか？'}, class: "btn btn-outline-danger" %>
+    </div>
+  </div>
+</main>
