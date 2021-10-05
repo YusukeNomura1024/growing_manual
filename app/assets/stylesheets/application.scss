@@ -677,5 +677,45 @@ $main-color: #000000;
   }
 }
 
+.container{
+  width: 80%;
+  margin: 0 auto;
+  text-align:center;
+  display: grid;
+  min-height: 100vh;
+  grid-template:
+    ".......... .......... .......... .......... .........." 30px
+    "container1 container1 container1 container1 container1"
+    ".......... .......... .......... .......... .........." 30px
+    "container2 .......... container3 .......... container4" 1fr
+    "footer     footer     footer     footer     footer    " 100px
+    /33.3% 10px 33.3% 10px 33.3%;
+}
+
+.container__section:nth-child(n+2){
+  border: 3px solid $main-color;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.container__section:nth-child(1){
+  grid-area: container1;
+}
+
+.container__section:nth-child(2){
+  grid-area: container2;
+}
+
+.container__section:nth-child(3){
+  grid-area: container3;
+}
+
+.container__section:nth-child(4){
+  grid-area: container4;
+}
+
+.annotation{
+  font-size: 0.8rem;
+}
 
 
