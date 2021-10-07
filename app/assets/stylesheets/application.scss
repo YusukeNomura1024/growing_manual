@@ -506,10 +506,25 @@ $main-color: #000000;
 
 .form{
   display: flex;
+  flex-wrap: wrap;
 }
+
+.column_form{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+
+}
+
 
 .form__label{
   margin-right: auto;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+}
+
+.column_form__label{
+  width: 100%;
   color: rgba(0, 0, 0, 0.6);
   font-size: 0.9rem;
 }
@@ -519,6 +534,57 @@ $main-color: #000000;
   border: 1px solid rgba(0, 0, 0, 0.3);
   padding: 3px 8px;
   border-radius: 4px;
+}
+
+.column_form__input{
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 10px;
+  min-height: 30px;
+}
+
+.column__form__input_file_area{
+  display: block;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.column__fomr__input_file_text{
+  display:inline-block;
+  border-radius: 10px 0 0 10px;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 10px 0 10px;
+  line-height: 30px;
+  background-color: #efefef;
+  height: 100%;
+
+}
+
+#select_file_name{
+  display: inline-block;
+}
+
+
+
+.column_form__input_file{
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+}
+
+
+
+
+.form__input_text_area{
+  height: 10vh;
 }
 
 .form__input:hover{
@@ -535,6 +601,22 @@ $main-color: #000000;
 
 .form_check_box input{
   margin-right: 5px;
+}
+
+.form__check {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: .125rem;
+}
+
+.form__check--inline{
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.form__check_input[type=radio]{
+  border-radius: 50%;
 }
 
 .info-field{

@@ -34,5 +34,13 @@ window.document.addEventListener('turbolinks:load', function(){
       });
     });
   });
+  const inputFile = document.getElementsByClassName('column_form__input_file')[0];
+  inputFile.addEventListener('change', function(){
+    const fileName = document.getElementById('select_file_name');
+    fileName.textContent = inputFile.value.split( 'C:\\fakepath\\' ).join('ファイル名：');
+    if(inputFile.value == null || inputFile.value == ""){
+      fileName.textContent = "ファイルを選択してください";
+    }
+  })
 })
 
