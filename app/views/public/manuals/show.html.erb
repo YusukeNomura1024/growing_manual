@@ -1,69 +1,84 @@
-<h2><%= @manual.title %> マニュアル詳細</h2>
+<div class="main">
+  <div class="main__top_content">
+    <h2>マニュアル「<%= @manual.title %>」</h2>
 
-<% flash.each do |message_type, message| %>
-  <%= message %>
-<% end %>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
 
-<% if @manual.user_id == current_user.id %>
-  <%= link_to 'マニュアル編集', edit_manual_path(@manual) %>
-  <%= link_to '手順追加', manual_procedures_path(@manual) %>
-<% end %>
+    <% if @manual.user_id == current_user.id %>
+      <%= link_to 'マニュアル編集', edit_manual_path(@manual), class: "btn btn-outline-success btn--small" %>
+    <% end %>
 
-<%= render 'public/manuals/bookmark', manual: @manual %>
+    <%= render 'public/manuals/bookmark', manual: @manual %>
 
-<%= link_to 'レビュー', manual_reviews_path(@manual) %>
+    <%= link_to 'レビュー', manual_reviews_path(@manual), class: "btn btn-outline-review btn--small" %>
 
-<% unless @manual.user == current_user %>
-  <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true %>
-<% end %>
+    <% unless @manual.user == current_user %>
+      <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true %>
+    <% end %>
 
+  </div>
 
-<div>
-  <%= 'マニュアルタイトル：' + @manual.title %>
-</div>
-<div>
-  <%= '説明：' + @manual.description %>
-</div>
-<div>
-  タグ：
-  <% @manual.tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %>
-</div>
-
-<h3>手順</h3>
-<div class="tab-group d-flex">
-  <ul class="tab-list" style="list-style: none;">
-  <% @procedures.each do |procedure| %>
-    <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
-        <%= procedure.position %>
-        <%= procedure.title %>
-    </li>
-  <% end %>
-  </ul>
-
-
-
-  <ul class="tab-list" style="list-style: none;">
-  <% @procedures.each do |procedure| %>
-    <li class="tabbox" id="<%= 'tab' + procedure.id.to_s %>">
-      <% if @manual.user == current_user %>
-        <%= link_to '検索でメモを登録する', new_procedure_memo_link_path(procedure) %>
-        <%= form_with url: new_memo_path, method: :get, local: true do |f| %>
-          <%= f.hidden_field :procedure_id, value: procedure.id %>
-          <%= button_tag "新規でメモを作成・登録する", type: 'submit' %>
-        <% end %>
+  <div class="main__left_content -outer_radius_border">
+    <div class="procedure__list_group_head">
+      <h3>手順</h3>
+      <% if @manual.user_id == current_user.id %>
+        <%= link_to '手順追加', manual_procedures_path(@manual), class: "btn btn-outline-primary btn--small" %>
       <% end %>
-      <%= render 'public/memos/list', memo_links: procedure.memo_links %>
-    </li>
-  <% end %>
-  </ul>
-</div>
+    </div>
+    <ul class="tab-list" style="list-style: none;">
+    <% @procedures.each do |procedure| %>
+      <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
+          <%= procedure.position %>
+          <%= procedure.title %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 
-<div id="memo-display">
-</div>
+  <div class="main__center_content main__content--narrow">
+    <ul class="tab-list" style="list-style: none;">
+    <% @procedures.each do |procedure| %>
+      <li class="tabbox -outer_radius_border" id="<%= 'tab' + procedure.id.to_s %>">
+        <% if @manual.user == current_user %>
+          <%= link_to '検索でメモを登録する', new_procedure_memo_link_path(procedure), class: "btn btn-outline-primary btn--small" %>
+          <%= form_with url: new_memo_path, method: :get, local: true do |f| %>
+            <%= f.hidden_field :procedure_id, value: procedure.id %>
+            <%= button_tag "新規でメモを作成・登録する", type: 'submit', class: "btn btn-outline-success btn--small" %>
+          <% end %>
+        <% end %>
+        <%= render 'public/memos/list', memo_links: procedure.memo_links %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 
-<div id="mask" class="hidden"></div>
-<div id="form-area" class="hidden">
-  <%= render 'public/messages/form', user: @user, message: @message, manual: @manual %>
+  <div class="main__right_content">
+    <div id="memo-display">
+      <div class="-outer_radius_border">
+        <ul>
+          <li class="info__label">
+            説明：
+          </li>
+          <li class="info__value info__value--bgcolor_light -outer_radius_border w-100">
+            <%= @manual.description %>
+          </li>
+          <li class="info__label">
+            タグ：
+          </li>
+          <li class="info__value info__value--bgcolor_light -outer_radius_border w-100">
+            <% @manual.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="mask" class="hidden"></div>
+  <div id="form-area" class="hidden">
+    <%= render 'public/messages/form', user: @user, message: @message, manual: @manual %>
+  </div>
 </div>

@@ -1,0 +1,142 @@
+$bookmark-color: #f54785;
+$review-color: #ffc107;
+
+
+.btn {
+  background-color: white;
+  color: black;
+  border-radius: 100vh;
+  padding: 3px 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.btn a{
+  text-decoration: none;
+  color: black;
+}
+
+.btn:hover{
+  background-color: black;
+  color: white;
+  border-radius: 100vh;
+  padding: 3px 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn a:hover{
+  color: white;
+}
+
+.btn.btn--small{
+  font-size: 0.9rem;
+}
+
+.btn_danger {
+  color: red;
+  border-color: red;
+}
+.btn_danger:hover {
+  background-color: red;
+  color: white;
+}
+
+.btn.btn-primary{
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn.btn_success{
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn.btn_success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+
+}
+
+.btn_success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+
+.btn.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.btn-outline-primary{
+  color: #0d6efd;
+  border: 1px solid #0d6efd;
+}
+
+.btn-outline-primary:hover{
+  color: white;
+  background-color: #0d6efd;
+}
+
+.btn-outline-danger{
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.btn-outline-danger:hover{
+  color: white;
+  background-color: #dc3545;
+}
+
+
+
+.btn.btn-outline-success{
+  color: #28a745;
+  border: 1px solid #28a745;
+  text-decoration: none;
+}
+
+
+.btn.btn-outline-success:hover{
+  color: white;
+  background-color: #28a745;
+}
+
+
+.btn.btn-outline-bookmark{
+  color: $bookmark-color;
+  border: 1px solid $bookmark-color;
+  text-decoration: none;
+  &:hover{
+    color: #ffffff;
+    background-color: $bookmark-color;
+  }
+}
+
+.btn.btn-outline-review{
+  color: $review-color;
+  border: 1px solid $review-color;
+  text-decoration: none;
+  &:hover{
+    color: #000000;
+    background-color: $review-color;
+  }
+}

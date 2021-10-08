@@ -25,7 +25,12 @@
   <% elsif request.path.include?('new') %>
     <%= f.submit '新規作成' %>
   <% else %>
-    <%= f.submit '更新する' %>
+    <% if !params[:manual_id].nil? %>
+      <%= f.hidden_field :manual_id, value: params[:manual_id] %>
+      <%= f.submit '更新してマニュアルに戻る' %>
+    <% else %>
+      <%= f.submit '更新する' %>
+    <% end %>
     <%= link_to '削除する', memo_path(memo), method: :delete, data: { confirm: '削除しますか？' } %>
   <% end %>
 

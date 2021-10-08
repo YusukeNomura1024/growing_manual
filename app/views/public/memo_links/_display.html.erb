@@ -1,10 +1,16 @@
-<h2>memoの詳細を表示します。</h2>
-<ul>
-  <li><%= memo_link.memo.name %></li>
-  <li><%= memo_link.memo.description %></li>
-  <li><%= memo_link.memo.url %></li>
-  <li><%= memo_link.memo.code %></li>
-</ul>
-<% if memo_link.memo.user == current_user %>
-  <%= link_to 'メモのリンクを解除する', memo_link_path(memo_link, manual_id: params[:manual_id]), method: :delete, data: {confirm: "リンクを解除しますか？メモ自体は削除されません" } %>
-<% end %>
+<div class="-outer_radius_border memo-invisible">
+  <ul>
+    <li class="info__label">メモタイトル：</li>
+    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.name %></li>
+    <li class="info__label">説明：</li>
+    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.description %></li>
+    <li class="info__label">参考URL：</li>
+    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.url %></li>
+    <li class="info__label">内容：</li>
+    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.code %></li>
+  </ul>
+  <% if memo_link.memo.user == current_user %>
+    <%= link_to 'メモを編集する', edit_memo_path(memo_link.memo, manual_id: params[:manual_id]), class: "btn btn-outline-success btn--small" %>
+    <%= link_to 'メモのリンクを解除する', memo_link_path(memo_link, manual_id: params[:manual_id]), method: :delete, data: {confirm: "リンクを解除しますか？メモ自体は削除されません" }, class: "btn btn-outline-danger btn--small" %>
+  <% end %>
+</div>

@@ -81,7 +81,13 @@ class Public::MemosController < ApplicationController
     else
 
       @memo.update(memo_params)
+      # マニュアルからの遷移の場合はマニュアルページに戻る
+      if !params[:memo][:manual_id].nil?
+        manual = Manual.find(params[:memo][:manual_id])
+        redirect_to manual_path(manual)
+      else
       redirect_to memo_path(@memo)
+      end
     end
 
   end

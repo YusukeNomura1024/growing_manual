@@ -18,7 +18,7 @@
 
 // メインカラーは文字にも使用するので、背景色にちゅういする
 $main-color: #000000;
-
+$bookmark-color: #f54785;
 // メイン
 
 * {
@@ -78,8 +78,18 @@ $main-color: #000000;
   padding: 15px;
 }
 
+@keyframes show{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
 .box-show {
   display: block;
+  animation: show 0.5s linear 0s;
 }
 
 .tab:hover{
@@ -111,6 +121,16 @@ $main-color: #000000;
   left: 0;
   z-index: 1;
 }
+
+.memo-visible{
+  opacity: 1;
+  transition: 0.5s 0.1s;
+}
+
+.memo-invisible{
+  opacity: 0;
+}
+
 
 #memo_link_entry {
   position: fixed;
@@ -264,118 +284,6 @@ $main-color: #000000;
   text-decoration: none;
 }
 
-.btn {
-  background-color: white;
-  color: black;
-  border-radius: 100vh;
-  padding: 3px 8px;
-  transition: all 0.3s;
-  cursor: pointer;
-  font-size: 1.2rem;
-  text-decoration: none;
-}
-
-.btn a{
-  text-decoration: none;
-  color: black;
-}
-
-.btn:hover{
-  background-color: black;
-  color: white;
-  border-radius: 100vh;
-  padding: 3px 8px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.btn a:hover{
-  color: white;
-}
-
-.btn_danger {
-  color: red;
-  border-color: red;
-}
-.btn_danger:hover {
-  background-color: red;
-  color: white;
-}
-
-.btn.btn-primary{
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-
-.btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-}
-
-.btn.btn_success{
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-.btn.btn_success:hover {
-  color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
-
-}
-
-.btn_success:focus {
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
-}
-
-.btn.btn-block {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-
-.btn-outline-primary{
-  color: #0d6efd;
-  border: 1px solid #0d6efd;
-}
-
-.btn-outline-primary:hover{
-  color: white;
-  background-color: #0d6efd;
-}
-
-.btn-outline-danger{
-  color: #dc3545;
-  border: 1px solid #dc3545;
-}
-
-.btn-outline-danger:hover{
-  color: white;
-  background-color: #dc3545;
-}
-
-
-
-.btn.btn-outline-success{
-  color: #28a745;
-  border: 1px solid #28a745;
-  text-decoration: none;
-}
-
-
-.btn.btn-outline-success:hover{
-  color: white;
-  background-color: #28a745;
-}
 
 .main {
   display: flex;
@@ -474,10 +382,43 @@ $main-color: #000000;
   padding-bottom: 0;
 }
 
+.main__content--narrow{
+  max-width: 250px;
+}
+
+.-outer_square_border{
+  border: 1px solid $main-color;
+  padding: 10px;
+}
+
+.-outer_radius_border{
+  border: 1px solid $main-color;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.main__content--outer_square_border{
+  border: 1px solid $main-color;
+  padding: 10px;
+}
+
+
 
 .main__center_content{
   flex-grow: 7;
+  margin-left: 10px;
 }
+
+.main__left_content{
+  max-width: 200px;
+  background-color:rgb(239, 239, 239);
+}
+
+.main__right_content{
+  width: calc(100% - 470px);
+  margin-left: 10px;
+}
+
 
 .main__bottom_content{
   width: 100%;
@@ -646,6 +587,20 @@ $main-color: #000000;
   width: 200px;
 }
 
+.info__value{
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.info__value.info__value--bgcolor_light{
+  border: none;
+  background-color: #efefef;
+}
+
+
+
 
 .-float_right{
   float: right;
@@ -784,6 +739,7 @@ $main-color: #000000;
   grid-area: container1;
 }
 
+
 .container__section:nth-child(2){
   grid-area: container2;
 }
@@ -796,8 +752,56 @@ $main-color: #000000;
   grid-area: container4;
 }
 
+
+
+
+
 .annotation{
   font-size: 0.8rem;
 }
 
+.tabbox a{
+  margin-bottom: 5px;
+}
 
+.memo__list_item{
+  text-decoration: none;
+  border-bottom: solid 1px #CCC;
+  cursor: pointer;
+  display: block;
+}
+
+.memo__list_item:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+
+.memo__list_item--active {
+  color: #FFF;
+  background: #19b5d1;
+  transition: all 0.2s ease-in-out;
+}
+
+.procedure__list_group_head{
+  display: flex;
+  .btn{
+    margin-left: auto;
+  }
+  h3{
+    display: inline-block;
+    line-height: 3rem;
+  }
+}
+
+.w-100{
+  width: 100%;
+}
+
+.d-flex{
+  display: flex;
+}
+
+.d-inline-block{
+  display: inline-block;
+}

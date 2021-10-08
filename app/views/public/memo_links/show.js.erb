@@ -1,5 +1,11 @@
 function memoDisplay(){
   const memo = document.getElementById('memo-display')
   memo.innerHTML = "<%= j(render 'public/memo_links/display', memo_link: @memo_link) %>"
+
+
+  const memoContent = document.getElementById('memo-display').firstElementChild;
+  window.setTimeout(function(){
+    memoContent.className = '-outer_radius_border memo-visible';
+  }, 10);
 };
 memoDisplay();
