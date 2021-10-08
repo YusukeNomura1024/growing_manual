@@ -1,34 +1,25 @@
-<h2>
-  <%= @manual.title %>の手順登録
-</h2>
-<h3 class="test">手順</h3>
-<%= form_with(model: [@manual, @manual.procedures.build], local: true) do |f| %>
-<div class="procedure-form">
-  <div class="procedure-form__title">
-    <%= f.label :title, "手順タイトル", class: "procedure-form__title-label" %>
-    <%= f.text_field :title, placeholder: "手順内容を登録", id: "procedure-form__title-input", autofocus: true %>
+<main>
+  <div class="main__content main__content_w500">
+    <h2>
+      <%= @manual.title %>の手順登録
+    </h2>
+    <%= form_with(model: [@manual, @manual.procedures.build], local: true) do |f| %>
+    <div class="form">
+      <%= f.label :title, "手順タイトル", class: "procedure-form__title-label column_form__label" %>
+      <div class="input_group">
+        <%= f.text_field :title, placeholder: "手順内容を登録", class: "input_group__form form-control", autofocus: true %>
+        <%= f.submit "追加する", class: "btn btn-outline-primary input_group__button" %>
+      </div>
+    </div>
+    <% end %>
+
+    <ul id="sortable_list">
+      <%= render 'list', procedures: @procedures %>
+    </ul>
+    <% hidden_field_tag :manual_id, @manual.id %>
+    <%= link_to manual_path(@manual), class: "btn" do %>
+      <i class="fas fa-arrow-alt-circle-left"></i>マニュアル詳細へ
+    <% end %>
   </div>
-
-
-  <div class="procedure-form__submit">
-    <%= f.submit "追加する", class: "procedure-form__submit-bottun" %>
-  </div>
-</div>
-<% end %>
-
-<ul id="sortable_list">
-<% @procedures.each do |procedure| %>
-　<% unless procedure.id.nil? %>
-  <li class="sortable-list__item">
-    <%= procedure.title %>
-    <%= link_to '編集', edit_manual_procedure_path(@manual, procedure) %>
-    <%= link_to '削除', manual_procedure_path(@manual, procedure), method: :delete, data: {confirm: '削除しますか？' } %>
-  </li>
-  <% end %>
-
-<% end %>
-</ul>
-<% hidden_field_tag :manual_id, @manual.id %>
-<%= link_to 'マニュアル詳細へ', manual_path(@manual) %>
-
+</main>
 

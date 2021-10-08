@@ -24,7 +24,7 @@
     <div class="procedure__list_group_head">
       <h3>手順</h3>
       <% if @manual.user_id == current_user.id %>
-        <%= link_to '手順追加', manual_procedures_path(@manual), class: "btn btn-outline-primary btn--small" %>
+        <%= link_to '手順編集', manual_procedures_path(@manual), class: "btn btn-outline-primary btn--small" %>
       <% end %>
     </div>
     <ul class="tab-list" style="list-style: none;">

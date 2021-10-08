@@ -56,6 +56,14 @@ $bookmark-color: #f54785;
 
 .sortable-list__item{
   cursor: pointer;
+  witdh: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sortable-chosen {
+  color: #fff;
+  background-color: #19b5d1;
 }
 
 
@@ -397,6 +405,10 @@ $bookmark-color: #f54785;
   padding: 10px;
 }
 
+.-outer_light_color_border{
+  border-color: #efefef;
+}
+
 .main__content--outer_square_border{
   border: 1px solid $main-color;
   padding: 10px;
@@ -434,131 +446,6 @@ $bookmark-color: #f54785;
   margin-bottom: 10px;
 }
 
-.form-field{
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  padding: 0 20px 0 20px;
-  margin-bottom: 20px;
-}
-
-.form-field .form{
-  padding: 10px 0;
-}
-
-.form{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.column_form{
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0;
-
-}
-
-
-.form__label{
-  margin-right: auto;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
-}
-
-.column_form__label{
-  width: 100%;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
-}
-
-.form__input{
-  width: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
-.column_form__input{
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 3px 8px;
-  border-radius: 10px;
-  min-height: 30px;
-}
-
-.column__form__input_file_area{
-  display: block;
-  height: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  position: relative;
-  cursor: pointer;
-}
-
-.column__fomr__input_file_text{
-  display:inline-block;
-  border-radius: 10px 0 0 10px;
-  border-right: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 0 10px 0 10px;
-  line-height: 30px;
-  background-color: #efefef;
-  height: 100%;
-
-}
-
-#select_file_name{
-  display: inline-block;
-}
-
-
-
-.column_form__input_file{
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  opacity: 0;
-}
-
-
-
-
-.form__input_text_area{
-  height: 10vh;
-}
-
-.form__input:hover{
-  border: 1px solid rgba(0, 0, 0, 0.6);
-}
-
-.field_with_errors{
-  display: contents;
-}
-
-.form_check_box{
-  align-items: center;
-}
-
-.form_check_box input{
-  margin-right: 5px;
-}
-
-.form__check {
-  display: block;
-  min-height: 1.5rem;
-  padding-left: 1.5em;
-  margin-bottom: .125rem;
-}
-
-.form__check--inline{
-  display: inline-block;
-  margin-right: 1rem;
-}
-
-.form__check_input[type=radio]{
-  border-radius: 50%;
-}
 
 .info-field{
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -802,6 +689,20 @@ $bookmark-color: #f54785;
   display: flex;
 }
 
+.d-flex__justify_column
+
 .d-inline-block{
   display: inline-block;
+}
+
+.d-block{
+  display: block;
+}
+
+.d-none{
+  display: none;
+}
+
+.ml-auto{
+  margin-left: auto;
 }

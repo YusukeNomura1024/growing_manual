@@ -10,6 +10,6 @@ window.document.addEventListener('turbolinks:load', () ->
           url: 'sort'
           type: 'patch'
           data: { from: evt.oldIndex, to: evt.newIndex }
+      animation: 110
     )
-
 );
