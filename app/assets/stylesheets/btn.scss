@@ -1,6 +1,4 @@
-$bookmark-color: #f54785;
-$review-color: #ffc107;
-
+@import "variables";
 
 .btn {
   background-color: white;
@@ -141,4 +139,13 @@ $review-color: #ffc107;
   }
 }
 
+.btn.btn-outline-cancel{
+  color: $cancel-color;
+  border: 1px solid $cancel-color;
+  text-decoration: none;
+  &:hover{
+    color: #ffffff;
+    background-color: $cancel-color;
+  }
+}
 

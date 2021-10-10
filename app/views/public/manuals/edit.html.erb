@@ -1,2 +1,11 @@
-<h2>マニュアル編集</h2>
-<%= render 'form', manual: @manual %>
+<main class="d-flex">
+  <div class="thumbnail_area -outer_radius_border">
+    <h3>サムネイル画像</h3>
+    <%= attachment_image_tag @manual, :image, :fill, 100, 100, class: "thumbnail" %>
+  </div>
+  <div class="main__content main__content_w500">
+    <h2 class="main__content-title">マニュアル編集</h2>
+    <%= render 'form', manual: @manual %>
+
+  </div>
+</main>

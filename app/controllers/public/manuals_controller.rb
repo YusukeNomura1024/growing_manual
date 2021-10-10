@@ -4,7 +4,13 @@ class Public::ManualsController < ApplicationController
 
   def index
     @tags = Tag.where(user_id: current_user.id)
-    @manuals = Manual.where(user_id: current_user.id).page(params[:page]).reverse_order
+    if params[:sort] == 'created_at' || params[:sort].nil?
+      @manuals = Manual.where(user_id: current_user.id).page(params[:page]).reverse_order
+      params[:sort] = 'created_at'
+    elsif params[:sort] == 'bookmarks'
+      @manuals = Manual.includes(:bookmarked_users).where(user_id: current_user).sort {|a,b| b.bookmarked_users.size <=> a.bookmarked_users.size}
+      @manuals = Kaminari.paginate_array(@manuals).page(params[:page])
+    end
   end
 
   def show
@@ -35,16 +41,22 @@ class Public::ManualsController < ApplicationController
     @procedures = @manual.procedures
     @user = current_user
     @message = Message.new
+    @tag_names = @manual.tags.map { |tag| tag.name}.join(' ')
+
 
   end
 
   def update
     manual = Manual.find(params[:id])
-    manual.update(manual_params)
-    redirect_to manual_path(manual)
     tag_list = params[:manual][:tag_name].split(nil)
+
+
+
     if manual.update(manual_params)
       manual.save_manuals(tag_list)
+      redirect_to manual_path(manual)
+    else
+      render :edit
     end
   end
 
@@ -90,7 +102,7 @@ class Public::ManualsController < ApplicationController
   private
 
   def manual_params
-    params.require(:manual).permit(:title, :image_id, :description, :status, :release_date).merge(user_id: current_user.id)
+    params.require(:manual).permit(:title, :image, :description, :status, :release_date).merge(user_id: current_user.id)
   end
 
   def list_title_set

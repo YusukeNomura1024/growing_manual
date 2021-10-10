@@ -16,10 +16,7 @@
 
 // テーマ
 
-// メインカラーは文字にも使用するので、背景色にちゅういする
-$main-color: #000000;
-$bookmark-color: #f54785;
-// メイン
+@import "variables";// メイン
 
 * {
   margin: 0;
@@ -317,7 +314,8 @@ $bookmark-color: #f54785;
 }
 
 .switch_order__left_btn{
-  border: 1px solid #0d6efd;
+  border: 1px solid;
+  border-color: transparent;
   color: #0d6efd;
   text-decoration: none;
   border-radius: 15px 0 0 15px;
@@ -332,7 +330,8 @@ $bookmark-color: #f54785;
 }
 
 .switch_order__right_btn{
-  border: 1px solid #0d6efd;
+  border: 1px solid;
+  border-color: transparent;
   color: #0d6efd;
   text-decoration: none;
   border-radius: 0 15px 15px 0;
@@ -347,9 +346,6 @@ $bookmark-color: #f54785;
 }
 
 
-.main__left_content{
-  flex-grow: 1;
-}
 
 .tag_search{
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -423,8 +419,10 @@ $bookmark-color: #f54785;
 
 .main__left_content{
   max-width: 200px;
-  background-color:rgb(239, 239, 239);
+  flex-grow: 1;
 }
+
+
 
 .main__right_content{
   width: calc(100% - 470px);
@@ -435,6 +433,7 @@ $bookmark-color: #f54785;
 .main__bottom_content{
   width: 100%;
 }
+
 
 .main__content.main__content_w500{
   width: 500px;
@@ -601,6 +600,40 @@ $bookmark-color: #f54785;
   }
 }
 
+.mine_manual_list{
+  .list__created_at_date{
+    width: 10%;
+    min-width: 120px;
+  }
+
+  .list__title{
+    width: 40%;
+    min-width: 330px;
+    a{
+      display: block;
+    }
+  }
+
+  .list__bookmarked_users{
+    width: 10%;
+    min-width: 100px;
+  }
+  .list__rate{
+    width: 15%;
+    min-width: 92px;
+  }
+  .list__body .list__rate{
+    color: #e8861f;
+    font-size: 1.1rem;
+  }
+
+  .list__status{
+    width: 20%;
+    min-width: 120px;
+  }
+}
+
+
 .container{
   width: 80%;
   margin: 0 auto;
@@ -681,6 +714,22 @@ $bookmark-color: #f54785;
   }
 }
 
+.thumbnail_area{
+  margin: 40px 40px 40px auto;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.thumbnail_area + .main__content{
+  margin-left:10px;
+}
+
+
+.thumbnail{
+  width: 100%;
+  margin-top: 10px;
+}
+
 .w-100{
   width: 100%;
 }
@@ -689,7 +738,13 @@ $bookmark-color: #f54785;
   display: flex;
 }
 
-.d-flex__justify_column
+.d-flex--align_items_center{
+  align-items: center;
+}
+
+.d-flex--flex_direction_column{
+  flex-direction: column;
+}
 
 .d-inline-block{
   display: inline-block;
@@ -705,4 +760,12 @@ $bookmark-color: #f54785;
 
 .ml-auto{
   margin-left: auto;
+}
+
+.bookmark-color{
+  color: $bookmark-color;
+}
+
+.procedure_title{
+  max-width: 300px;
 }

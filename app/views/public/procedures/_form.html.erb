@@ -1,0 +1,6 @@
+  <%= form_with(model: [manual, procedure], local: true, class: "modal") do |f| %>
+    <%= f.label :title, '手順タイトル編集' , class: "modal__title" %>
+    <%= f.text_field :title, class: "modal__text_field" %>
+    <%= f.submit '更新する', class: "modal__update_button btn btn-outline-success" %>
+    <div id="cancel_button" class="modal__cancel_button btn btn-outline-cancel">キャンセル</div>
+  <% end %>

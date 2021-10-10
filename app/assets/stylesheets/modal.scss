@@ -1,0 +1,39 @@
+@import "variables";
+
+#form-area.modal_area{
+  width: 400px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.modal{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.modal__title{
+  display: block;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.modal__text_field{
+  display: block;
+  width: 100%;
+  border-color: $light-color;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.modal__update_button{
+  display: block;
+  width: 40%;
+}
+
+.modal__cancel_button{
+  display: block;
+  width: 40%;
+  margin-left: auto;
+}

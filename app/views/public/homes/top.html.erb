@@ -15,9 +15,9 @@
       <!--新着順クリックしたら、paramsにsort:を送る-->
       <% case params[:sort] %>
       <% when 'bookmarks' %>
-        <h2>人気順<%= link_to '新着順', root_path(sort: 'created_at'), class: "switch_order__right_btn" %></h2>
+        <h2><i class="fas fa-caret-right"></i>人気順<i class="fas fa-caret-left"></i><%= link_to '新着順', root_path(sort: 'created_at'), class: "switch_order__right_btn" %></h2>
       <% when 'created_at' %>
-        <h2><%= link_to '人気順', root_path(sort: 'bookmarks'), class: "switch_order__left_btn" %>新着順</h2>
+        <h2><%= link_to '人気順', root_path(sort: 'bookmarks'), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>新着順<i class="fas fa-caret-left"></i></h2>
       <% end %>
     </div>
 
@@ -39,7 +39,7 @@
     <ul class="list__body">
      <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
      <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
-     <li class="list__bookmarked_users"><i class="far fa-bookmark"></i> <%= manual.bookmarked_users.count %></li>
+     <li class="list__bookmarked_users"><span class="bookmark-color">♥ <%= manual.bookmarked_users.count %></span></li>
      <li class="list__rate"><%= manual.average_star %></li>
      <li class="list__creator"><%= link_to manual.user.pen_name, user_path(manual.user) %></li>
     </ul>

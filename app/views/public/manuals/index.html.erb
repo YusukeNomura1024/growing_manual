@@ -1,40 +1,65 @@
-<h2>人気順 ｜ <%= link_to '新着順', manuals_path %></h2>
-<h2>自分のマニュアル</h2>
-<div>
-  <% if @list_title.nil? %>
-    <h2>作成マニュアル一覧</h2>
-  <% else %>
-    <h2><%= @list_title %></h2>
-  <% end %>
-</div>
+<main class="main">
+  <div class="main__top_content">
+    <h2>自分のマニュアル</h2>
+    <div class="switch_order">
+      <!--新着順クリックしたら、paramsにsort:を送る-->
+      <% case params[:sort] %>
+      <% when 'bookmarks' %>
+        <h2><i class="fas fa-caret-right"></i>人気順<i class="fas fa-caret-left"></i><%= link_to '新着順', manuals_path(sort: 'created_at'), class: "switch_order__right_btn" %></h2>
+      <% when 'created_at' %>
+        <h2><%= link_to '人気順', manuals_path(sort: 'bookmarks'), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>新着順<i class="fas fa-caret-left"></i></h2>
+      <% end %>
+    </div>
 
-<%= render 'public/tags/list', tags: @tags %>
+    <div>
+      <% unless @list_title.nil? %>
+        <h2><%= @list_title %></h2>
+      <% end %>
+    </div>
+  </div>
 
-<%= link_to '新規作成', new_manual_path %>
-自分のマニュアルを検索
-<div class="search_box">
-  <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
-    <%= f.hidden_field :target, value: 'mine' %>
-    <%= button_tag "検索", type: 'submit', class: "search_bottun" %>
-  <% end %>
-</div>
-<ul>
-  <li>作成日</li>
-  <li>タイトル</li>
-  <li>お気に入り件数</li>
-  <li>評価</li>
-  <li>公開ステータス</li>
-</ul>
-<% @manuals.each do |manual| %>
-<ul>
- <li><%= manual.created_at.strftime('%Y.%m.%d') %></li>
- <li><%= link_to "#{manual.title}", manual_path(manual) %></li>
- <li>♥<%= manual.bookmarks.count %></li>
- <li><%= manual.average_star %><%= manual.average_rate %></li>
- <li style="<%= manual.status_style %>"><%= manual.status_text %></li>
-</ul>
-<% end %>
+  <div class="main__left_content">
+    <%= render 'public/tags/list', tags: @tags %>
+  </div>
 
+  <div class="main__center_content mine_manual_list  list__group">
+    <div class="d-flex  d-flex--align_items_center">
+      <%= link_to '新規作成', new_manual_path, class: "btn btn-outline-primary" %>
+      <div class="d-flex d-flex--flex_direction_column ml-auto">
+        <h3>自分のマニュアルを検索</h3>
 
-<%= paginate @manuals %>
+          <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
+          <div class="search_box">
+            <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
+            <%= f.hidden_field :target, value: 'mine' %>
+            <%= button_tag "検索", type: 'submit', class: "search_button" %>
+          </div>
+          <% end %>
+
+      </div>
+    </div>
+
+    <ul class="list__head">
+      <li class="list__created_at_date">作成日</li>
+      <li class="list__title">タイトル</li>
+      <li class="list__bookmarked_users">お気に入り</li>
+      <li class="list__rate">評価</li>
+      <li class="list__status">公開ステータス</li>
+    </ul>
+
+    <% @manuals.each do |manual| %>
+    <ul class="list__body">
+     <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+     <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
+     <li class="list__bookmarked_users"><span class="bookmark-color">♥<%= manual.bookmarks.count %></span></li>
+     <li class="list__rate"><%= manual.average_star %><%= manual.average_rate %></li>
+     <li class="list__stutus" style="<%= manual.status_style %>"><%= manual.status_text %></li>
+    </ul>
+    <% end %>
+  </div>
+
+  <div class="main__bottom_content">
+    <%= paginate @manuals %>
+  </div>
+
+</main>

@@ -14,7 +14,7 @@
 <div class="header__bottom header_flex-end">
   <div class="search_box">
     <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
       <%= f.hidden_field :target, value: 'everyone' %>
       <%= button_tag "検索", type: 'submit', class: "search_button" %>
     <% end %>
