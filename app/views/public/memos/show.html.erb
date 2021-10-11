@@ -1,36 +1,43 @@
 <div id="error">
   <%= flash[:error] %>
 </div>
-<h2>メモ詳細</h2>
+<main>
+  <%= render 'breadlists/memo_show', memo: @memo %>
 
-  <div>
-    <div>題名</div>
-    <div>
-      <div><%= @memo.name %></div>
-      <div><%= "リンク件数：#{@memo.memo_links.count}件" %></div>
+  <div class="main__content main__content_w800 panel">
+
+    <div class="panel__heading">
+      <h1 class="panel__title"><%= @memo.name %></h1>
+    </div>
+
+    <div class="panel__tool">
+      <span class="panel__link_count">
+        <%= "リンク件数：#{@memo.memo_links.count}件" %>
+        <span class="panel__category">カテゴリー:
+        <% if @memo.category.present? %>
+          <%= @memo.category.name %>
+        <% else %>
+          --
+        <% end %>
+        </span>
+      </span>
+      <%= link_to '編集する', edit_memo_path(@memo), class: "btn btn-outline-success btn--small ml-auto" %>
+      <div class="panel__url">
+        参考URL: <%= @memo.url %>
+      </div>
+    </div>
+
+
+    <div class="panel__main">
+      <div class="panel__main_text">
+        <div class="panel__main_text_direction">
+          <div class="info__label">説明</div>
+          <div><%= @memo.description %></div>
+        </div>
+        <div class="panel__main_text_markdown">
+          <%= markdown(@memo.code) %>
+        </div>
+      </div>
     </div>
   </div>
-  <div>
-    <div>参考URL</div>
-    <dif><%= @memo.url %></dif>
-  </div>
-  <div>
-    <div>説明</div>
-    <div><%= @memo.description %></div>
-  </div>
-  <div>
-    <div>コード</div>
-    <div><%= markdown(@memo.code) %></div>
-  </div>
-  <div>
-    <div>カテゴリー</div>
-    <div>
-      <% if @memo.category.present? %>
-        <%= @memo.category.name %>
-      <% else %>
-        なし
-      <% end %>
-    </div>
-  </div>
-  <%= link_to '一覧へ', memos_path %>
-  <%= link_to '編集する', edit_memo_path(@memo) %>
+</main>

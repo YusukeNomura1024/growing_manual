@@ -1,0 +1,8 @@
+<%= form_with model: category, url: {controller: 'categories', action: 'create'}, remote: true do |f| %>
+<div class="category__form-group">
+  <div class="category__form">
+  <%= f.text_field :name, placeholder: "カテゴリーを新規登録", id: "category_form", class: "column_form__input" %>
+  <%= f.submit 'カテゴリーを登録' %>
+  </div>
+</div>
+<% end %>

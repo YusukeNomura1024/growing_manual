@@ -94,6 +94,10 @@
   height: 10vh;
 }
 
+.form__input_code_area{
+  height: 20vh;
+}
+
 .form__input:hover{
   border: 1px solid rgba(0, 0, 0, 0.6);
 }
@@ -159,6 +163,11 @@
 .input_group__button:hover{
   border-top-left-radius: 0!important;
   border-bottom-left-radius: 0!important;
+}
+
+
+.search_title{
+  text-align: center;
 }
 
 .search_box{

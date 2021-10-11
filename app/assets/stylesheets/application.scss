@@ -25,6 +25,20 @@
   list-style: none;
 }
 
+body {
+  font-family: "Arial", "メイリオ", sans-serif;
+  background-color: #f0f0f0;
+}
+
+h2{
+  font-family: "ＭＳ 明朝", "游ゴシック", "游ゴシック体";
+}
+
+nav, header, h2{
+  font-family: "游ゴシック", "游ゴシック体";
+  font-weight: 900;
+}
+
 .procedure-form{
   display: flex;
 }
@@ -347,14 +361,16 @@
 
 
 
-.tag_search{
+.tag_search,
+.category_search{
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   padding: 10px;
   margin: 10px;
 }
 
-.tag_search__title{
+.tag_search__title,
+.category_search__title{
   background-color: $main-color;
   border-radius: 15px;
   padding: 0 10px;
@@ -363,7 +379,8 @@
 }
 
 
-.tag_search li{
+.tag_search li,
+.category_search li{
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding: 2px 0;
 
@@ -401,6 +418,7 @@
   padding: 10px;
 }
 
+
 .-outer_light_color_border{
   border-color: #efefef;
 }
@@ -411,10 +429,13 @@
 }
 
 
-
 .main__center_content{
   flex-grow: 7;
   margin-left: 10px;
+}
+
+.main__center_content--plus_right{
+  width: calc(100% - 300px);
 }
 
 .main__left_content{
@@ -438,6 +459,11 @@
 .main__content.main__content_w500{
   width: 500px;
 }
+
+.main__content.main__content_w800{
+  width: 800px;
+}
+
 
 .main__content-title{
   font-size: 2rem;
@@ -549,7 +575,7 @@
   display: flex;
   position: relative;
   border-left: solid 8px #000000;
-  background-color: whitesmoke;
+  background-color: #ffffff;
   margin-bottom: 5px;
   line-height: 2rem;
   border-radius: 0 15px 15px 0;
@@ -564,6 +590,42 @@
     a {
         text-decoration: none;
     }
+  }
+}
+
+.memo_link{
+  text-decoration: none;
+}
+
+.memo_list{
+  border:none;
+  border-bottom: 1px solid $main-color;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  height: 108px;
+  padding: 5px;
+  margin-bottom: 0;
+
+  .memo_list__direction_text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.75rem;
+  }
+
+  .memo_list__created_at{
+    font-size: 0.9rem;
+  }
+  .memo_list__category{
+    display:inline-block;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    border-radius: 10px;
+    padding: 0 5px;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    margin-left: 5px;
   }
 }
 
@@ -601,6 +663,7 @@
 }
 
 .mine_manual_list{
+
   .list__created_at_date{
     width: 10%;
     min-width: 120px;
@@ -758,8 +821,20 @@
   display: none;
 }
 
+.mt-0{
+  margin-top: 0;
+}
+
 .ml-auto{
   margin-left: auto;
+}
+
+.mb-1{
+  margin-bottom: 1rem;
+}
+
+.mb-2{
+  margin-bottom: 2rem;
 }
 
 .bookmark-color{

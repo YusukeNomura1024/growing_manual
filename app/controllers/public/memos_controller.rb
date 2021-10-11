@@ -4,8 +4,12 @@ class Public::MemosController < ApplicationController
 
   def index
     @categories = where_user_id_is_current_user_id(Category)
-    @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
-
+    if params[:sort] == 'created_at' || params[:sort].nil?
+      @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+      params[:sort] = 'created_at'
+    elsif params[:sort] == 'updated_at'
+      @memos = where_user_id_is_current_user_id(Memo).order(updated_at: "DESC").page(params[:page])
+    end
   end
 
   def search

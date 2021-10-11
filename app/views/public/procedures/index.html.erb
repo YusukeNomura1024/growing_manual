@@ -23,9 +23,5 @@
   </div>
 </main>
 
-<div id="mask" class="hidden"></div>
-
-<div id="form-area" class="hidden modal_area">
-</div>
-
+<%= link_to '削除する', memo_path(memo), method: :delete, data: { confirm: '削除しますか？' } %>
 

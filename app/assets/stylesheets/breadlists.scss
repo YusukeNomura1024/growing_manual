@@ -1,0 +1,16 @@
+.breadlist{
+  min-height: auto;
+  a{
+    text-decoration: none;
+  }
+  margin: 20px 0 20px 20vw;
+}
+
+.breadlist__item{
+  display: inline-block;
+  &:before{
+    content: "";
+    margin-left: 10px;
+  }
+
+}

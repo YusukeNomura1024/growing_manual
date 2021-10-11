@@ -1,14 +1,14 @@
-<h2>メモ新規作成</h2>
-<div id="memo_form">
-  <%= render 'form', memo: @memo, categories: @categories %>
-</div>
+<main>
+  <div class="main__content main__content_w800">
+    <%= link_to categories_path, class: "btn btn-outline-primary btn--small" do %>
+      カテゴリ管理ページへ<i class="fas fa-pen"></i>
+    <% end %>
+    <h2 class="main__content-title">メモ新規作成</h2>
+    <div id="memo_form">
+      <%= render 'public/memos/form', memo: @memo, categories: @categories %>
+    </div>
 
-<%= form_with model: @category, url: {controller: 'categories', action: 'create'}, remote: true do |f| %>
-<div class="category__form-group">
-  <div class="category__form">
-  <%= f.text_field :name, placeholder: "カテゴリーを新規登録", id: "category_form" %>
-  <%= f.submit 'カテゴリーを登録' %>
+
   </div>
-</div>
-<% end %>
+</main>
 

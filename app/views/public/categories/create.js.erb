@@ -1,2 +1,8 @@
-$('#memo_form').html("<%= j(render 'public/memos/form', memo: @memo, categories: @categories) %>");
-document.getElementById('category_form').value = ''
+function reloadform(){
+  const memoForm = document.getElementById('memo_form');
+  memoForm.innerHTML = '<%= j(render 'public/memos/form', memo: @memo, categories: @categories) %>';
+
+  document.getElementById('category_form').value = '';
+};
+
+reloadform();

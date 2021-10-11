@@ -1,6 +1,6 @@
 class Public::CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
-  
+
   def create
     @category = Category.new(category_params)
     @category.user_id = current_user.id
@@ -16,7 +16,7 @@ class Public::CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @categories = where_user_id_is_current_user_id(Category)
-    @memos = @category.memos.page(params[:page])
+    @memos = @category.memos.page(params[:page]).reverse_order
 
     if @memos.count == 0
       @list_title = "「#{@category.name}」 の該当なし"

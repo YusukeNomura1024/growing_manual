@@ -1,0 +1,80 @@
+@import "variables";
+
+.panel{
+  border: 1px solid #dedede;
+  box-shadow: 0 1px 3px rgba(21, 27, 38, 0.25);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.panel__heading{
+  display: table;
+  width: 100%;
+}
+
+.panel__title{
+  display: table-cell;
+  vertical-align: middle;
+  height: 63px;
+  line-height: 1.25em;
+  padding: 15px 30px 5px;
+  font-size: 33px;
+  font-weight: 700;
+  color: #000;
+  word-break: break-all;
+}
+
+.panel__tool{
+  font-size: 0.8rem;
+  display: flex;
+  margin: 0 30px;
+  padding: 3px 0 15px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  width: 750px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .panel__link_count{
+    width: 80%;
+    display:block;
+  }
+
+  .btn{
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .panel__url{
+    width: 100%;
+  }
+
+  .panel__category{
+    display:inline-block;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    border-radius: 10px;
+    padding: 0 5px;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    margin-left: 5px;
+  }
+}
+
+.panel__main{
+  width: 100%;
+  height: 100%;
+}
+
+.panel__main_text{
+  padding: 15px 30px 30px;
+  max-width: 920px;
+}
+
+.panel__main_text_direction{
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get   "about"                 , to: 'homes#about'
     get   'users/:id/unsubscribe' , to: 'users#unsubscribe' , as: 'user_unsubscribe'
     patch 'users/:id/withdraw'    , to: 'users#withdraw'    , as: 'user_withdraw'
-    resources :categories         , only: [:create, :destroy, :show, :index]
+    resources :categories         , only: [:create, :destroy, :show, :index, :new]
     resources :users              , only: [:edit, :show, :update] do
       resources :messages         , only: [:create, :index, :new]
       resources :notifications    , only: :index

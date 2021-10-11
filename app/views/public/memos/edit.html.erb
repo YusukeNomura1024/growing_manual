@@ -1,14 +1,6 @@
-<h2>メモ新規作成</h2>
+<h2>メモ編集</h2>
 <div id="memo_form">
   <%= render 'form', memo: @memo, categories: @categories %>
+  
 </div>
-
-<%= form_with model: @category, url: {controller: 'categories', action: 'create'}, remote: true do |f| %>
-<div class="category__form-group">
-  <div class="category__form">
-  <%= f.text_field :name, placeholder: "カテゴリーを新規登録", id: "category_form" %>
-  <%= f.submit 'カテゴリーを登録' %>
-  </div>
-</div>
-<% end %>
 

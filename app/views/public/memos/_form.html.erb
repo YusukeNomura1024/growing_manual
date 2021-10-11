@@ -1,38 +1,39 @@
 <%= form_with model: memo, local: true do |f| %>
-  <div>
-    <%= f.label :name, '題名' %>
-    <%= f.text_field :name %>
+<div class="form-field">
+  <div class="form column_form">
+    <%= f.label :name, '題名', class: "column_form__label" %>
+    <%= f.text_field :name, class: "column_form__input" %>
   </div>
-  <div>
-    <%= f.label :url, '参考URL' %>
-    <%= f.text_field :url %>
+  <div class="form column_form">
+    <%= f.label :url, '参考URL', class: "column_form__label" %>
+    <%= f.text_field :url, class: "column_form__input" %>
   </div>
-  <div>
-    <%= f.label :description, '説明' %>
-    <%= f.text_area :description %>
+  <div class="form column_form">
+    <%= f.label :description, '説明', class: "column_form__label" %>
+    <%= f.text_area :description, class: "column_form__input form__input_text_area" %>
   </div>
-  <div>
-    <%= f.label :code, '内容・コード' %>
-    <%= f.text_area :code, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4\nHTMLタグはバッククォートでエスケープできます\n `<h1>`タイトル`</h1>`", id: "code_text_area" %>
+  <div class="form column_form">
+    <%= f.label :code, '内容・コード', class: "column_form__label" %>
+    <%= f.text_area :code, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4\nHTMLタグはバッククォートでエスケープできます\n `<h1>`タイトル`</h1>`", id: "code_text_area", class: "column_form__input form__input_code_area" %>
   </div>
-  <div>
-    <%= f.label :category_id, 'カテゴリー' %>
-    <%= f.select :category_id, options_from_collection_for_select(categories, :id, :name) %>
+  <div class="form column_form">
+    <%= f.label :category_id, 'カテゴリー', class: "column_form__label" %>
+    <%= f.select :category_id, options_from_collection_for_select(categories, :id, :name), {}, {class: "column_form__input"} %>
   </div>
   <% if !params[:procedure_id].nil? %>
     <%= f.hidden_field :procedure_id, value: params[:procedure_id] %>
-    <%= f.submit '新規作成して手順にも登録する' %>
+    <%= f.submit '新規作成して手順にも登録する', class: "btn btn-outline-primary btn-block" %>
   <% elsif request.path.include?('new') %>
-    <%= f.submit '新規作成' %>
-  <% else %>
+    <%= f.submit '新規作成', class: "btn btn-outline-primary btn-block" %>
+  <% elsif request.path.include?('edit') %>
     <% if !params[:manual_id].nil? %>
       <%= f.hidden_field :manual_id, value: params[:manual_id] %>
       <%= f.submit '更新してマニュアルに戻る' %>
     <% else %>
       <%= f.submit '更新する' %>
+      <%= link_to '削除する', memo_path(memo), method: :delete, data: { confirm: '削除しますか？' } %>
     <% end %>
-    <%= link_to '削除する', memo_path(memo), method: :delete, data: { confirm: '削除しますか？' } %>
+
   <% end %>
-
-
+</div>
 <% end %>

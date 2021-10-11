@@ -1,36 +1,56 @@
-<div>
-  <% if @list_title.nil? %>
-    <h2>作成メモ一覧</h2>
-  <% else %>
-    <h2><%= @list_title %></h2>
-  <% end %>
-</div>
+<main class="main">
+  <div class="main__top_content">
+    <h2>メモ管理ページ</h2>
+    <div class="switch_order">
+      <% case params[:sort] %>
+      <% when 'updated_at' %>
+        <h2><i class="fas fa-caret-right"></i>更新日<i class="fas fa-caret-left"></i><%= link_to '作成日', memos_path(sort: 'created_at'), class: "switch_order__right_btn" %></h2>
+      <% when 'created_at' %>
+        <h2><%= link_to '更新日', memos_path(sort: 'updated_at'), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>作成日<i class="fas fa-caret-left"></i></h2>
+      <% end %>
+    </div>
 
-<%= render 'public/categories/list', categories: @categories %>
+    <% if @list_title.nil? %>
 
-<%= link_to '新規作成', new_memo_path %>
+    <% else %>
+      <h2><%= @list_title %></h2>
+    <% end %>
+  </div>
 
-メモを検索
-<div class="search_box">
-  <%= form_with url: search_memo_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
-    <%= button_tag "検索", type: 'submit', class: "search_bottun" %>
-  <% end %>
-</div>
+  <div class="main__left_content">
+    <%= render 'public/categories/list', categories: @categories %>
+  </div>
+
+  <div class="main__center_content main__center_content--plus_right">
+    <div class="d-flex  d-flex--align_items_center mb-1">
+      <%= link_to '新規作成', new_memo_path, class: "btn btn-outline-primary" %>
+      <div class="d-flex d-flex--flex_direction_column ml-auto">
+        <h3 class="search_title">メモを検索</h3>
+        <%= form_with url: search_memo_path, method: :get, local: true do |f| %>
+          <div class="search_box">
+            <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
+            <%= button_tag "検索", type: 'submit', class: "search_button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% @memos.each do |memo| %>
+      <%= link_to memo_path(memo), class: "memo_link" do %>
+        <ul class="memo_list list__body panel">
+          <li><%= memo.name %></li>
+          <li class="memo_list__direction"><div class="memo_list__direction_text"><%= memo.description %></div></li>
+          <li class="d-flex d-flex--align_items_center">
+            <span class="memo_list__created_at">作成日：<%= memo.created_at.strftime('%Y.%m.%d') %>｜更新日：<%= memo.updated_at.strftime('%Y.%m.%d') %></span>
+            <span class="memo_list__category"><%= memo.category.name %></span>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
+
+    <%= paginate @memos %>
+  </div>
 
 
-<ul>
-  <li>作成日</li>
-  <li>タイトル</li>
-  <li>説明文</li>
-</ul>
 
-<% @memos.each do |memo| %>
-<ul>
-  <li><%= memo.created_at.strftime('%Y.%m.%d') %></li>
-  <li><%= link_to memo.name, memo_path(memo) %></li>
-  <li><%= memo.description %></li>
-</ul>
-<% end %>
-
-<%= paginate @memos %>
+</main>
