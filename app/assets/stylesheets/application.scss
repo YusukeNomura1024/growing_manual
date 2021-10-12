@@ -797,6 +797,7 @@ nav, header, h2{
   width: 100%;
 }
 
+
 .d-flex{
   display: flex;
 }
@@ -807,6 +808,10 @@ nav, header, h2{
 
 .d-flex--flex_direction_column{
   flex-direction: column;
+}
+
+.flex-grow-1{
+  flex-grow: 1;
 }
 
 .d-inline-block{
@@ -843,4 +848,18 @@ nav, header, h2{
 
 .procedure_title{
   max-width: 300px;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 20px;
+}
+
+.col-12{
+  width: 100%;
+}
+
+.col-6{
+  width: 50%;
 }
