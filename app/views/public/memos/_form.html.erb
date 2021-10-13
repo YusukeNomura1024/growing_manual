@@ -1,55 +1,71 @@
 <%= form_with model: memo, local: true do |f| %>
-<div class="form-field panel">
+<div class="form-field none-border">
 
-  <div class="form-field__header">
+  <div class="form-field__header panel">
     <div class="form-field__wrap">
       <div class="row">
-        <div class="form col-6 d-flex form--control_width_max">
+        <div class="form col-6 d-flex d-flex--align_items_center form--control_width_max">
           <%= f.label :name, '題名', class: "form__label" %>
           <%= f.text_field :name, class: "form__input" %>
         </div>
-        <div class="form col-6 d-flex form--control_width_max">
+        <div class="form col-6 d-flex d-flex--align_items_center form--control_width_max">
           <%= f.label :category_id, 'カテゴリー', class: "form__label" %>
           <%= f.select :category_id, options_from_collection_for_select(categories, :id, :name), {}, {class: "form__input"} %>
         </div>
       </div>
       <div class="row">
-        <div class="form col-12 d-flex form--control_width_max">
+        <div class="form col-12 d-flex d-flex--align_items_center form--control_width_max">
           <%= f.label :url, '参考URL', class: "form__label" %>
           <%= f.text_field :url, class: "form__input" %>
         </div>
       </div>
       <div class="row">
-        <div class="form">
-          <%= f.label :description, '説明', class: "column_form__label" %>
-          <%= f.text_area :description, class: "column_form__input form__input_text_area" %>
+        <div class="form col-12 d-flex d-flex--align_items_center form--control_width_max">
+          <%= f.label :description, '説明', class: "form__label" %>
+          <%= f.text_area :description, class: "form__input" %>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="form-field__main">
-    <div class="form column_form">
-      <%= f.label :code, '内容・コード', class: "column_form__label" %>
-      <%= f.text_area :code, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4\nHTMLタグはバッククォートでエスケープできます\n `<h1>`タイトル`</h1>`", id: "code_text_area", class: "column_form__input form__input_code_area" %>
+  <div class="form-field__main panel">
+    <div class="form-field__wrap">
+      <div class="row mx-0">
+        <div class="form col-12 form--control_width_max py-0">
+          <%= f.text_area :code, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4\nHTMLタグはバッククォートでエスケープできます\n `<h1>`タイトル`</h1>`", id: "code_text_area", class: "none-border ml-0 column_form__input form__input_code_area pt-1" %>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="form-field__footer">
-    <% if !params[:procedure_id].nil? %>
-      <%= f.hidden_field :procedure_id, value: params[:procedure_id] %>
-      <%= f.submit '新規作成して手順にも登録する', class: "btn btn-outline-primary btn-block" %>
-    <% elsif request.path.include?('new') %>
-      <%= f.submit '新規作成', class: "btn btn-outline-primary btn-block" %>
-    <% elsif request.path.include?('edit') %>
-      <% if !params[:manual_id].nil? %>
-        <%= f.hidden_field :manual_id, value: params[:manual_id] %>
-        <%= f.submit '更新してマニュアルに戻る' %>
-      <% else %>
-        <%= f.submit '更新する' %>
-        <%= link_to '削除する', memo_path(memo), method: :delete, data: { confirm: '削除しますか？' } %>
-      <% end %>
-    <% end %>
+    <div class="form-field__wrap">
+      <div class="row">
+        <div class="col-12">
+          <div class="form_btns">
+            <% if !params[:procedure_id].nil? %>
+              <%= f.hidden_field :procedure_id, value: params[:procedure_id] %>
+              <%= f.submit '新規作成して手順にも登録する', class: "btn btn-outline-primary btn-block" %>
+            <% elsif request.path.include?('new') %>
+              <%= f.submit '新規作成', class: "btn btn-outline-primary btn-block" %>
+            <% elsif request.path.include?('edit') %>
+              <% if !params[:manual_id].nil? %>
+                <%= f.hidden_field :manual_id, value: params[:manual_id] %>
+                <%= f.submit '更新してマニュアルに戻る' %>
+              <% else %>
+                <%= button_tag :type => "submit", :class =>"btn btn-outline-primary flex-grow-1" do %>
+                  <i class="far fa-save"></i> 更新する
+                <% end %>
+                <%= link_to memo_path(memo), method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-outline-danger" do %>
+                  <i class="fas fa-trash-alt"></i> 削除する
+                <% end %>
+                <%= link_to 'キャンセル', memo_path(memo), data: { confirm: '編集内容を保存せずにキャンセルしますか？' }, class: "btn btn-outline-cancel" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>

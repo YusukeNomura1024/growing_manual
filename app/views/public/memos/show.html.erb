@@ -11,15 +11,13 @@
     </div>
 
     <div class="panel__tool">
-      <span class="panel__link_count">
-        <%= "リンク件数：#{@memo.memo_links.count}件" %>
-        <span class="panel__category">カテゴリー:
-        <% if @memo.category.present? %>
-          <%= @memo.category.name %>
-        <% else %>
-          --
-        <% end %>
-        </span>
+      <span class="panel__link_count"><%= link_to "リンク件数：#{@memo.memo_links.count}件", memo_memo_links_path(@memo) %></span>
+      <span class="panel__category">カテゴリー:
+      <% if @memo.category.present? %>
+        <%= @memo.category.name %>
+      <% else %>
+        --
+      <% end %>
       </span>
       <%= link_to '編集する', edit_memo_path(@memo), class: "btn btn-outline-success btn--small ml-auto" %>
       <div class="panel__url">
@@ -35,6 +33,7 @@
           <div><%= @memo.description %></div>
         </div>
         <div class="panel__main_text_markdown">
+          <div class="info__label">内容</div>
           <%= markdown(@memo.code) %>
         </div>
       </div>

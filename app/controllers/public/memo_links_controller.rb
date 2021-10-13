@@ -2,6 +2,13 @@ class Public::MemoLinksController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
   before_action :non_owner_to_root, only: [:destroy, :update, :edit]
 
+  def index
+    @memo = Memo.find(params[:memo_id])
+    @memo_links = @memo.memo_links.page(params[:page]).reverse_order
+
+
+  end
+
   def show
     @memo_link = MemoLink.find(params[:id])
     respond_to do |format|

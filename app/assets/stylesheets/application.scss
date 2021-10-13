@@ -34,7 +34,7 @@ h2{
   font-family: "ＭＳ 明朝", "游ゴシック", "游ゴシック体";
 }
 
-nav, header, h2{
+nav, header, h2, textarea, input, select{
   font-family: "游ゴシック", "游ゴシック体";
   font-weight: 900;
 }
@@ -407,21 +407,6 @@ nav, header, h2{
   max-width: 250px;
 }
 
-.-outer_square_border{
-  border: 1px solid $main-color;
-  padding: 10px;
-}
-
-.-outer_radius_border{
-  border: 1px solid $main-color;
-  border-radius: 15px;
-  padding: 10px;
-}
-
-
-.-outer_light_color_border{
-  border-color: #efefef;
-}
 
 .main__content--outer_square_border{
   border: 1px solid $main-color;
@@ -441,6 +426,7 @@ nav, header, h2{
 .main__left_content{
   max-width: 200px;
   flex-grow: 1;
+  height: 100%;
 }
 
 
@@ -628,6 +614,7 @@ nav, header, h2{
     margin-left: 5px;
   }
 }
+
 
 .everyone_manual_list{
   .list__created_at_date{
@@ -834,6 +821,10 @@ nav, header, h2{
   margin-left: auto;
 }
 
+.ml-0{
+  margin-left: 0;
+}
+
 .mb-1{
   margin-bottom: 1rem;
 }
@@ -841,6 +832,23 @@ nav, header, h2{
 .mb-2{
   margin-bottom: 2rem;
 }
+
+.mx-0,
+.row.mx-0{
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.pt-1{
+  padding-top: 1rem;
+}
+
+.py-0,
+.form.py-0{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 
 .bookmark-color{
   color: $bookmark-color;
@@ -856,6 +864,7 @@ nav, header, h2{
   margin: 0 20px;
 }
 
+
 .col-12{
   width: 100%;
 }
@@ -863,3 +872,5 @@ nav, header, h2{
 .col-6{
   width: 50%;
 }
+
+

@@ -42,7 +42,9 @@ Rails.application.routes.draw do
     get 'procedures/:id/memo_links/new'           , to: 'memo_links#new', as: 'new_procedure_memo_link'
     get 'procedures/:procedure_id/memos/:id/link' , to: 'memos#link'    , as: 'link_procedure_memo'
     get 'memos/search'                            , to: 'memos#search'  , as: 'search_memo'
-    resources :memos
+    resources :memos do
+      resources :memo_links , only: [:index]
+    end
     resources :memo_links   , only: [:index, :destroy, :create, :show]
 
   end

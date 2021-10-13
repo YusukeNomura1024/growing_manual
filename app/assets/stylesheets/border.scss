@@ -1,0 +1,23 @@
+@import "variables";
+
+.-outer_square_border{
+  border: 1px solid $main-color;
+  padding: 10px;
+}
+
+.-outer_radius_border{
+  border: 1px solid $main-color;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+
+.-outer_light_color_border{
+  border-color: #efefef;
+}
+
+.none-border,
+.form-field.none-border,
+.column_form__input.none-border{
+  border-color: rgba(0, 0, 0, 0);
+}

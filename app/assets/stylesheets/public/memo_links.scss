@@ -1,3 +1,31 @@
-// Place all the styles related to the public/MemoLinks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.memo_link_list{
+  border:none;
+  border-bottom: 1px solid $main-color;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  padding: 5px;
+  margin-bottom: 0;
+}
+
+.memo_link_list__procedure_title{
+  padding-left: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.memo_link_list__manual{
+  position: relative;
+}
+
+.memo_link_list__manual_created_at{
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 0.9rem;
+  position: absolute;
+  right: 0;
+}
