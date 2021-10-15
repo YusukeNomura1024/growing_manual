@@ -7,7 +7,7 @@ class Public::ReviewsController < ApplicationController
   def index
     @manual = Manual.find(params[:manual_id])
     @reviews = Review.where(manual_id: @manual.id).where.not(user_id: current_user.id).page(params[:page]).per(20)
-    @review = Review.find_by(user_id: current_user.id)
+    @review = Review.find_by(user_id: current_user.id, manual_id: @manual.id)
     @user = current_user
     @message = Message.new
     if @review.nil?
@@ -50,13 +50,14 @@ class Public::ReviewsController < ApplicationController
   end
 
   def edit
+    @manual = Manual.find(params[:manual_id])
     @review = Review.find(params[:id])
-    if Review.find_by(user_id: current_user.id).nil?
+    if Review.find_by(user_id: current_user.id, manual_id: @manual.id).nil?
       @review = Review.new
       @review.rate = 0
       @button_name = '評価する'
     else
-      @review = Review.find_by(user_id: current_user.id)
+      @review = Review.find_by(user_id: current_user.id, manual_id: @manual.id)
       @button_name = '反映する'
     end
 

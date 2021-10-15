@@ -1,33 +1,50 @@
-<h2><%= @manual.title + "の評価一覧" %></h2>
-<h3><%= link_to 'マニュアルに戻る', manual_path(@manual) %></h3>
-<div>
-  <%= "平均評価：#{@manual.average_rate}" %>
-  <%= @manual.average_star %>
-  <%= "評価件数：#{@manual.reviews.count}" %>
-</div>
+<main>
+  <%= render 'breadlists/review_index', manual: @manual %>
+  <div class="main__content main__content_w800">
+    <div class="total_review mb-1">
+      <span><%= "総合評価：#{@manual.average_rate}" %></span>
+      <span class="rate_star"><%= @manual.average_star %></span>
+      <%= "評価件数：#{@manual.reviews.count}" %>
+    </div>
 
-<%= render 'my_review', review: @review, manual: @manual %>
-
-<div id="mask" class="hidden"></div>
-
-<div id="form-area" class="hidden">
-  <%= render 'public/reviews/form', review: @review, manual: @manual, button_name: @button_name %>
-</div>
-<div id="report-form-area" class="hidden">
-</div>
+    <div class="my_review mb-1">
+      <%= render 'my_review', review: @review, manual: @manual %>
+    </div>
 
 
-<h3>みんなの評価</h3>
-<% @reviews.each do |review| %>
-  <ul>
-    <li><%= review.user.pen_name %></li>
-    <li><%= "評価：#{review.star}" %></li>
-    <li><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></li>
-    <li><%= review.comment %></li>
-    <li><%= link_to '通報する', new_user_message_path(@user, review_id: review.id, report_target: 'review'), remote: true %></li>
+    <div class="everyone_review">
+      <h3 class="everyone_review__title">みんなの評価</h3>
+      <ul class="panel everyone_review__body list_group">
+      <% @reviews.each do |review| %>
+        <li class="list_group__item d-flex">
+          <div class="everyone_review__body_left">
+            <%= attachment_image_tag review.user, :image, size: "100x100", fallback: "no_image.jpg" %>
+            <%= review.user.pen_name %>
+          </div>
+          <div class="everyone_review__body_right">
+            <div class="row d-flex--justify_content_space_between">
+              <div>評価：<span class="rate_star"><%= "#{review.star}" %></span></div>
+              <div><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></div>
+            </div>
+            <div class="row"><%= review.comment %></div>
+            <div class="row d-flex--justiry_content_flex_end"><%= link_to '通報する', new_user_message_path(@user, review_id: review.id, report_target: 'review'), remote: true, class: "btn btn-outline-danger btn--small" %></div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
 
-  </ul>
-<% end %>
+    <div>
+      <%= paginate @reviews %>
+    </div>
 
+  </div>
+</main>
 
-<%= paginate @reviews %>
+    <div id="mask" class="hidden"></div>
+
+    <div id="form-area" class="hidden panel">
+      <%= render 'public/reviews/form', review: @review, manual: @manual, button_name: @button_name %>
+    </div>
+    <div id="report-form-area" class="hidden">
+    </div>

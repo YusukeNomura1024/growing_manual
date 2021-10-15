@@ -1,10 +1,16 @@
-<div>
-<h3>カテゴリー一覧</h3>
-<%= link_to 'メモ一覧ページへ', memos_path %>
-  <ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to "#{category.name} (#{category.memos.count}件)", category_path(category) %></li>
-    <li><%= link_to "削除する", category_path(category), method: :delete, data: { confirm: '削除しますか？' } %> </li>
-  <% end %>
-  </ul>
-</div>
+<main>
+  <%= render 'breadlists/category_index', categories: @categories %>
+  <p class="main__content-title main__content-title--small">クリックでカテゴリー検索</p>
+  <div class="main__content panel">
+    <div class="panel__main">
+      <ul>
+      <% @categories.each do |category| %>
+      <li class="category_list">
+        <%= link_to "#{category.name} (#{category.memos.count}件)", category_path(category), class: "category_list__name" %>
+        <%= link_to "削除する", category_path(category), method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-outline-danger btn--small" %>
+      </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</main>

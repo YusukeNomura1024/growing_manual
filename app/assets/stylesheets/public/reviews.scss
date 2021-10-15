@@ -1,3 +1,33 @@
-// Place all the styles related to the public/reviews controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.total_review{
+  font-size: 2rem;
+  text-align: center;
+}
+
+.my_review__title,
+.everyone_review__title{
+  text-align: center;
+}
+
+.my_review__body,
+.everyone_review__body{
+  font-size: 1.2rem;
+  padding: 10px 10px;
+}
+
+.everyone_review__body_left{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.everyone_review__body_right{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.rate_star{
+  color: $review-color;
+}

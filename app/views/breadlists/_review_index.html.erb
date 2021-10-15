@@ -1,0 +1,20 @@
+<div class="breadlist">
+  <ul class="breadlist__items">
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to 'マニュアル一覧', manuals_path %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to "#{manual.title}", manual_path(manual) %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      評価一覧
+    </li>
+
+  </ul>
+</div>

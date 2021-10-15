@@ -1,15 +1,17 @@
 <% if manual.user != current_user %>
-  <div>
-    <% if review.id.nil? %>
-      <h3>あなたの評価はまだありません</h3>
-      <%= link_to '評価する', new_manual_review_path, remote: true %>
-    <% else %>
+  <% if review.id.nil? %>
+    <h3 class="my_review__title">あなたの評価はまだありません<%= link_to '評価する', new_manual_review_path, remote: true, class: "btn btn-outline-primary" %></h3>
+
+  <% else %>
+    <h3 class="my_review__title">あなたの評価</h3>
+    <div class="my_review__body panel">
+      <span class="rate_star"><%= review.star %></span>
+      <span><%= review.rate %></span>
+      <%= link_to '編集する', edit_manual_review_path(manual, review), remote: true, class: "btn btn-outline-success btn--small" %>
       <div>
-        <h3>あなたの評価</h3>
-        <span><%= review.star %></span>
+        <%= review.comment %>
+
       </div>
-      <%= review.comment %>
-      <%= link_to '編集する', edit_manual_review_path(manual, review), remote: true %>
-    <% end %>
-  </div>
+    </div>
+   <% end %>
 <% end %>

@@ -27,6 +27,19 @@
   border-radius: 10px;
 }
 
+.modal__btn_area{
+  display: flex;
+  margin-left: 10px;
+
+  .btn+.btn{
+    margin-left: 10px;
+  }
+  .btn.btn-outline-danger{
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}
+
 .modal__update_button{
   display: block;
   width: 40%;

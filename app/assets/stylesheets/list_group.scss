@@ -1,0 +1,26 @@
+.list_group{
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: .25rem;
+}
+
+.list_group__item{
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.list_group__item+.list_group__item{
+  border-top-width: 0;
+}
+
+.panel .list_group__item{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
