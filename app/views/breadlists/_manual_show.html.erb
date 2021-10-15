@@ -3,7 +3,7 @@
 
     <li class="breadlist__item">
       <i class="fas fa-chevron-right"></i>
-      <%= link_to 'マニュアル一覧', manuals_path %>
+      <%= link_to '自分のマニュアル一覧', manuals_path %>
     </li>
 
     <li class="breadlist__item">
@@ -11,6 +11,20 @@
       <%= "#{manual.title}" %>
     </li>
 
+
+  </ul>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to 'みんなのマニュアル一覧', '/' %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= "#{manual.title}" %>
+    </li>
+
+  <ul class="breadlist__items">
 
   </ul>
 </div>

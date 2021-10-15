@@ -16,7 +16,7 @@
     <%= link_to 'レビュー', manual_reviews_path(@manual), class: "btn btn-outline-review btn--small" %>
 
     <% unless @manual.user == current_user %>
-      <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true %>
+      <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true, class: "btn btn-outline-danger btn--small" %>
     <% end %>
 
   </div>
@@ -79,7 +79,7 @@
   </div>
 
   <div id="mask" class="hidden"></div>
-  <div id="form-area" class="hidden">
+  <div id="form-area" class="hidden panel">
     <%= render 'public/messages/form', user: @user, message: @message, manual: @manual %>
   </div>
 </div>

@@ -34,7 +34,7 @@ h2{
   font-family: "ＭＳ 明朝", "游ゴシック", "游ゴシック体";
 }
 
-nav, header, h2, textarea, input, select{
+nav, header, h2, textarea, input, select, label{
   font-family: "游ゴシック", "游ゴシック体";
   font-weight: 900;
 }
@@ -150,6 +150,10 @@ nav, header, h2, textarea, input, select{
   opacity: 0;
 }
 
+.invisible{
+  visibility: hidden;
+}
+
 
 #memo_link_entry {
   position: fixed;
@@ -219,7 +223,7 @@ nav, header, h2, textarea, input, select{
   transform: translate(0, 0) scale(1);
   transition: 0.2s;
   z-index: 2;
-  width: 60%;
+  width: 500px;
   background-color: white;
 }
 
@@ -799,6 +803,27 @@ nav, header, h2, textarea, input, select{
   margin-top: 10px;
 }
 
+.date_text{
+  font-size: 0.9rem;
+  color: rgb(102, 102, 102);
+}
+
+.user_icon{
+  .user_name{
+    font-size: 0.75rem;
+  }
+}
+
+.admin_icon{
+  .admin_name{
+    font-size: 0.75rem;
+  }
+}
+
+.blank{
+  width: 20px;
+}
+
 #stars{
   display: flex;
   margin: 5px 10px;
@@ -808,6 +833,14 @@ nav, header, h2, textarea, input, select{
   cursor: pointer;
   display: inline-block;
   font-size: 1.2rem;
+}
+
+.w-80{
+  width: 80%;
+}
+
+.w-90{
+  width: 90%;
 }
 
 .w-100{
@@ -855,6 +888,10 @@ nav, header, h2, textarea, input, select{
   margin-top: 0;
 }
 
+.mt-2{
+  margin-top: 2rem;
+}
+
 .ml-auto{
   margin-left: auto;
 }
@@ -877,6 +914,9 @@ nav, header, h2, textarea, input, select{
   margin-left: 0;
 }
 
+.p-1{
+  padding: 1rem;
+}
 .pt-1{
   padding-top: 1rem;
 }

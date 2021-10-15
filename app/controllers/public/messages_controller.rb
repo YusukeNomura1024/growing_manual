@@ -3,7 +3,7 @@ class Public::MessagesController < ApplicationController
   before_action :non_owner_to_root, only: [:index, :create]
 
   def index
-    @messages = where_user_id_is_current_user_id(Message).page(params[:page]).per(20).reverse_order
+    @messages = where_user_id_is_current_user_id(Message).page(params[:page]).per(8).reverse_order
     @message = Message.new
   end
 
@@ -38,7 +38,7 @@ class Public::MessagesController < ApplicationController
   end
 
   def non_owner_to_root
-    unless current_user.id == params[:user_id].to_i && admin_user_signed_in?
+    unless current_user.id == params[:user_id].to_i || admin_user_signed_in?
       redirect_to '/'
     end
   end

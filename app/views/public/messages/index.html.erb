@@ -1,30 +1,67 @@
-<h2>メッセージ送信</h2>
-<div id="notice">
-  <%= flash[notice] %>
-</div>
+<main>
+  <%= render 'breadlists/message_index', memo: @memo %>
+  <div class="main__content main__content_w800">
+    <div class="message__form_area">
+      <div id="notice">
+        <%= flash[notice] %>
+      </div>
 
-<%= form_with model: [current_user, @message], remote: true do |f| %>
-  <%= f.text_area :comment, placeholder: "メッセージを入力してください" %>
-  <!--お問い合わせの場合はtypeは"contact"として送信する-->
-  <%= f.hidden_field :type, value: "contact" %>
-  <%= f.hidden_field :report_target, value: 'no_target' %>
-  <%= f.submit '送信' %>
-<% end %>
+      <%= form_with model: [current_user, @message], remote: true, class: "d-flex d-flex--flex_direction_column" do |f| %>
+        <%= f.text_area :comment, placeholder: "メッセージを入力してください", class: "panel form__input_text_area p-1" %>
+        <!--お問い合わせの場合はtypeは"contact"として送信する-->
+        <%= f.hidden_field :type, value: "contact" %>
+        <%= f.hidden_field :report_target, value: 'no_target' %>
+        <%= f.submit 'メッセージ送信', class: "btn btn-outline-primary" %>
 
-<h2>メッセージ一覧</h2>
-<% @messages.each do |message| %>
-<div>
-  <%= message.type_i18n %>：
-  <!--違反報告の場合のみ報告対象とURLを付ける-->
-  <% if message.violation_report? %>
-    <%= link_to message.report_target, message.report_target_link %>
-  <% end %>
-  <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
-</div>
-<div>
-  <%= message.comment %>
-</div>
-<% end %>
+      <% end %>
+    </div>
 
-<%= paginate @messages %>
+    <div class="message__list_area" style="margin-bottom: 200px">
+      <h2 class="title--center">メッセージ一覧</h2>
+      <ul class="list_group scroll-list" id="jscroll">
+      <% @messages.each do |message| %>
+        <li class="list_group__item d-flex">
+          <% if message.type != 'from_admin' %>
+          <div class="user_icon">
+            <%= attachment_image_tag message.user, :image, size: "40x40", fallback: "no_image.jpg", class: "panel" %>
+            <div class="user_name">あなた</div>
+          </div>
+          <div class="user_msg_arrow"></div>
+          <% else %>
+          <div class="blank"></div>
+          <% end %>
+          <div class="panel w-90">
+            <div class="chat_title date_text">
+              <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+            </div>
+            <div class="chat_type">
+              <%= message.type_i18n %>：
+              <!--違反報告の場合のみ報告対象とURLを付ける-->
+              <% if message.violation_report? %>
+                <%= link_to message.report_target, message.report_target_link %>
+              <% end %>
+            </div>
+            <div class="chat_body">
+              <%= message.comment %>
+            </div>
+          </div>
+          <% if message.type == 'from_admin' %>
+          <div class="admin_msg_arrow"></div>
+          <div class="admin_icon">
+            <%= image_tag 'admin_image.png', size: "40x40", class: "panel" %>
+            <div class="admin_name">管理者</div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+      <div class="invisible">
+        <%= paginate @messages %>
+      </div>
+      </ul>
+    </div>
+    <div style="position: fixed; top: 700px; width: 800px; height: 250px; background-color: white;">
+      あああ
+    </div>
+  </div>
+</main>
 
