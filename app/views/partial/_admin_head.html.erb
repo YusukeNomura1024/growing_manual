@@ -1,12 +1,25 @@
-<li><%= link_to 'マニュアル一覧', admin_manuals_path %></li>
-<li><%= link_to '会員一覧', admin_users_path %></li>
-<li><%= link_to '問い合わせ一覧', admin_messages_path %></li>
-<li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete %></li>
-<div class="search_box">
-  <%= form_with url: admin_search_manual_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
-    <%= button_tag "検索", type: 'submit', class: "search_button" %>
-  <% end %>
+<div class="header__top">
+  <h2 class="logo">Growing Manual</h2>
+  <nav class="nav">
+    <ul class="nav__left">
+      <li><%= link_to 'ダッシュボード', admin_dashboard_path, class: "btn" %></li>
+      <li><%= link_to 'マニュアル一覧', admin_manuals_path, class: "btn" %></li>
+      <li><%= link_to '会員一覧', admin_users_path, class: "btn" %></li>
+      <li><%= link_to '問い合わせ一覧', admin_dashboard_path, class: "btn" %></li>
+    </ul>
+    <ul class="nav__right">
+      <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-danger btn--small" %></li>
+    </ul>
+  </nav>
 </div>
-<h1>管理者としてログイン中です。</h1>
+
+<div class="header__bottom header_flex-end">
+  <div class="search_box">
+    <%= form_with url: admin_search_manual_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
+      <%= button_tag "検索", type: 'submit', class: "search_button" %>
+    <% end %>
+  </div>
+  <h2>管理者としてログイン中です。</h2>
+</div>
 

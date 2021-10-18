@@ -10,7 +10,7 @@ class Public::NotificationsController < ApplicationController
   end
 
   def non_owner_to_root
-    unless current_user.id == params[:user_id].to_i && admin_user_signed_in?
+    unless current_user.id == params[:user_id].to_i || admin_user_signed_in?
       redirect_to '/'
     end
   end

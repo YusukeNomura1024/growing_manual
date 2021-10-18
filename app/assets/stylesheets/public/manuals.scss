@@ -1,3 +1,56 @@
-// Place all the styles related to the public/manuals controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";// メイン
+
+.admin_manual.created_at{
+  width: 12%;
+
+}
+
+.admin_manual.title{
+  width: 30%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
+.admin_manual.bookmarks{
+  width: 10%;
+  color: $bookmark-color;
+}
+
+.admin_manual.raviews{
+  width: 18%;
+  color: $review-color;
+}
+
+.admin_manual.user{
+  width: 20%;
+}
+
+.admin_manual.status{
+  width: 10%;
+}
+
+@media screen and (max-width: 1200px){
+  .admin_manual.created_at{
+    width: 100%;
+  }
+  .admin_manual.title{
+    width: 100%;
+  }
+  .admin_manual.bookmarks{
+    width: 50%;
+  }
+
+  .admin_manual.raviews{
+    width: 50%;
+  }
+
+  .admin_manual.user{
+    width: 50%;
+  }
+
+  .admin_manual.status{
+    width: 50%;
+  }
+}

@@ -1,40 +1,77 @@
-<div id="flash">
-  <%= render 'partial/flash' %>
-</div>
+<main>
+  <%= render 'breadlists/admin/message_index', memo: @memo, user: @user %>
 
+  <div class="main__content main__content_w800">
+    <div class="message__list_area">
+      <h2 class="title--center">メッセージ一覧</h2>
+      <ul class="list_group scroll-list" id="jscroll">
+        <% @messages.each do |message| %>
+          <li class="list_group__item d-flex">
+            <% if message.type != 'from_admin' %>
+              <div class="user_icon">
+                <%= attachment_image_tag message.user, :image, size: "40x40", fallback: "no_image.jpg", class: "panel" %>
+                <div class="user_name">ユーザー</div>
+              </div>
+              <div class="user_msg_arrow"></div>
+            <% else %>
+              <div class="blank"></div>
+            <% end %>
+            <div class="panel w-90">
+              <div class="chat_title date_text">
+                <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+              </div>
+              <div class="chat_type">
+                <%= message.type_i18n %>：
+                <!--違反報告の場合のみ報告対象とURLを付ける-->
+                <% if message.violation_report? %>
+                  <%= link_to message.report_target, message.report_target_admin_link %>
+                <% end %>
+              </div>
+              <div class="chat_body">
+                <%= message.comment %>
+              </div>
+              <div>
+                <% if !message.is_replied %>
+                  <%= link_to '返信済みにする', admin_user_message_path(@user, message), method: :patch, data: {confirm: "返信済みにしますか？"}, remote: true, class: "btn btn-outline-primary btn--small" %>
+                <% elsif message.type == 'from_admin' %>
 
-<h2>メッセージ一覧</h2>
-<div class="scroll-area">
-  <% @messages.each do |message| %>
-  <div>
-    <%= message.type_i18n %>：
-    <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+                <% else %>
+                  <span class="btn btn-outline-disabled btn--small">返信済み</span>
+                <% end %>
+                <% if message.type == 'from_admin' %>
+                  <%= link_to '削除する', admin_user_message_path(@user, message), method: :delete, data: {confirm: "削除しますか？"}, remote: true, class: "btn btn-outline-danger btn--small" %>
+                <% end %>
+              </div>
+            </div>
+            <% if message.type == 'from_admin' %>
+              <div class="admin_msg_arrow"></div>
+              <div class="admin_icon">
+                <%= image_tag 'admin_image.png', size: "40x40", class: "panel" %>
+                <div class="admin_name">管理者</div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+        <div class="invisible">
+          <%= paginate @messages %>
+        </div>
+      </ul>
+    </div>
+
+    <div class="message__form_area">
+      <div id="notice">
+        <%= flash[notice] %>
+      </div>
+
+      <%= form_with model: [:admin, @user, @message], remote: true, class: "d-flex d-flex--flex_direction_column" do |f| %>
+        <%= f.text_area :comment, placeholder: "メッセージを入力してください", class: "panel form__input_text_area p-1" %>
+        <!--管理者側からのメッセージはtypeは"from_admin"、report_targetは'no_target'として送信する-->
+        <%= f.hidden_field :type, value: "from_admin" %>
+        <%= f.hidden_field :report_target, value: 'no_target' %>
+        <%= f.submit '送信', data: {confirm: "送信しますか？"}, class: "btn btn-outline-primary" %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= message.comment %>
-  </div>
-  <div>
-    <% if !message.is_replied %>
-      <%= link_to '返信済みにする', admin_user_message_path(@user, message), method: :patch, data: {confirm: "返信済みにしますか？"}, remote: true %>
-    <% elsif message.type == 'from_admin' %>
-      管理者から送信
-    <% else %>
-      返信済み
-    <% end %>
-    <%= link_to '削除する', admin_user_message_path(@user, message), method: :delete, data: {confirm: "削除しますか？"}, remote: true %>
-  </div>
-  <% end %>
-</div>
-
-<h2>メッセージ送信</h2>
-
-<%= form_with model: [:admin, @user, @message], remote: true do |f| %>
-  <%= f.text_area :comment, placeholder: "メッセージを入力してください" %>
-  <!--管理者側からのメッセージはtypeは"from_admin"、report_targetは'no_target'として送信する-->
-  <%= f.hidden_field :type, value: "from_admin" %>
-  <%= f.hidden_field :report_target, value: 'no_target' %>
-  <%= f.submit '送信', data: {confirm: "送信しますか？"} %>
-<% end %>
-
+</main>
 
 

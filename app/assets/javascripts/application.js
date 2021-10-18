@@ -69,5 +69,6 @@ window.document.addEventListener('turbolinks:load', function(){
       };
     });
   };
+  
 })
 

@@ -2,7 +2,7 @@
 <% visited = notification.visited %>
 <% manual = notification.manual %>
 <% review = notification.review %>
-<ul>
+<ul class="list_group__item">
   <li><%= notification.created_at.strftime('%Y年%m月%d日 %H:%M') %></li>
   <li>
     <% case notification.type %>

@@ -4,6 +4,10 @@
   }
 }
 
+.message__list_area{
+  margin-bottom: 200px;
+}
+
 .list_group__item{
 
   .chat_title{
@@ -47,3 +51,19 @@
   top: 10px;
 
 }
+
+.message__form_area{
+  position: fixed;
+  top: 750px;
+  width: 800px;
+}
+
+.message__form_area::before{
+  position: absolute;
+  content: "";
+  width: 800px;
+  background: #efefef;
+  height: 300px;
+  z-index: -1;
+}
+

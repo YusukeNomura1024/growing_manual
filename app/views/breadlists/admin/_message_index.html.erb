@@ -1,0 +1,21 @@
+<div class="breadlist">
+  <ul class="breadlist__items">
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to '会員一覧', admin_users_path %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to '会員情報ページ（' + user.full_name + '様）', admin_user_path(params[:user_id]) %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= "メッセージ画面（#{user.full_name}様）" %>
+    </li>
+
+
+  </ul>
+</div>

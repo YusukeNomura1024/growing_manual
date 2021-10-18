@@ -1,22 +1,8 @@
 <main>
   <%= render 'breadlists/message_index', memo: @memo %>
   <div class="main__content main__content_w800">
-    <div class="message__form_area">
-      <div id="notice">
-        <%= flash[notice] %>
-      </div>
 
-      <%= form_with model: [current_user, @message], remote: true, class: "d-flex d-flex--flex_direction_column" do |f| %>
-        <%= f.text_area :comment, placeholder: "メッセージを入力してください", class: "panel form__input_text_area p-1" %>
-        <!--お問い合わせの場合はtypeは"contact"として送信する-->
-        <%= f.hidden_field :type, value: "contact" %>
-        <%= f.hidden_field :report_target, value: 'no_target' %>
-        <%= f.submit 'メッセージ送信', class: "btn btn-outline-primary" %>
-
-      <% end %>
-    </div>
-
-    <div class="message__list_area" style="margin-bottom: 200px">
+    <div class="message__list_area">
       <h2 class="title--center">メッセージ一覧</h2>
       <ul class="list_group scroll-list" id="jscroll">
       <% @messages.each do |message| %>
@@ -59,9 +45,22 @@
       </div>
       </ul>
     </div>
-    <div style="position: fixed; top: 700px; width: 800px; height: 250px; background-color: white;">
-      あああ
+
+    <div class="message__form_area">
+      <div id="notice">
+        <%= flash[notice] %>
+      </div>
+
+      <%= form_with model: [current_user, @message], remote: true, class: "d-flex d-flex--flex_direction_column" do |f| %>
+        <%= f.text_area :comment, placeholder: "メッセージを入力してください", class: "panel form__input_text_area p-1" %>
+        <!--お問い合わせの場合はtypeは"contact"として送信する-->
+        <%= f.hidden_field :type, value: "contact" %>
+        <%= f.hidden_field :report_target, value: 'no_target' %>
+        <%= f.submit 'メッセージ送信', class: "btn btn-outline-primary" %>
+
+      <% end %>
     </div>
+
   </div>
 </main>
 

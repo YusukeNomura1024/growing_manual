@@ -1,7 +1,7 @@
 class Admin::MessagesController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @messages = Message.where(user_id: @user.id)
+    @messages = Message.where(user_id: @user.id).page(params[:page]).per(8).reverse_order
     @message = Message.new
   end
 

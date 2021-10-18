@@ -852,6 +852,10 @@ nav, header, h2, textarea, input, select, label{
   display: flex;
 }
 
+.d-flex--wrap{
+  flex-wrap: wrap;
+}
+
 .d-flex--align_items_center{
   align-items: center;
 }

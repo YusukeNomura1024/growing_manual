@@ -8,6 +8,10 @@ class Message < ApplicationRecord
 
   validates :comment, presence: true
 
+  scope :contact, -> {where(type: 'contact')}
+  scope :violation_report, -> {where(type: 'violation_report')}
+  scope :not_reply, -> {where.not(is_replied: true)}
+
   def violation_report?
     if self.type == 'violation_report'
       true
@@ -44,4 +48,21 @@ class Message < ApplicationRecord
     end
 
   end
+  
+  # 管理者用メソッド
+  def report_target_admin_link
+    if !self.manual_id.nil?
+      target_manual = Manual.find(self.manual_id)
+      "admin/manuals/#{target_manual.id}"
+    elsif !self.review_id.nil?
+      target_review = Review.find(self.review_id)
+      manual = Manual.find(target_review.manual_id)
+      "admin/manuals/#{manual.id}/reviews"
+    else
+      nil
+    end
+
+  end
+  
+  
 end

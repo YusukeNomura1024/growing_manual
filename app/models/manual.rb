@@ -12,6 +12,7 @@ class Manual < ApplicationRecord
 
   attachment :image
 
+
   def bookmarked_by?(your_id)
     bookmarks.where(user_id: your_id).exists?
   end
