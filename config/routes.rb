@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :destroy]
       resources :procedures, only: [:index]
     end
+    resources :reviews, only: [:show]
+    resources :memo_links   , only: [:show]
   end
 
   scope module: :public do

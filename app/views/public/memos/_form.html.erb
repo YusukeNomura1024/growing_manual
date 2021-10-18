@@ -51,7 +51,7 @@
             <% elsif request.path.include?('edit') %>
               <% if !params[:manual_id].nil? %>
                 <%= f.hidden_field :manual_id, value: params[:manual_id] %>
-                <%= f.submit '更新してマニュアルに戻る' %>
+                <%= f.submit '更新してマニュアルに戻る', class: "btn btn-outline-primary flex-grow-1" %>
               <% else %>
                 <%= button_tag :type => "submit", :class =>"btn btn-outline-primary flex-grow-1" do %>
                   <i class="far fa-save"></i> 更新する

@@ -21,9 +21,10 @@
                 <%= message.created_at.strftime('%Y年%m月%d日 %H:%M') %>
               </div>
               <div class="chat_type">
-                <%= message.type_i18n %>：
+
                 <!--違反報告の場合のみ報告対象とURLを付ける-->
                 <% if message.violation_report? %>
+                  <%= message.type_i18n %>：
                   <%= link_to message.report_target, message.report_target_admin_link %>
                 <% end %>
               </div>

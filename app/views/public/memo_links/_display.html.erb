@@ -1,14 +1,31 @@
-<div class="-outer_radius_border memo-invisible">
-  <ul>
-    <li class="info__label">メモタイトル：</li>
-    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.name %></li>
-    <li class="info__label">説明：</li>
-    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.description %></li>
-    <li class="info__label">参考URL：</li>
-    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.url %></li>
-    <li class="info__label">内容：</li>
-    <li class="info__value info__value--bgcolor_light -outer_radius_border w-100"><%= memo_link.memo.code %></li>
-  </ul>
+<div class="-outer_radius_border memo-invisible panel">
+  <div class="panel__heading">
+    <h1 class="panel__title"><%= memo_link.memo.name %></h1>
+  </div>
+  <div class="panel__tool memo_link">
+    <span class="panel__category">カテゴリー:
+    <% if memo_link.memo.category.present? %>
+      <%= memo_link.memo.category.name %>
+    <% else %>
+      --
+    <% end %>
+    </span>
+    <div class="panel__url memo_link">
+      参考URL: <%= text_url_to_link(h(memo_link.memo.url)).html_safe %>
+    </div>
+  </div>
+  <div class="panel__main">
+    <div class="panel__main_text">
+      <div class="panel__main_text_direction">
+        <div class="info__label">説明</div>
+        <div><%= memo_link.memo.description %></div>
+      </div>
+      <div class="panel__main_text_markdown">
+        <div class="info__label">内容</div>
+        <div><%= markdown(memo_link.memo.code) %></div>
+      </div>
+    </div>
+  </div>
   <% if memo_link.memo.user == current_user %>
     <%= link_to 'メモを編集する', edit_memo_path(memo_link.memo, manual_id: params[:manual_id]), class: "btn btn-outline-success btn--small" %>
     <%= link_to 'メモのリンクを解除する', memo_link_path(memo_link, manual_id: params[:manual_id]), method: :delete, data: {confirm: "リンクを解除しますか？メモ自体は削除されません" }, class: "btn btn-outline-danger btn--small" %>

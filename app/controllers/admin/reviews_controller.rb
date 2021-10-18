@@ -1,4 +1,10 @@
 class Admin::ReviewsController < ApplicationController
+
+  def show
+    @review = Review.find(params[:id])
+    @manual = @review.manual
+  end
+
   def index
     @manual = Manual.find(params[:manual_id])
     @reviews = Review.where(manual_id: @manual.id).page(params[:page])

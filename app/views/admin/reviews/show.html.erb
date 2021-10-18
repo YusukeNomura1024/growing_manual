@@ -1,0 +1,23 @@
+<main>
+  <%= render 'breadlists/admin/review_show', manual: @manual %>
+  <div class="main__content main__content_w800">
+    <div class="everyone_review">
+      <div class="panel everyone_review__body list_group">
+        <div class="list_group__item d-flex">
+          <div class="everyone_review__body_left">
+            <%= attachment_image_tag @review.user, :image, size: "100x100", fallback: "no_image.jpg" %>
+            <%= link_to "#{@review.user.full_name}", admin_user_path(@review.user) %>
+          </div>
+          <div class="everyone_review__body_right">
+            <div class="row d-flex--justify_content_space_between">
+              <div>評価：<span class="rate_star"><%= "#{@review.star}" %></span></div>
+              <div><%= @review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></div>
+            </div>
+            <div class="row"><%= @review.comment %></div>
+            <div class="row d-flex--justiry_content_flex_end"><%= link_to '削除する', admin_manual_review_path(@manual, @review), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-outline-danger btn--small" %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

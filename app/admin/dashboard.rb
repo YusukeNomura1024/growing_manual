@@ -18,7 +18,13 @@ ActiveAdmin.register_page "Dashboard" do
         panel "違反報告一覧(#{Message.violation_report.not_reply.count}件)" do
           ul class: "scrollbars" do
             Message.violation_report.not_reply.map do |message|
-              li link_to("#{message.created_at.strftime('%Y/%m/%d')}:from:#{message.user.full_name}::#{message.comment[0, 100]}", admin_user_messages_path(message.user_id)), class: "admin_message_list_group__item"
+              li class: "admin_message_list_group__item" do
+                ul do
+                  li "#{message.created_at.strftime('%Y/%m/%d')}", class: "list_group__item_row"
+                  li link_to("target:#{message.report_target}", "#{message.report_target_admin_link}"), class: "list_group__item_row"
+                  li link_to("from:#{message.user.full_name}::#{message.comment[0, 100]}", admin_user_messages_path(message.user_id)), class: "list_group__item_row"
+                end
+              end
             end
           end
         end

@@ -1,0 +1,2 @@
+module Admin::MemoLinksHelper
+end

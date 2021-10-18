@@ -35,6 +35,7 @@
   align-items: center;
   flex-wrap: wrap;
 
+
   .panel__link_count{
 
     display:inline-block;
@@ -80,6 +81,15 @@
     line-height: 1.5rem;
     margin-left: 5px;
   }
+}
+
+.panel__tool.memo_link{
+  width: 100%;
+  margin: 0;
+}
+
+.panel__url a{
+  color: $bookmark-color;
 }
 
 .panel__main{

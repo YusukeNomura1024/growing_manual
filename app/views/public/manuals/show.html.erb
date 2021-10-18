@@ -21,7 +21,7 @@
 
   </div>
 
-  <div class="main__left_content -outer_radius_border">
+  <div class="main__left_content -outer_radius_border panel">
     <div class="procedure__list_group_head">
       <h3>手順</h3>
       <% if @manual.user_id == current_user.id %>
@@ -41,7 +41,7 @@
   <div class="main__center_content main__content--narrow">
     <ul class="tab-list" style="list-style: none;">
     <% @procedures.each do |procedure| %>
-      <li class="tabbox -outer_radius_border" id="<%= 'tab' + procedure.id.to_s %>">
+      <li class="tabbox -outer_radius_border panel" id="<%= 'tab' + procedure.id.to_s %>">
         <% if @manual.user == current_user %>
           <%= link_to '検索でメモを登録する', new_procedure_memo_link_path(procedure), class: "btn btn-outline-primary btn--small" %>
           <%= form_with url: new_memo_path, method: :get, local: true do |f| %>

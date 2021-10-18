@@ -1,38 +1,35 @@
 <%= form_with model: [:admin,manual], local: true do |f| %>
-  <div>
-    マニュアルタイトル
-    <%= manual.title %>
-  </div>
-  <div>
-    説明
-    <%= manual.description %>
-  </div>
-  <div>
-    タグ
-    <% manual.tags.each do |tag| %>
-      <%= "#{tag.name} " %>
-    <% end %>
-  </div>
-  <div>
-    <label>公開ステータス</label>
-    <div>
-      <%= f.radio_button :status, false %>
-      <%= f.label :status, '非公開', value: false %>
-    </div>
-    <div>
-      <%= f.radio_button :status, true %>
-      <%= f.label :status, '公開', value: true %>
-    </div>
-    <div>
-      公開日を指定する
-      <%= f.date_field :release_date %>
-    </div>
-  </div>
-  <% if params[:id].nil? %>
-    <%= f.submit '作成する' %>
-  <% else %>
-    <%= f.submit '現在の状態を反映する' %>
-    <%= link_to '削除する', admin_manual_path(manual),method: :delete, data: { confirm: '削除しますか？' } %>
-  <% end %>
-
+  <ul class="form-field panel">
+    <li class="column_form">
+      <span class="column_form__label">タイトル</span>
+      <span class="column_form__input"><%= manual.title %></span>
+    </li>
+    <li class="column_form">
+      <span class="column_form__label">説明</span>
+      <span class="column_form__input"><%= manual.description %></span>
+    </li>
+    <li class="column_form">
+      <span class="column_form__label">タグ</span>
+      <span class="column_form__input">
+        <% manual.tags.each do |tag| %>
+          <%= "#{tag.name} " %>
+        <% end %>
+      </span>
+    </li>
+    <li class="form">
+      <div class="column_form__label">
+        公開ステータス
+      </div>
+      <div class="form__check form__check--inline">
+        <%= f.radio_button :status, false, class: "form__check_input" %>
+        <%= f.label :status, '非公開', value: false %>
+      </div>
+      <div class="form__check form__check--inline">
+        <%= f.radio_button :status, true %>
+        <%= f.label :status, '公開', value: true %>
+      </div>
+    </li>
+      <%= f.submit '現在の状態を反映する', class: "btn btn-block btn-outline-primary" %>
+      <%= link_to '削除する', admin_manual_path(manual),method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-block btn-outline-danger" %>
+  </ul>
 <% end %>

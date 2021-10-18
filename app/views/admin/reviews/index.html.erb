@@ -1,23 +1,34 @@
-<h2><%= @manual.title + "の評価一覧" %></h2>
-<h3><%= link_to 'マニュアルに戻る', admin_manual_path(@manual) %></h3>
-<div>
-  <%= "平均評価：#{@manual.average_rate}" %>
-  <%= @manual.average_star %>
-  <%= "評価件数：#{@manual.reviews.count}" %>
-</div>
+<main>
+  <%= render 'breadlists/admin/review_index', manual: @manual %>
+  <div class="main__content main__content_w800">
+    <div class="total_review mb-1">
+      <span><%= "総合評価：#{@manual.average_rate}" %></span>
+      <span class="rate_star"><%= @manual.average_star %></span>
+      <%= "評価件数：#{@manual.reviews.count}" %>
+    </div>
 
+    <div class="everyone_review">
+      <h3 class="everyone_review__title">みんなの評価</h3>
+      <ul class="panel everyone_review__body list_group">
+        <% @reviews.each do |review| %>
+          <li class="list_group__item d-flex">
+            <div class="everyone_review__body_left">
+              <%= attachment_image_tag review.user, :image, size: "100x100", fallback: "no_image.jpg" %>
+              <%= link_to "#{review.user.full_name}", admin_user_path(review.user) %>
+            </div>
+            <div class="everyone_review__body_right">
+              <div class="row d-flex--justify_content_space_between">
+                <div>評価：<span class="rate_star"><%= "#{review.star}" %></span></div>
+                <div><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></div>
+              </div>
+              <div class="row"><%= review.comment %></div>
+              <div class="row d-flex--justiry_content_flex_end"><%= link_to '削除する', admin_manual_review_path(@manual, review), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-outline-danger btn--small" %></div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-<h3>みんなの評価</h3>
-<% @reviews.each do |review| %>
-  <ul>
-    <li><%= link_to "#{review.user.pen_name}", admin_user_path(review.user) %></li>
-    <li><%= "評価：#{review.star}" %></li>
-    <li><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></li>
-    <li><%= review.comment %></li>
-    <li><%= link_to '削除する', admin_manual_review_path(@manual, review), method: :delete, data: {confirm: "削除しますか？"} %></li>
-
-  </ul>
-<% end %>
-
-
-<%= paginate @reviews %>
+    <%= paginate @reviews %>
+  <div class="main__content main__content_w800">
+</main>

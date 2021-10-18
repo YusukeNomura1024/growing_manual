@@ -18,7 +18,7 @@
   color: black;
 }
 
-.btn:hover{
+.btn:hover:not(.non-btn){
   background-color: black;
   color: white;
   border-radius: 100vh;
@@ -39,11 +39,11 @@
   display: flex;
 }
 
-.btn_danger {
+.btn.btn_danger {
   color: red;
   border-color: red;
 }
-.btn_danger:hover {
+.btn.btn_danger:hover {
   background-color: red;
   color: white;
 }
@@ -89,23 +89,23 @@
 }
 
 
-.btn-outline-primary{
+.btn.btn-outline-primary{
   color: #0d6efd;
   border: 1px solid #0d6efd;
 }
 
-.btn-outline-primary:hover{
+.btn.btn-outline-primary:hover{
   color: white;
   background-color: #0d6efd;
 }
 
-.btn-outline-danger,
-.category_list .btn-outline-danger{
+.btn.btn-outline-danger,
+.category_list .btn.btn-outline-danger{
   color: #dc3545;
   border: 1px solid #dc3545;
 }
 
-.btn-outline-danger:hover{
+.btn.btn-outline-danger:hover{
   color: white;
   background-color: #dc3545;
 }
@@ -129,7 +129,7 @@
   color: $bookmark-color;
   border: 1px solid $bookmark-color;
   text-decoration: none;
-  &:hover{
+  &:hover:not(.non-btn){
     color: #ffffff;
     background-color: $bookmark-color;
   }

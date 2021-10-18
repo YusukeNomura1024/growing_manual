@@ -48,21 +48,20 @@ class Message < ApplicationRecord
     end
 
   end
-  
+
   # 管理者用メソッド
   def report_target_admin_link
     if !self.manual_id.nil?
       target_manual = Manual.find(self.manual_id)
-      "admin/manuals/#{target_manual.id}"
+      "/admin/manuals/#{target_manual.id}"
     elsif !self.review_id.nil?
       target_review = Review.find(self.review_id)
-      manual = Manual.find(target_review.manual_id)
-      "admin/manuals/#{manual.id}/reviews"
+      "/admin/reviews/#{target_review.id}"
     else
       nil
     end
 
   end
-  
-  
+
+
 end

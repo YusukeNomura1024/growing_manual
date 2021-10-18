@@ -1,0 +1,20 @@
+<div class="breadlist">
+  <ul class="breadlist__items">
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to '違反報告一覧', admin_dashboard_path %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to "#{manual.title}", admin_manual_path(manual) %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      違反報告された評価
+    </li>
+
+  </ul>
+</div>
