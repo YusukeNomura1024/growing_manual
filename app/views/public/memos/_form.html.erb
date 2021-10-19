@@ -10,7 +10,7 @@
         </div>
         <div class="form col-6 d-flex d-flex--align_items_center form--control_width_max">
           <%= f.label :category_id, 'カテゴリー', class: "form__label" %>
-          <%= f.select :category_id, options_from_collection_for_select(categories, :id, :name), {}, {class: "form__input"} %>
+          <%= f.select :category_id, options_from_collection_for_select(categories, :id, :name, selected: memo.category_id), {}, {class: "form__input"} %>
         </div>
       </div>
       <div class="row">

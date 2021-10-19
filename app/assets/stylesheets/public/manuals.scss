@@ -54,3 +54,15 @@
     width: 50%;
   }
 }
+
+.manual_detail{
+  position: absolute;
+  left: -200px;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.3s 0.1s;
+}
+
+.manual_detail--invisible{
+  opacity: 0;
+}

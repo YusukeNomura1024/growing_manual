@@ -1,5 +1,5 @@
 class Public::MemoLinksController < ApplicationController
-  before_action :authenticate_user!, except: [:top, :about]
+  before_action :authenticate_user!, except: [:top, :about, :show]
   before_action :non_owner_to_root, only: [:destroy, :update, :edit]
 
   def index

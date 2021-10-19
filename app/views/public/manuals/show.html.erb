@@ -2,21 +2,33 @@
   <%= render 'breadlists/manual_show', manual: @manual %>
   <div class="main__top_content">
     <h2>マニュアル「<%= @manual.title %>」</h2>
+    <%= link_to '詳細表示', manual_path(@manual), remote: true, class: "btn btn--small" %>
 
     <% flash.each do |message_type, message| %>
       <%= message %>
     <% end %>
 
-    <% if @manual.user_id == current_user.id %>
-      <%= link_to 'マニュアル編集', edit_manual_path(@manual), class: "btn btn-outline-success btn--small" %>
-    <% end %>
+    <% if user_signed_in? %>
+      <% if @manual.user_id == current_user.id %>
+        <%= link_to 'マニュアル編集', edit_manual_path(@manual), class: "btn btn-outline-success btn--small" %>
+      <% end %>
 
-    <%= render 'public/manuals/bookmark', manual: @manual %>
 
-    <%= link_to 'レビュー', manual_reviews_path(@manual), class: "btn btn-outline-review btn--small" %>
+      <%= render 'public/manuals/bookmark', manual: @manual %>
 
-    <% unless @manual.user == current_user %>
-      <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true, class: "btn btn-outline-danger btn--small" %>
+      <%= link_to 'レビュー', manual_reviews_path(@manual), class: "btn btn-outline-review btn--small" %>
+
+      <% unless @manual.user == current_user %>
+        <%= link_to '通報する', new_user_message_path(@user, manual_id: @manual.id, report_target: 'manual'), remote: true, class: "btn btn-outline-danger btn--small" %>
+      <% end %>
+    <% else %>
+      <span class="btn btn-outline-disabled btn--small non-btn">♡ブックマーク</span>
+      <span class="btn btn-outline-disabled btn--small non-btn">レビュー</span>
+      <span class="annotation">ブックマーク・レビューは
+        <%= link_to new_user_session_path do %>
+          <i class="fas fa-sign-in-alt"></i> ログインが必要です
+        <% end %>
+      </span>
     <% end %>
 
   </div>
@@ -24,8 +36,10 @@
   <div class="main__left_content -outer_radius_border panel">
     <div class="procedure__list_group_head">
       <h3>手順</h3>
-      <% if @manual.user_id == current_user.id %>
-        <%= link_to '手順編集', manual_procedures_path(@manual), class: "btn btn-outline-primary btn--small" %>
+      <% if user_signed_in? %>
+        <% if @manual.user_id == current_user.id %>
+          <%= link_to '手順編集', manual_procedures_path(@manual), class: "btn btn-outline-primary btn--small" %>
+        <% end %>
       <% end %>
     </div>
     <ul class="tab-list" style="list-style: none;">
@@ -33,6 +47,7 @@
       <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
           <%= procedure.position %>
           <%= procedure.title %>
+          :（<%= procedure.memo_links.count %>）
       </li>
     <% end %>
     </ul>
@@ -56,30 +71,14 @@
   </div>
 
   <div class="main__right_content">
-    <div id="memo-display">
-      <div class="-outer_radius_border">
-        <ul>
-          <li class="info__label">
-            説明：
-          </li>
-          <li class="info__value info__value--bgcolor_light -outer_radius_border w-100">
-            <%= @manual.description %>
-          </li>
-          <li class="info__label">
-            タグ：
-          </li>
-          <li class="info__value info__value--bgcolor_light -outer_radius_border w-100">
-            <% @manual.tags.each do |tag| %>
-              <%= tag.name %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
+    <div id="memo-display" class="memo-display">
+      <%= render 'public/manuals/detail', manual: @manual %>
     </div>
   </div>
-
-  <div id="mask" class="hidden"></div>
-  <div id="form-area" class="hidden panel">
-    <%= render 'public/messages/form', user: @user, message: @message, manual: @manual %>
-  </div>
+  <% if user_signed_in? %>
+    <div id="mask" class="hidden"></div>
+    <div id="form-area" class="hidden panel">
+      <%= render 'public/messages/form', user: @user, message: @message, manual: @manual %>
+    </div>
+  <% end %>
 </div>

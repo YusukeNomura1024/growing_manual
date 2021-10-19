@@ -211,6 +211,8 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin-top: 5px;
+  width: 100%;
   .search_box__form,
   .search_button{
     border: 1px solid #000000;
@@ -226,7 +228,7 @@
     cursor: pointer;
     position: relative;
     display: inline-block;
-
+    top: -1px;
     left: -10px;
     border-radius: 0 10px 10px 0;
   }

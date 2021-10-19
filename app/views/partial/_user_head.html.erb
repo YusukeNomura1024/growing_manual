@@ -1,25 +1,65 @@
-<div class="header__top">
+<div class="header__row">
   <h2 class="logo">ロゴ</h2>
   <nav class="nav">
     <ul class="nav__left">
-      <li><%= link_to 'みんなのマニュアル', '/', class: "btn" %></li>
-      <li><%= link_to 'マニュアル管理', manuals_path, class: "btn" %></li>
-      <li><%= link_to 'メモ管理', memos_path, class: "btn" %></li>
+      <li class="nav_btn">
+        <%= link_to '/' do %>
+          <i class="fas fa-globe-europe"></i><br>
+          公開一覧
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to '/about' do %>
+          <i class="fas fa-map-signs"></i><br>
+          about
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to manuals_path do %>
+          <i class="fas fa-book-open"></i><br>
+          マニュアル管理
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to memos_path do %>
+          <i class="far fa-sticky-note"></i><br>
+          メモ管理
+        <% end %>
+      </li>
     </ul>
     <ul class="nav__right">
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn--small" %></li>
+      <li class="nav_btn">
+        <%= link_to user_messages_path(current_user) do %>
+          <i class="fas fa-envelope"></i><br>
+          問い合わせ
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to user_path(current_user) do %>
+          <i class="fas fa-user"></i><br>
+          会員情報
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to user_notifications_path(current_user) do %>
+          <% if current_user.passive_notifications_count == 0 %>
+            <i class="fas fa-bell"></i><br>
+            通知
+          <% else %>
+            <span style="color: red;">
+              <i class="fas fa-bell"></i><br>
+              <%= "未読あり" %>
+            </span>
+          <% end %>
+        <% end %>
+      </li>
+
+      <li class="nav_btn danger">
+        <%= link_to destroy_user_session_path, method: :delete, class: "danger" do %>
+          <i class="fas fa-sign-out-alt"></i><br>
+          ログアウト
+        <% end %>
+      </li>
     </ul>
   </nav>
-</div>
-<div class="header__bottom header_flex-end">
-  <div class="search_box">
-    <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
-      <%= f.hidden_field :target, value: 'everyone' %>
-      <%= button_tag "検索", type: 'submit', class: "search_button" %>
-    <% end %>
-  </div>
-  <li><%= link_to '問い合わせ', user_messages_path(current_user), class: "btn" %></li>
-  <li><%= link_to '会員情報', user_path(current_user), class: "btn" %></li>
-  <li><%= link_to "通知(未読#{current_user.passive_notifications_count}件）", user_notifications_path(current_user), class: "btn" %></li>
 </div>

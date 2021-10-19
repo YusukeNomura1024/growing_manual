@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <header class="header">
+    <header class="header panel">
 
       <% if user_signed_in? %>
         <%= render 'partial/user_head' %>
@@ -23,6 +23,7 @@
         <%= render 'partial/other_head' %>
       <% end %>
     </header>
+    <div class="header__under"></div>
 
     <%= yield %>
   </body>

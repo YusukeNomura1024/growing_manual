@@ -1,6 +1,15 @@
 <main>
   <%= render 'breadlists/category_index', categories: @categories %>
-  <p class="main__content-title main__content-title--small">クリックでカテゴリー検索</p>
+  <p class="main__content-title main__content-title--small">
+    クリックでカテゴリー検索
+  </p>
+  <div class="main__content">
+    <%= form_with model: @category, remote: true, class: "input_group" do |f| %>
+      <%= f.text_field :name, placeholder: "カテゴリーを入力", class: "input_group__form" %>
+      <%= f.submit '新規登録', class: "input_group__button btn btn-outline-primary" %>
+    <% end %>
+  </div>
+
   <div class="main__content panel">
     <div class="panel__main">
       <ul>

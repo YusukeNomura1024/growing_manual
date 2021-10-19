@@ -18,6 +18,10 @@
   color: black;
 }
 
+.btn.non-btn{
+  cursor: text;
+}
+
 .btn:hover:not(.non-btn){
   background-color: black;
   color: white;
@@ -164,5 +168,29 @@
     color: $disabled-color;
     background-color: #fff;
   }
+}
+
+.btn_arrow{
+  display: flex;
+}
+
+.btn_arrow__left{
+  text-align: right;
+  margin-left: auto;
+
+}
+
+.btn_arrow__left::before{
+  content: "<<";
+}
+
+.btn_arrow__right{
+  text-align: right;
+  margin-left: auto;
+
+}
+
+.btn_arrow__right::before{
+  content: ">>";
 }
 

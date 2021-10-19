@@ -1,0 +1,31 @@
+function memoDisplay(){
+  const memo = document.getElementById('memo-display')
+  memo.innerHTML = "<%= j(render 'public/manuals/detail', manual: @manual) %>";
+  const manualdetail = document.querySelector('.manual_detail--invisible');
+
+  window.setTimeout(function(){
+    manualdetail.classList.remove('manual_detail--invisible');
+    manualdetail.classList.add('manual_detail');
+  }, 20);
+
+
+};
+
+function activeclear(){
+  const activetab = document.querySelector('.tab.tab-active');
+  const activelistitem = document.querySelector('.memo__list_item.memo__list_item--active');
+  const showtabbox = document.querySelector('.tabbox.box-show');
+
+  if(activetab != null){
+    activetab.classList.remove('tab-active');
+  };
+  if(activelistitem != null){
+    activelistitem.classList.remove('memo__list_item--active');
+  };
+  if(showtabbox != null){
+    showtabbox.classList.remove('box-show');
+  };
+};
+
+activeclear();
+memoDisplay();

@@ -6,10 +6,12 @@ class Public::CategoriesController < ApplicationController
     @category.user_id = current_user.id
     @category.save
     @categories = Category.where(user_id: current_user.id)
+    redirect_to categories_path
 
   end
 
   def index
+    @category = Category.new
     @categories = Category.where(user_id: current_user.id)
   end
 

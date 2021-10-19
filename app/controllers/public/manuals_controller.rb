@@ -18,6 +18,12 @@ class Public::ManualsController < ApplicationController
     @procedures = @manual.procedures
     @user = current_user
     @message = Message.new
+    respond_to do |format|
+      format.html
+
+      format.js { render 'show' }
+    end
+    
   end
 
   def new

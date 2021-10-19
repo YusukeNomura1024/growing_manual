@@ -1,3 +1,7 @@
-<% memo_links.each do |memo_link| %>
-  <p><%= link_to memo_link.memo.name, memo_link_path(memo_link, manual_id: params[:id]), remote: true, class: "memo__list_item" %></p>
+<% if memo_links.empty? %>
+  メモが登録されていません
+<% else %>
+  <% memo_links.each do |memo_link| %>
+    <p><%= link_to memo_link.memo.name, memo_link_path(memo_link, manual_id: params[:id]), remote: true, class: "memo__list_item" %></p>
+  <% end %>
 <% end %>

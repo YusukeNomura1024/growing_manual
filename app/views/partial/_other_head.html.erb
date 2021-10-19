@@ -1,14 +1,34 @@
-<div class="header__top">
+<div class="header__row">
   <h2 class="logo">ロゴ</h2>
   <nav class="nav">
     <ul class="nav__left">
-      <li><%= link_to 'みんなのマニュアル', root_path, class: "btn" %></li>
-      <li><%= link_to 'about', '/about', class: "btn" %></li>
+      <li class="nav_btn">
+        <%= link_to '/' do %>
+          <i class="fas fa-globe-europe"></i><br>
+          公開一覧
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to '/about' do %>
+          <i class="fas fa-map-signs"></i><br>
+          about
+        <% end %>
+      </li>
     </ul>
     <ul class="nav__right">
-      <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-outline-primary" %></li>
-      |
-      <li><%= link_to 'ログイン', new_user_session_path, class: "btn" %></li>
+      <li class="nav_btn">
+        <%= link_to new_user_registration_path do %>
+          <i class="fas fa-user-edit"></i><br>
+          新規登録
+        <% end %>
+      </li>
+
+      <li class="nav_btn">
+        <%= link_to new_user_session_path do %>
+          <i class="fas fa-door-open"></i><br>
+          ログイン
+        <% end %>
+      </li>
     </ul>
   </nav>
 </div>

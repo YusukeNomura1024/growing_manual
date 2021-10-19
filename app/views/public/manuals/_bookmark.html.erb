@@ -1,6 +1,6 @@
 <% if admin_user_signed_in? %>
   ブックマーク数<%= manual.bookmarked_users.count %>件
-<% else %>
+<% elsif user_signed_in? %>
   <% if manual.bookmarked_by?(current_user.id) %>
     <%= link_to '♥ブックマーク解除', manual_bookmark_path(manual), method: :delete, remote: true, class: "btn btn-outline-bookmark btn--small" %>
   <% else %>
