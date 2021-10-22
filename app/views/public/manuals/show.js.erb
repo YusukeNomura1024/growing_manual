@@ -1,8 +1,8 @@
 function memoDisplay(){
   const memo = document.getElementById('memo-display')
   memo.innerHTML = "<%= j(render 'public/manuals/detail', manual: @manual) %>";
-  const manualdetail = document.querySelector('.manual_detail--invisible');
-
+  const manualdetail = document.querySelector('.manual_detail');
+  manualdetail.classList.add('manual_detail--invisible');
   window.setTimeout(function(){
     manualdetail.classList.remove('manual_detail--invisible');
     manualdetail.classList.add('manual_detail');

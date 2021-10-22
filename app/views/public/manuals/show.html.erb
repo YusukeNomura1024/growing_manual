@@ -33,9 +33,11 @@
 
   </div>
 
-  <div class="main__left_content -outer_radius_border panel">
-    <div class="procedure__list_group_head">
+  <div class="main__left_content -outer_radius_border panel sidebar">
+    <div class="procedure__list_group_head sidebar__hidden_parent">
       <h3>手順</h3>
+      <div class="sidebar__hidden_button"><i class="fas fa-arrow-circle-left text--danger_color"></i></div>
+      <div class="sidebar__visible_button invisible"><i class="fas fa-arrow-circle-right text--danger_color"></i></div>
       <% if user_signed_in? %>
         <% if @manual.user_id == current_user.id %>
           <%= link_to '手順編集', manual_procedures_path(@manual), class: "btn btn-outline-primary btn--small" %>
@@ -53,16 +55,19 @@
     </ul>
   </div>
 
-  <div class="main__center_content main__content--narrow">
+  <div class="main__center_content main__content--narrow sidebar_second">
     <ul class="tab-list" style="list-style: none;">
     <% @procedures.each do |procedure| %>
       <li class="tabbox -outer_radius_border panel" id="<%= 'tab' + procedure.id.to_s %>">
         <% if @manual.user == current_user %>
-          <%= link_to '検索でメモを登録する', new_procedure_memo_link_path(procedure), class: "btn btn-outline-primary btn--small" %>
-          <%= form_with url: new_memo_path, method: :get, local: true do |f| %>
-            <%= f.hidden_field :procedure_id, value: procedure.id %>
-            <%= button_tag "新規でメモを作成・登録する", type: 'submit', class: "btn btn-outline-success btn--small" %>
-          <% end %>
+          <p class="title--center">メモの登録</p>
+          <div class="btn_group">
+            <%= link_to '検索登録', new_procedure_memo_link_path(procedure), class: "btn btn-outline-primary btn--small" %>
+            <%= form_with url: new_memo_path, method: :get, local: true do |f| %>
+              <%= f.hidden_field :procedure_id, value: procedure.id %>
+              <%= button_tag "作成登録", type: 'submit', class: "btn btn-outline-success btn--small" %>
+            <% end %>
+          </div>
         <% end %>
         <%= render 'public/memos/list', memo_links: procedure.memo_links %>
       </li>
@@ -70,7 +75,7 @@
     </ul>
   </div>
 
-  <div class="main__right_content">
+  <div class="main__right_content memo_content">
     <div id="memo-display" class="memo-display">
       <%= render 'public/manuals/detail', manual: @manual %>
     </div>

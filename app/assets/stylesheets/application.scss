@@ -26,9 +26,21 @@
   list-style: none;
 }
 
+html {
+	min-height: 100%;
+}
+
 body {
   font-family: "Arial", "メイリオ", sans-serif;
-  background-color: #f0f0f0;
+  // background-color: #f0f0f0;
+  background: linear-gradient(-135deg, rgba(169, 254, 255, 0.9), rgba(174, 195, 239, 0.9));
+}
+
+.body_color__about_page{
+  background: linear-gradient(-135deg, rgba(169, 254, 255, 0.9), rgba(174, 195, 239, 0.9)),
+  url(/assets/background-about.jpg);
+  background-size: cover;
+  background-position: top;
 }
 
 h2{
@@ -39,6 +51,7 @@ nav, header, h2, textarea, input, select, label{
   font-family: "游ゴシック", "游ゴシック体";
   font-weight: 900;
 }
+
 
 .procedure-form{
   display: flex;
@@ -253,6 +266,7 @@ nav, header, h2, textarea, input, select, label{
   margin-bottom: 20px;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 .header__row{
@@ -301,7 +315,14 @@ nav, header, h2, textarea, input, select, label{
 
 
 .logo{
-  width: 100px;
+  width: 60px;
+
+  img{
+    width: 60px;
+    position: relative;
+    top: -8px;
+    left: -7px;
+  }
 }
 
 .nav{
@@ -905,6 +926,10 @@ nav, header, h2, textarea, input, select, label{
   margin-top: 0;
 }
 
+.mt-1{
+  margin-top: 1rem;
+}
+
 .mt-2{
   margin-top: 2rem;
 }
@@ -973,3 +998,11 @@ nav, header, h2, textarea, input, select, label{
   text-align: center;
 }
 
+
+.text--decoration_none{
+  text-decoration: none;
+}
+
+.disabled_area{
+  border: 3px dashed #747474;
+}

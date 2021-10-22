@@ -22,37 +22,32 @@
     <%= render 'public/tags/list', tags: @tags %>
   </div>
 
-  <div class="main__center_content mine_manual_list list__group panel">
+  <div class="main__center_content mine_manual_list list__group">
     <div class="d-flex  d-flex--align_items_center">
       <%= link_to '新規作成', new_manual_path, class: "btn btn-outline-primary" %>
       <div class="d-flex d-flex--flex_direction_column ml-auto">
         <h3 class="search_title">自分のマニュアルを検索</h3>
-        <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
         <div class="search_box">
+        <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
           <%= f.hidden_field :target, value: 'mine' %>
           <%= button_tag "検索", type: 'submit', class: "search_button" %>
-        </div>
         <% end %>
+        </div>
       </div>
     </div>
 
-    <ul class="list__head">
-      <li class="list__created_at_date">作成日</li>
-      <li class="list__title">タイトル</li>
-      <li class="list__bookmarked_users">お気に入り</li>
-      <li class="list__rate">評価</li>
-      <li class="list__status">公開ステータス</li>
-    </ul>
 
     <% @manuals.each do |manual| %>
-    <ul class="list__body">
-     <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
-     <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
-     <li class="list__bookmarked_users"><span class="bookmark-color">♥<%= manual.bookmarks.count %></span></li>
-     <li class="list__rate"><%= manual.average_star %><%= manual.average_rate %></li>
-     <li class="list__stutus" style="<%= manual.status_style %>"><%= manual.status_text %></li>
-    </ul>
+      <%= link_to manual_path(manual), class: "text--decoration_none" do %>
+        <ul class="list__body panel">
+         <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+         <li class="list__title"><%= manual.title %></li>
+         <li class="list__bookmarked_users"><span class="bookmark-color">♥<%= manual.bookmarks.count %></span></li>
+         <li class="list__rate"><%= manual.average_star %><%= manual.average_rate %></li>
+         <li class="list__stutus" style="<%= manual.status_style %>"><%= manual.status_text %></li>
+        </ul>
+      <% end %>
     <% end %>
   </div>
 

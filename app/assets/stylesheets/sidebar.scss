@@ -1,0 +1,50 @@
+.sidebar {
+  background-color: #324546;
+  color: white;
+  position: absolute;
+  left: 0;
+  width: 200px;
+  max-height: calc(100% - 70px);
+  transition: left 0.5s;
+
+}
+
+
+
+.sidebar--hidden {
+    left: -170px;
+    transition: left 0.5s;
+}
+
+.sidebar_second{
+  position: absolute;
+  left: 190px;
+  top: 130px;
+  width: 200px;
+  max-height: calc(100% - 70px);
+  transition: left 0.5s;
+}
+
+.sidebar_second--hidden {
+    left: 20px;
+    transition: left 0.5s;
+}
+
+
+.sidebar__hidden_button_parent{
+  position: relative;
+}
+
+.sidebar__hidden_button,
+.sidebar__visible_button{
+  padding: 5px;
+  color: #000;
+  position: absolute;
+  cursor: pointer;
+  border-radius: 15px;
+  right: -20px;
+  width: 30px;
+  height: 30px;
+  font-size: 2rem;
+
+}

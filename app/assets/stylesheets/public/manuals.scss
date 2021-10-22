@@ -57,7 +57,7 @@
 
 .manual_detail{
   position: absolute;
-  left: -200px;
+  left: 100px;
   width: 100%;
   opacity: 1;
   transition: opacity 0.3s 0.1s;
@@ -65,4 +65,8 @@
 
 .manual_detail--invisible{
   opacity: 0;
+}
+
+.main__right_content.memo_content{
+  margin-left: 200px;
 }

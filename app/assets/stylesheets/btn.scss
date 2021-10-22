@@ -194,3 +194,9 @@
   content: ">>";
 }
 
+.btn_group{
+  display: flex;
+  .btn{
+    margin:1px;
+  }
+}

@@ -65,7 +65,7 @@ class Public::MemosController < ApplicationController
           redirect_to memo_path(@memo)
         end
       end
-      redirect_to memo_path(@memo)
+
     end
   end
 
