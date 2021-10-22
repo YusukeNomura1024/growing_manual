@@ -1,0 +1,11 @@
+<div class="category_search panel">
+  <h3 class="category_search__title">カテゴリー検索</h3>
+  <%= link_to categories_path, class: "btn btn-outline-success btn--small mb-1 mt-0" do %>
+    カテゴリー管理<i class="fas fa-pen"></i>
+  <% end %>
+  <ul>
+  <% categories.each do |category| %>
+    <li><%= link_to "#{category.name} (#{category.memos.count}件)", search_procedure_memo_link_path(@procedure, keyword: "#{category.name}", category_id: "#{category.id}") %></li>
+  <% end %>
+  </ul>
+</div>

@@ -5,8 +5,8 @@
       <% @memo_links.each do |memo_link| %>
         <%= link_to manual_path(memo_link.procedure.manual), class: "memo_link" do %>
           <ul class="memo_link_list list__body panel">
-            <li><%= memo_link.procedure.manual.title %><span class="memo_link_list__manual_created_at">作成日：<%= memo_link.procedure.manual.created_at.strftime('%Y.%m.%d') %></span></li>
-            <li class="memo_link_list__procedure_title"><%= memo_link.procedure.title %></li>
+            <li>マニュアル：<%= memo_link.procedure.manual.title %><span class="memo_link_list__manual_created_at">作成日：<%= memo_link.procedure.manual.created_at.strftime('%Y.%m.%d') %></span></li>
+            <li class="memo_link_list__procedure_title">手順：<%= memo_link.procedure.title %></li>
           </ul>
         <% end %>
       <% end %>

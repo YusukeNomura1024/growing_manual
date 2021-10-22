@@ -32,7 +32,7 @@
     <div class="form-field__wrap">
       <div class="row mx-0">
         <div class="form col-12 form--control_width_max py-0">
-          <%= f.text_area :code, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4\nHTMLタグはバッククォートでエスケープできます\n `<h1>`タイトル`</h1>`", id: "code_text_area", class: "none-border ml-0 column_form__input form__input_code_area pt-1" %>
+          <%= f.text_area :code, placeholder: "マークダウン記法ができます\n# 見出し1\n## 見出し2\n### 見出し3\n#### 見出し4\nソースコードはバッククォートでエスケープできます\n ```html\n<h1>タイトル</h1>\n<p>テキスト</p>\n```", id: "code_text_area", class: "none-border ml-0 column_form__input form__input_code_area pt-1" %>
         </div>
       </div>
     </div>

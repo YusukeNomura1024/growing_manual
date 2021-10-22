@@ -1,0 +1,25 @@
+<div class="breadlist">
+  <ul class="breadlist__items">
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to '自分のマニュアル一覧', manuals_path %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to "#{manual.title}", manual_path(manual) %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= "手順：" + procedure.title %>
+    </li>
+
+    <li class="breadlist__item">
+      <i class="fas fa-chevron-right"></i>
+      <%= link_to "検索してメモを登録する", new_procedure_memo_link_path(procedure) %>
+    </li>
+
+  </ul>
+</div>

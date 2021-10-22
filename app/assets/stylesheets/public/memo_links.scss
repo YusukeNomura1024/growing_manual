@@ -29,3 +29,11 @@
   position: absolute;
   right: 0;
 }
+
+#memo_link_entry{
+  width: 500px;
+  height: 100px;
+  .modal__btn_area{
+    justify-content: space-around;
+  }
+}

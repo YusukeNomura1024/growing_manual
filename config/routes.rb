@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :procedures , only: [:index, :create, :destroy, :edit, :update]
     end
     get 'procedures/:id/memo_links/new'           , to: 'memo_links#new', as: 'new_procedure_memo_link'
+    get 'procedures/:id/memo_links/search'        , to: 'memo_links#search', as: 'search_procedure_memo_link'
     get 'procedures/:procedure_id/memos/:id/link' , to: 'memos#link'    , as: 'link_procedure_memo'
     get 'memos/search'                            , to: 'memos#search'  , as: 'search_memo'
     resources :memos do

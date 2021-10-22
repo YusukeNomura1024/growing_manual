@@ -5,8 +5,6 @@ class Public::MemoLinksController < ApplicationController
   def index
     @memo = Memo.find(params[:memo_id])
     @memo_links = @memo.memo_links.page(params[:page]).reverse_order
-
-
   end
 
   def show
@@ -19,7 +17,14 @@ class Public::MemoLinksController < ApplicationController
   end
 
   def new
-    @memos = Memo.where(user_id: current_user.id).page(params[:page]).reverse_order
+
+    if params[:sort] == 'created_at' || params[:sort].nil?
+      @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+      params[:sort] = 'created_at'
+    elsif params[:sort] == 'updated_at'
+      @memos = where_user_id_is_current_user_id(Memo).order(updated_at: "DESC").page(params[:page])
+    end
+
     @categories = Category.where(user_id: current_user.id)
     @procedure = Procedure.find(params[:id])
     @manual = Manual.find(@procedure.manual_id)
@@ -28,8 +33,25 @@ class Public::MemoLinksController < ApplicationController
     if @manual.user != current_user
       redirect_to manual_path(@manual)
     end
+
   end
 
+  def search
+    @categories = where_user_id_is_current_user_id(Category)
+    if params[:category_id].nil?
+      params[:category_id] = ""
+    end
+    @memos = where_user_id_is_current_user_id(Memo).search(params[:keyword], params[:category_id]).page(params[:page]).reverse_order
+    @procedure = Procedure.find(params[:id])
+    @manual = Manual.find(@procedure.manual_id)
+    @memo_link = MemoLink.new
+    if @memos.count == 0
+      @list_title = "キーワード「#{params[:keyword]}」 の該当なし"
+    else
+      @list_title = "キーワード「#{params[:keyword]} 」の検索結果一覧 （全 #{@memos.count}件）"
+    end
+    render :new
+  end
 
   def create
     @memo_link = MemoLink.new(memo_link_params)

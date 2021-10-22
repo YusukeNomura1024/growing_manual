@@ -1,4 +1,5 @@
 <main class="main">
+  <%= render 'breadlists/memo_index', memo: @memo %>
   <div class="main__top_content">
     <h2>メモ管理ページ</h2>
     <div class="switch_order">
@@ -22,33 +23,36 @@
   </div>
 
   <div class="main__center_content main__center_content--plus_right">
-    <div class="d-flex  d-flex--align_items_center mb-1">
+    <div class="d-flex d-flex--align_items_center mb-1">
       <%= link_to '新規作成', new_memo_path, class: "btn btn-outline-primary" %>
       <div class="d-flex d-flex--flex_direction_column ml-auto">
         <h3 class="search_title">メモを検索</h3>
-        <%= form_with url: search_memo_path, method: :get, local: true do |f| %>
-          <div class="search_box">
+        <div class="search_box">
+          <%= form_with url: search_memo_path, method: :get, local: true do |f| %>
             <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
             <%= button_tag "検索", type: 'submit', class: "search_button" %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
 
-    <% @memos.each do |memo| %>
-      <%= link_to memo_path(memo), class: "memo_link" do %>
-        <ul class="memo_list list__body panel">
-          <li><%= memo.name %></li>
-          <li class="memo_list__direction"><div class="memo_list__direction_text"><%= memo.description %></div></li>
-          <li class="d-flex d-flex--align_items_center">
-            <span class="memo_list__created_at">作成日：<%= memo.created_at.strftime('%Y.%m.%d') %>｜更新日：<%= memo.updated_at.strftime('%Y.%m.%d') %></span>
-            <span class="memo_list__category"><%= memo.category.name unless memo.category.nil? %></span>
-          </li>
-        </ul>
+    <div class="scroll-list" id="jscroll">
+      <% @memos.each do |memo| %>
+        <%= link_to memo_path(memo), class: "memo_link" do %>
+          <ul class="memo_list list__body panel">
+            <li><%= memo.name %></li>
+            <li class="memo_list__direction"><div class="memo_list__direction_text"><%= memo.description %></div></li>
+            <li class="d-flex d-flex--align_items_center">
+              <span class="memo_list__created_at">作成日：<%= memo.created_at.strftime('%Y.%m.%d') %>｜更新日：<%= memo.updated_at.strftime('%Y.%m.%d') %></span>
+              <span class="memo_list__category"><%= memo.category.name unless memo.category.nil? %></span>
+            </li>
+          </ul>
+        <% end %>
       <% end %>
-    <% end %>
-
-    <%= paginate @memos %>
+    <div class="invisible">
+      <%= paginate @memos %>
+    </div>
+    </div>
   </div>
 
 

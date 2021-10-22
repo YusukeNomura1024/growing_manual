@@ -1,9 +1,11 @@
-  <%= form_with model: memo_link, remote: true do |f| %>
-    <%= "題名" + memo.name %>
-    <%= "説明" + memo.description %>
-    <%= "コード" + markdown(memo.code) %>
+<h3 class="title--center">リンク登録しますか？</h3>
+<%= form_with model: memo_link, remote: true do |f| %>
+  <div>
     <%= f.hidden_field :memo_id, value: params[:id] %>
     <%= f.hidden_field :procedure_id, value: params[:procedure_id] %>
-    <%= f.submit '登録する', id: "entry_button" %>
-    <span id="cancel_button">キャンセル</span>
-  <% end %>
+  </div>
+  <div class="modal__btn_area">
+    <%= f.submit '登録する', id: "entry_button", class: "btn btn-outline-primary btn--small" %>
+    <span id="cancel_button" class="btn btn-outline-cancel btn--small">キャンセル</span>
+  </div>
+<% end %>

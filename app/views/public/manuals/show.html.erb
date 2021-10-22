@@ -2,11 +2,13 @@
   <%= render 'breadlists/manual_show', manual: @manual %>
   <div class="main__top_content">
     <h2>マニュアル「<%= @manual.title %>」</h2>
-    <%= link_to '詳細表示', manual_path(@manual), remote: true, class: "btn btn--small" %>
 
     <% flash.each do |message_type, message| %>
-      <%= message %>
+      <div id="flash_message"><%= message %></div>
     <% end %>
+
+    <%= link_to '詳細表示', manual_path(@manual), remote: true, class: "btn btn--small" %>
+
 
     <% if user_signed_in? %>
       <% if @manual.user_id == current_user.id %>

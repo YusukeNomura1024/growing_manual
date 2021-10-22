@@ -1,45 +1,64 @@
-<div>
-  <% if @list_title.nil? %>
-    <h2>登録するメモを選択</h2>
-    <h3>登録先「マニュアル：<%= @manual.title %>」　「手順：<%= @procedure.title %>」</h3>
-  <% else %>
-    <h2><%= @list_title %></h2>
-  <% end %>
-</div>
+<main class="main">
+  <%= render 'breadlists/memo_link_new', manual: @manual, procedure: @procedure %>
+  <div class="main__top_content">
 
-<%= render 'public/categories/list', categories: @categories %>
+    <div class="switch_order">
+      <% case params[:sort] %>
+      <% when 'updated_at' %>
+        <h2><i class="fas fa-caret-right"></i>更新日<i class="fas fa-caret-left"></i><%= link_to '作成日', new_procedure_memo_link_path(@procedure, sort: 'created_at'), class: "switch_order__right_btn" %></h2>
+      <% when 'created_at' %>
+        <h2><%= link_to '更新日', new_procedure_memo_link_path(@procedure, sort: 'updated_at'), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>作成日<i class="fas fa-caret-left"></i></h2>
+      <% end %>
+    </div>
 
-<%= link_to '手順一覧に戻る', manual_path(@manual) %>
-<%= link_to '新規作成して登録する', new_memo_path %>
+    <% if @list_title.nil? %>
+      <h2>登録するメモを選択</h2>
+      <h3>登録先「マニュアル：<%= @manual.title %>」　「手順：<%= @procedure.title %>」</h3>
+    <% else %>
+      <h2><%= @list_title %></h2>
+    <% end %>
+  </div>
 
-メモを検索
-<div class="search_box">
-  <%= form_with url: search_memo_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力" %>
-    <%= button_tag "検索", type: 'submit', class: "search_bottun" %>
-  <% end %>
-</div>
+  <div class="main__left_content">
+    <%= render 'public/categories/list_memo_link_search.html', categories: @categories, procedure: @procedure %>
+  </div>
 
-<div id="flash_message">
-    <%= flash[notice] %>
-</div>
+  <div class="main__center_content main__center_content--plus_right">
+    <div class="d-flex d-flex--align_items_center mb-1">
+      <%= link_to '新規作成して登録する', new_memo_path(procedure_id: @procedure.id), class: "btn btn-outline-primary" %>
+      <%= link_to 'マニュアルに戻る', manual_path(@manual), class: "btn btn-outline-cancel" %>
+      <div class="d-flex d-flex--flex_direction_column ml-auto">
+        <h3 class="search_title">メモを検索</h3>
+        <div class="search_box">
+          <%= form_with url: search_procedure_memo_link_path(@procedure), method: :get, local: true do |f| %>
+            <%= f.text_field :keyword, value: @keyword, placeholder: "タイトル・説明から検索", class: "search_box__form" %>
+            <%= button_tag "検索", type: 'submit', class: "search_button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<ul>
-  <li>作成日</li>
-  <li>タイトル</li>
-  <li>説明文</li>
-</ul>
+    <div id="flash_message">
+        <%= flash[notice] %>
+    </div>
 
-<% @memos.each do |memo| %>
-<ul>
-  <li><%= memo.created_at.strftime('%Y.%m.%d') %></li>
-  <li><%= link_to memo.name, link_procedure_memo_path(@procedure,memo), remote: true %></li>
-  <li><%= memo.description %></li>
-</ul>
-<% end %>
+    <% @memos.each do |memo| %>
+      <%= link_to link_procedure_memo_path(@procedure,memo), remote: true, class: "memo_link" do %>
+        <ul class="memo_list list__body panel">
+          <li><%= memo.name %></li>
+          <li class="memo_list__direction"><div class="memo_list__direction_text"><%= memo.description %></div></li>
+          <li class="d-flex d-flex--align_items_center">
+            <span class="memo_list__created_at">作成日：<%= memo.created_at.strftime('%Y.%m.%d') %>｜更新日：<%= memo.updated_at.strftime('%Y.%m.%d') %></span>
+            <span class="memo_list__category"><%= memo.category.name unless memo.category.nil? %></span>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
 
-<div id="mask" class="hidden"></div>
-<div id="memo_link_entry" class="hidden">
-</div>
+    <div id="mask" class="hidden"></div>
+    <div id="memo_link_entry" class="hidden panel">
+    </div>
 
-<%= paginate @memos %>
+    <%= paginate @memos %>
+  </div>
+</main>
