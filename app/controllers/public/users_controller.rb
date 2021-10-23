@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
-  
+
   before_action :authenticate_user!, except: [:top, :about]
-  
+
   def show
     @user = User.find(params[:id])
 
@@ -43,7 +43,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :pen_name, :email)
+    params.require(:user).permit(:full_name, :pen_name, :email, :image)
   end
 
 end

@@ -522,6 +522,15 @@ nav, header, h2, textarea, input, select, label{
   padding: 0 20px 0 20px;
 }
 
+.user_show.thumbnail_area{
+  margin: 10px auto 10px auto;
+}
+
+.user_show .thumbnail{
+  width: 100%;
+  height: 100%;
+}
+
 .info-field .info{
   padding: 10px 0;
 }
@@ -635,6 +644,10 @@ nav, header, h2, textarea, input, select, label{
         text-decoration: none;
     }
   }
+}
+
+.everyone_manual_list .list__body{
+  line-height: 40px;
 }
 
 .memo_link{
@@ -831,10 +844,21 @@ nav, header, h2, textarea, input, select, label{
   margin-left:10px;
 }
 
+.thumbnail_area.user_show{
+  width:200px;
+  height:200px;
+}
+
 
 .thumbnail{
   width: 100%;
   margin-top: 10px;
+}
+
+.user_show .thumbnail{
+  width: 100%;
+  margin: 0;
+  object-fit: contain;
 }
 
 .date_text{
@@ -1005,5 +1029,10 @@ nav, header, h2, textarea, input, select, label{
 
 .disabled_area{
   border: 3px dashed #747474;
+}
+
+.list_thumbnail{
+  height: 40px;
+  margin-right: 5px;
 }
 

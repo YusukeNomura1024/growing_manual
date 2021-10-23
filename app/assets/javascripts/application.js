@@ -38,6 +38,8 @@ window.document.addEventListener('turbolinks:load', function(){
       });
     });
   });
+
+  // 無限スクロールの設定
   var jscrollOption = {
   loadingHtml: '読み込み中・・・', //記事読み込み中の表示
   autoTrigger: true, // 自動で読み込むか否か、trueで自動、falseでボタンクリックとなる。
@@ -69,6 +71,6 @@ window.document.addEventListener('turbolinks:load', function(){
       };
     });
   };
-  
+
 })
 

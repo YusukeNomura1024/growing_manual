@@ -4,6 +4,9 @@
     <% if @user.id == current_user.id %>
         <%= link_to '編集する', edit_user_path(current_user), class: "btn btn-block btn-outline-success" %>
     <% end %>
+    <div class="thumbnail_area -outer_radius_border panel user_show">
+      <%= attachment_image_tag @user, :image, size: "60x60", fallback: "no_image.jpg", class: "thumbnail" %>
+    </div>
     <div class="info-field">
       <% if @oneself %>
       <ul class="info">
