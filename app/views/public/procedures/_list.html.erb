@@ -1,7 +1,7 @@
 <% procedures.each do |procedure| %>
   <% if !procedure.id.nil? %>
-  <li class="sortable-list__item -outer_radius_border" style="margin-bottom: 10px;">
-    <i class="fas fa-arrows-alt"></i>：
+  <li class="sortable-list__item -outer_radius_border panel procedure_list">
+    <i class="fas fa-arrows-alt-v"></i>：
     <span class="procedure_title"><%= procedure.title %></span>
     <span class="btn-group ml-auto d-block">
       <%= link_to edit_manual_procedure_path(@manual, procedure), class: "btn btn-outline-success btn--small", remote: true do %>

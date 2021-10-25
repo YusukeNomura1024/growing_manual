@@ -1,10 +1,9 @@
 <%= link_to visitor.pen_name, user_path(visitor) %>
 さんが
-あなたのマニュアル(
+
 <%= link_to "#{manual.title}", manual_path(manual) %>
-)を
-<%= link_to "評価", manual_reviews_path(manual) %>
-しました。
-<%= review.comment %>
-<span class="rate_star"><%= review.star %></span>
+を
+<%= link_to manual_reviews_path(manual) do %>
+  評価<span class="rate_star"><%= review.star %></span>しました。
+<% end %>
 

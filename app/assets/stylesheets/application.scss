@@ -31,7 +31,7 @@ html {
 }
 
 body {
-  font-family: "Arial", "メイリオ", sans-serif;
+  font-family: $gothic-group;
   // background-color: #f0f0f0;
   background: linear-gradient(-135deg, rgba(169, 254, 255, 0.9), rgba(174, 195, 239, 0.9));
 }
