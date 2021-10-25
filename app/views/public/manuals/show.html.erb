@@ -3,10 +3,6 @@
   <div class="main__top_content">
     <h2>マニュアル「<%= @manual.title %>」</h2>
 
-    <% flash.each do |message_type, message| %>
-      <div id="flash_message"><%= message %></div>
-    <% end %>
-
     <%= link_to '詳細表示', manual_path(@manual), remote: true, class: "btn btn--small" %>
 
 

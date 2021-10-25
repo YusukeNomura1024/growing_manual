@@ -4,7 +4,10 @@
     クリックでカテゴリー検索
   </p>
   <div class="main__content">
-    <%= form_with model: @category, remote: true, class: "input_group" do |f| %>
+    <%= form_with model: @category, local: true, class: "input_group" do |f| %>
+      <% @category.errors.full_messages_for(:name).each do |message| %>
+        <div class="error_area"><%= message %></div>
+      <% end %>
       <%= f.text_field :name, placeholder: "カテゴリーを入力", class: "input_group__form" %>
       <%= f.submit '新規登録', class: "input_group__button btn btn-outline-primary" %>
     <% end %>

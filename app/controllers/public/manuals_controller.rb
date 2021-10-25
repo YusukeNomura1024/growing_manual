@@ -23,7 +23,7 @@ class Public::ManualsController < ApplicationController
 
       format.js { render 'show' }
     end
-    
+
   end
 
   def new
@@ -33,13 +33,17 @@ class Public::ManualsController < ApplicationController
 
   def create
     @manual = Manual.new(manual_params)
-    @manual.save
 
-    redirect_to manual_procedures_path(@manual)
-    tag_list = params[:manual][:tag_name].split(nil)
     if @manual.save
+      tag_list = params[:manual][:tag_name].split(nil)
       @manual.save_manuals(tag_list)
+      redirect_to manual_procedures_path(@manual)
+      flash[:notice] = "登録しました。続いて手順を登録しましょう。"
+    else
+      flash.now[:alert] = "登録できませんでした"
+      render :new
     end
+
   end
 
   def edit
@@ -53,15 +57,15 @@ class Public::ManualsController < ApplicationController
   end
 
   def update
-    manual = Manual.find(params[:id])
+    @manual = Manual.find(params[:id])
     tag_list = params[:manual][:tag_name].split(nil)
+    if @manual.update(manual_params)
+      @manual.save_manuals(tag_list)
+      flash_notice__edit_success
+      redirect_to manual_path(@manual)
 
-
-
-    if manual.update(manual_params)
-      manual.save_manuals(tag_list)
-      redirect_to manual_path(manual)
     else
+      flash_alert__error
       render :edit
     end
   end
@@ -83,13 +87,15 @@ class Public::ManualsController < ApplicationController
     # みんなのマニュアルを表示させる場合はtargetがeveryone
     if params[:target] == 'everyone'
       @tags = Tag.all
-      @manuals = Manual.where(status: true).search(params[:keyword]).page(params[:page]).reverse_order
+      @total_manuals = Manual.where(status: true).search(params[:keyword])
+      @manuals = @total_manuals.page(params[:page]).reverse_order
       list_title_set
 
       render 'public/homes/top'
     else
       @tags = Tag.where(user_id: current_user.id)
-      @manuals = Manual.where(user_id: current_user.id).search(params[:keyword]).page(params[:page])
+      @total_manuals = Manual.where(user_id: current_user.id).search(params[:keyword])
+      @manuals = @total_manuals.page(params[:page])
       list_title_set
 
       render :index
@@ -101,6 +107,7 @@ class Public::ManualsController < ApplicationController
   def non_owner_to_root
     @manual = Manual.find(params[:id])
     unless current_user.id == @manual.user_id || admin_user_signed_in?
+      flash[:alert] = "無効なユーザーです"
       redirect_to '/'
     end
   end
@@ -115,7 +122,7 @@ class Public::ManualsController < ApplicationController
     if @manuals.count == 0
       @list_title = "「#{params[:keyword]}」 の該当なし"
     else
-      @list_title = "#{params[:keyword]} の検索結果一覧 （全 #{@manuals.count}件）"
+      @list_title = "#{params[:keyword]} の検索結果一覧 （全 #{@total_manuals.count}件）"
     end
   end
 

@@ -1,6 +1,14 @@
   <%= form_with model: manual, local: true do |f| %>
     <ul class="form-field panel">
+
       <li class="column_form">
+
+        <% @manual.errors.full_messages.each do |message| %>
+          <div class="error_area">
+            <%= message %>
+          </div>
+        <% end %>
+
         <%= f.label :image, '画像', class: "column_form__label" %>
         <div class="column__form__input_file_area">
           <div class="column__fomr__input_file_text">ファイルを選択</div>

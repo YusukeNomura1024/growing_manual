@@ -29,7 +29,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def flash_notice__edit_success
+    flash[:notice] = "更新しました"
+  end
 
+  def flash_alert__error
+    flash.now[:alert] = "保存・更新できませんでした"
+  end
 
 
 

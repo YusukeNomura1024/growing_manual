@@ -12,6 +12,10 @@ class Manual < ApplicationRecord
 
   attachment :image
 
+  validates :title, presence: true, length: {maximum: 30}
+  validates :description, length: {maximum: 200}
+  validates :status, inclusion: { in: [true, false] }
+
 
   def bookmarked_by?(your_id)
     bookmarks.where(user_id: your_id).exists?

@@ -1,0 +1,61 @@
+@import "variables";
+
+@keyframes shrink{
+  0% {
+    width: 20%;
+    opacity: 0;
+  }
+
+  10%{
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.flash-alert{
+  text-align: center;
+  background-color: $error-color;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 15px;
+  margin: 0 auto;
+  animation: shrink 2s;
+
+}
+
+.flash-notice{
+  text-align: center;
+  background-color: $success-color;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 15px;
+  margin: 0 auto;
+  animation: shrink 2s;
+
+}
+
+.error_area{
+  background-color: $error-color;
+  color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.field_with_errors{
+  input, textarea{
+    border-color: $error-color;
+    border-width: 3px;
+    &::placeholder {
+      color: $error-color;
+    }
+  }
+}
