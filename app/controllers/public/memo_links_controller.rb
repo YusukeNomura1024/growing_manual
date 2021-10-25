@@ -41,22 +41,30 @@ class Public::MemoLinksController < ApplicationController
     if params[:category_id].nil?
       params[:category_id] = ""
     end
-    @memos = where_user_id_is_current_user_id(Memo).search(params[:keyword], params[:category_id]).page(params[:page]).reverse_order
+    @total_memos = where_user_id_is_current_user_id(Memo).search(params[:keyword], params[:category_id])
+    @memos = @total_memos.page(params[:page]).reverse_order
     @procedure = Procedure.find(params[:id])
     @manual = Manual.find(@procedure.manual_id)
     @memo_link = MemoLink.new
     if @memos.count == 0
       @list_title = "キーワード「#{params[:keyword]}」 の該当なし"
     else
-      @list_title = "キーワード「#{params[:keyword]} 」の検索結果一覧 （全 #{@memos.count}件）"
+      @list_title = "キーワード「#{params[:keyword]} 」の検索結果一覧 （全 #{@total_memos.count}件）"
     end
     render :new
   end
 
   def create
     @memo_link = MemoLink.new(memo_link_params)
-    @memo_link.save
-    flash[notice] = "#{@memo_link.memo.name}を登録しました"
+
+    # 登録済みの場合は登録済みとアナウンスして、登録しないようにする
+    if @memo_link.is_unique?
+      @memo_link.save
+      flash.now[:notice] = "#{@memo_link.memo.name}を登録しました"
+    else
+      flash[:alert] = "既に登録済みです"
+
+    end
   end
 
   def destroy

@@ -1,8 +1,6 @@
-var entryButton = document.getElementById('entry_button');
-
-  memoLinkEntry.classList.add('hidden');
-  mask.classList.add('hidden');
+memoLinkEntry.classList.add('hidden');
+mask.classList.add('hidden');
 
 
 var flashMessage = document.getElementById('flash_message');
-flashMessage.innerHTML = '<%= flash[notice] %>'
+flashMessage.innerHTML = "<%= j(render 'partial/flash') %>"

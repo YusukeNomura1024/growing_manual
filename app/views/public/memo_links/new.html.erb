@@ -38,9 +38,6 @@
       </div>
     </div>
 
-    <div id="flash_message">
-        <%= flash[notice] %>
-    </div>
 
     <% @memos.each do |memo| %>
       <%= link_to link_procedure_memo_path(@procedure,memo), remote: true, class: "memo_link" do %>
