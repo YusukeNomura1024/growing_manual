@@ -37,22 +37,23 @@
       </div>
     </div>
 
-
-    <% @manuals.each do |manual| %>
-      <%= link_to manual_path(manual), class: "text--decoration_none" do %>
-        <ul class="list__body panel">
-         <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
-         <li class="list__title"><%= manual.title %></li>
-         <li class="list__bookmarked_users"><span class="bookmark-color">♥<%= manual.bookmarks.count %></span></li>
-         <li class="list__rate"><%= manual.average_star %><%= manual.average_rate %></li>
-         <li class="list__stutus" style="<%= manual.status_style %>"><%= manual.status_text %></li>
-        </ul>
+    <div class="scroll-list" id="jscroll">
+      <% @manuals.each do |manual| %>
+        <%= link_to manual_path(manual), class: "text--decoration_none" do %>
+          <ul class="list__body panel">
+           <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+           <li class="list__title"><%= manual.title %></li>
+           <li class="list__bookmarked_users"><span class="bookmark-color">♥<%= manual.bookmarks.count %></span></li>
+           <li class="list__rate"><%= manual.average_star %><%= manual.average_rate %></li>
+           <li class="list__stutus" style="<%= manual.status_style %>"><%= manual.status_text %></li>
+          </ul>
+        <% end %>
       <% end %>
-    <% end %>
+      <div class="invisible" style="height: 1px;">
+        <%= paginate @manuals %>
+      </div>
+    </div>
   </div>
 
-  <div class="main__bottom_content">
-    <%= paginate @manuals %>
-  </div>
 
 </main>

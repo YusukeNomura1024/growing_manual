@@ -13,25 +13,30 @@
 
 
     <div class="everyone_review">
-      <h3 class="everyone_review__title">みんなの評価</h3>
-      <ul class="panel everyone_review__body list_group">
-      <% @reviews.each do |review| %>
-        <li class="list_group__item d-flex">
-          <div class="everyone_review__body_left">
-            <%= attachment_image_tag review.user, :image, size: "100x100", fallback: "no_image.jpg" %>
-            <%= review.user.pen_name %>
-          </div>
-          <div class="everyone_review__body_right">
-            <div class="row d-flex--justify_content_space_between">
-              <div>評価：<span class="rate_star"><%= "#{review.star}" %></span></div>
-              <div><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></div>
+      <% if @reviews.count == 0 %>
+        <h3 class="everyone_review__title">まだ評価がありません</h3>
+      <% else %>
+        <h3 class="everyone_review__title">みんなの評価</h3>
+
+        <ul class="panel everyone_review__body list_group">
+        <% @reviews.each do |review| %>
+          <li class="list_group__item d-flex">
+            <div class="everyone_review__body_left">
+              <%= attachment_image_tag review.user, :image, size: "100x100", fallback: "no_image.jpg" %>
+              <%= review.user.pen_name %>
             </div>
-            <div class="row"><%= review.comment %></div>
-            <div class="row d-flex--justiry_content_flex_end"><%= link_to '通報する', new_user_message_path(@user, review_id: review.id, report_target: 'review'), remote: true, class: "btn btn-outline-danger btn--small" %></div>
-          </div>
-        </li>
+            <div class="everyone_review__body_right">
+              <div class="row d-flex--justify_content_space_between">
+                <div>評価：<span class="rate_star"><%= "#{review.star}" %></span></div>
+                <div><%= review.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></div>
+              </div>
+              <div class="row"><%= review.comment %></div>
+              <div class="row d-flex--justiry_content_flex_end"><%= link_to '通報する', new_user_message_path(@user, review_id: review.id, report_target: 'review'), remote: true, class: "btn btn-outline-danger btn--small" %></div>
+            </div>
+          </li>
+        <% end %>
+        </ul>
       <% end %>
-      </ul>
     </div>
 
     <div>

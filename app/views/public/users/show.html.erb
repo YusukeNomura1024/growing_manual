@@ -1,13 +1,10 @@
 <main>
   <div class="main__content">
     <h2 class="main__content-title">会員ページ</h2>
-    <% if @user.id == current_user.id %>
-        <%= link_to '編集する', edit_user_path(current_user), class: "btn btn-block btn-outline-success" %>
-    <% end %>
     <div class="thumbnail_area -outer_radius_border panel user_show">
       <%= attachment_image_tag @user, :image, size: "60x60", fallback: "no_image.jpg", class: "thumbnail" %>
     </div>
-    <div class="info-field">
+    <div class="info-field panel">
       <% if @oneself %>
       <ul class="info">
         <li class="info__label">名前</li>
@@ -37,5 +34,8 @@
         <li><%= @user.bookmarked_count %></li>
       </ul>
     </div>
+    <% if @user.id == current_user.id %>
+        <%= link_to '編集する', edit_user_path(current_user), class: "btn btn-block btn-outline-success" %>
+    <% end %>
   </div>
 </main>

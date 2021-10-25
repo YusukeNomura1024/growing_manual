@@ -11,7 +11,7 @@ class Admin::MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.is_replied = true
     if @message.save
-      flash[:notice] = "送信しました"
+      flash[notice] = "送信しました"
       redirect_to admin_user_messages_path(@user)
     else
       flash.now[:error] = "送信できませんでした"

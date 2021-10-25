@@ -6,6 +6,8 @@ class Review < ApplicationRecord
 
   def star
     case rate
+    when 0
+      "☆☆☆☆☆"
     when 1
       "★☆☆☆☆"
     when 2

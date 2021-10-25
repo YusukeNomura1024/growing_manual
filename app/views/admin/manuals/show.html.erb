@@ -3,6 +3,8 @@
 
   <div class="main__top_content">
     <h2><%= @manual.title %></h2>
+    <%= link_to '詳細表示', manual_path(@manual), remote: true, class: "btn btn--small" %>
+
     <%= link_to 'マニュアル編集', edit_admin_manual_path(@manual), class: "btn btn-outline-success btn--small" %>
 
     <span class="btn btn-outline-bookmark btn--small non-btn" style="cursor: text;"><%= render 'public/manuals/bookmark', manual: @manual %></span>
@@ -11,21 +13,24 @@
 
   </div>
 
-  <div class="main__left_content -outer_radius_border panel">
-    <div class="procedure__list_group_head">
+  <div class="main__left_content -outer_radius_border panel sidebar">
+    <div class="procedure__list_group_head sidebar__hidden_parent">
       <h3>手順</h3>
+      <div class="sidebar__hidden_button"><i class="fas fa-arrow-circle-left text--danger_color"></i></div>
+      <div class="sidebar__visible_button invisible"><i class="fas fa-arrow-circle-right text--danger_color"></i></div>
     </div>
     <ul class="tab-list" style="list-style: none;">
       <% @procedures.each do |procedure| %>
         <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
             <%= procedure.position %>
             <%= procedure.title %>
+            :（<%= procedure.memo_links.count %>）
         </li>
       <% end %>
     </ul>
   </div>
 
-  <div class="main__center_content main__content--narrow">
+  <div class="main__center_content main__content--narrow sidebar_second">
       <ul class="tab-list" style="list-style: none;">
         <% @procedures.each do |procedure| %>
           <li class="tabbox -outer_radius_border panel" id="<%= 'tab' + procedure.id.to_s %>">
@@ -38,26 +43,9 @@
       </ul>
   </div>
 
-  <div class="main__right_content">
-    <div id="memo-display">
-      <div class="-outer_radius_border">
-        <ul>
-          <li class="info__label">
-            説明：
-          </li>
-          <li class="info__value info__value--bgcolor_light -outer_radius_border w-100">
-            <%= @manual.description %>
-          </li>
-          <li class="info__label">
-            タグ：
-          </li>
-          <li class="info__value info__value--bgcolor_light -outer_radius_border w-100">
-            <% @manual.tags.each do |tag| %>
-              <%= tag.name %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
+  <div class="main__right_content memo_content">
+    <div id="memo-display" class="memo-display">
+      <%= render 'public/manuals/detail', manual: @manual %>
     </div>
   </div>
 

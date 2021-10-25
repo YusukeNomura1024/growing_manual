@@ -1,4 +1,4 @@
-<div class="header__top">
+<div class="header__row">
   <h2 class="logo">
     <%= link_to '/' do %>
       <%= image_tag 'growing_manual_logo.png' %>
@@ -6,24 +6,43 @@
   </h2>
   <nav class="nav">
     <ul class="nav__left">
-      <li><%= link_to 'ダッシュボード', admin_dashboard_path, class: "btn" %></li>
-      <li><%= link_to 'マニュアル一覧', admin_manuals_path, class: "btn" %></li>
-      <li><%= link_to '会員一覧', admin_users_path, class: "btn" %></li>
-      <li><%= link_to '問い合わせ一覧', admin_dashboard_path, class: "btn" %></li>
+      <li class="nav_btn">
+        <%= link_to admin_dashboard_path do %>
+          <i class="fas fa-tachometer-alt"></i><br>
+          ダッシュボード
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to admin_manuals_path do %>
+          <i class="fas fa-globe-europe"></i><br>
+          マニュアル一覧
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to admin_users_path do %>
+          <i class="fas fa-users"></i><br>
+          会員一覧
+        <% end %>
+      </li>
+      <li class="nav_btn">
+        <%= link_to admin_dashboard_path do %>
+          <i class="fas fa-envelope"></i><br>
+          問い合わせ一覧
+        <% end %>
+      </li>
+      <li class="nav__admin_login_msg">
+        <%= link_to admin_admin_user_path(current_admin_user) do %>
+          <%= "管理者（#{current_admin_user.email}" %>）</li>
+        <% end %>
     </ul>
     <ul class="nav__right">
-      <li><%= link_to 'ログアウト', destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-danger btn--small" %></li>
+      <li class="nav_btn danger">
+        <%= link_to destroy_admin_user_session_path, method: :delete, class: "danger" do %>
+          <i class="fas fa-sign-out-alt"></i><br>
+          ログアウト
+        <% end %>
+      </li>
     </ul>
   </nav>
-</div>
-
-<div class="header__bottom header_flex-end">
-  <div class="search_box">
-    <%= form_with url: admin_search_manual_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
-      <%= button_tag "検索", type: 'submit', class: "search_button" %>
-    <% end %>
-  </div>
-  <h2>管理者としてログイン中です。</h2>
 </div>
 

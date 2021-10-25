@@ -27,7 +27,7 @@
     <%= render 'admin/tags/list', tags: @tags %>
   </div>
 
-  <div class="main__center_content list_group">
+  <div class="main__center_content list_group scroll-list" id="jscroll">
     <% @manuals.each do |manual| %>
     <ul class="list_group__item list__body d-flex--wrap">
       <li class="admin_manual created_at"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
@@ -38,10 +38,8 @@
       <li class="admin_manual status" style="<%= manual.status_style %>"><%= manual.status_text %></li>
     </ul>
     <% end %>
+    <div class="invisible">
+      <%= paginate @manuals %>
+    </div>
   </div>
-
-  <div class="main__bottom_content">
-    <%= paginate @manuals %>
-  </div>
-
 </main>

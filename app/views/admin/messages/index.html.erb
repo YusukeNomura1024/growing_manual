@@ -31,13 +31,13 @@
               <div class="chat_body">
                 <%= message.comment %>
               </div>
-              <div>
+              <div class="msg_status">
                 <% if !message.is_replied %>
-                  <%= link_to '返信済みにする', admin_user_message_path(@user, message), method: :patch, data: {confirm: "返信済みにしますか？"}, remote: true, class: "btn btn-outline-primary btn--small" %>
+                  <%= link_to '返信済みにする', admin_user_message_path(@user, message), method: :patch, data: {confirm: "返信済みにしますか？"}, remote: true, class: "btn btn-outline-primary btn--small msg_status__primary_bar" %>
                 <% elsif message.type == 'from_admin' %>
 
                 <% else %>
-                  <span class="btn btn-outline-disabled btn--small">返信済み</span>
+                  <span class="btn btn-outline-disabled btn--small msg_status__disabled_bar">返信済み</span>
                 <% end %>
                 <% if message.type == 'from_admin' %>
                   <%= link_to '削除する', admin_user_message_path(@user, message), method: :delete, data: {confirm: "削除しますか？"}, remote: true, class: "btn btn-outline-danger btn--small" %>
