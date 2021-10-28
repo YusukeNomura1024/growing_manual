@@ -41,6 +41,16 @@
 
 }
 
+.flash-notice_tag{
+  text-align: center;
+  background-color: $error-color;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 15px;
+  margin: 0 auto;
+  animation: shrink 2s;
+}
+
 .error_area{
   background-color: $error-color;
   color: #fff;

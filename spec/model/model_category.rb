@@ -7,18 +7,37 @@ RSpec.describe Category, "モデルに関するテスト", type: :model do
     end
   end
   context "空白のバリデーションチェック" do
-    it "titleが空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか" do
+    it "nameが空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか" do
       category = Category.new(name: '')
       expect(category).to be_invalid
       expect(category.errors[:name]).to include("を入力してください")
     end
   end
-end
-
-describe '四則演算' do
-  context '足し算' do
-    it '1 + 1 は 2 になる' do
-      expect(1 + 1).to eq 2
+  context "文字数のバリデーションチェック" do
+    it "nameが21文字以上の場合にバリデーションチェックされエラーメッセージが返ってきているか" do
+      category = FactoryBot.build(:category, name: Faker::Lorem.characters(number: 21))
+      expect(category).to be_invalid
+      expect(category.errors[:name]).to include("は20文字以内で入力してください")
+    end
+  end
+  describe "一意性のバリデーションチェック" do
+    let!(:user1) { FactoryBot.create(:user) }
+    let!(:user2) { FactoryBot.create(:user) }
+    context '同じユーザーが既存のnameのcategoryを保存する場合' do
+      it "バリデーションチェックされエラーメッセージが返る" do
+        FactoryBot.create(:category, name: "name", user_id: user1.id)
+        category2 = FactoryBot.build(:category, name: "name", user_id: user1.id)
+        expect(category2).to be_invalid
+        expect(category2.errors[:name]).to include("はすでに存在します")
+      end
+    end
+    context '異なるユーザーが既存のnameのcategoryを保存する場合' do
+      it "保存できる" do
+        FactoryBot.create(:category, name: "name", user_id: user1.id)
+        category2 = FactoryBot.build(:category, name: "name", user_id: user2.id)
+        expect(category2).to be_valid
+      end
     end
   end
 end
+

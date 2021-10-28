@@ -39,6 +39,9 @@ class Public::ManualsController < ApplicationController
       @manual.save_manuals(tag_list)
       redirect_to manual_procedures_path(@manual)
       flash[:notice] = "登録しました。続いて手順を登録しましょう。"
+      if tag_list.count > @manual.tags.count
+        flash[:notice_tag] = "21文字以上のタグは登録できませんでした"
+      end
     else
       flash.now[:alert] = "登録できませんでした"
       render :new
@@ -63,7 +66,9 @@ class Public::ManualsController < ApplicationController
       @manual.save_manuals(tag_list)
       flash_notice__edit_success
       redirect_to manual_path(@manual)
-
+      if tag_list.count > @manual.tags.count
+        flash[:notice_tag] = "21文字以上のタグは登録できませんでした"
+      end
     else
       flash_alert__error
       render :edit

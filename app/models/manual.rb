@@ -95,8 +95,10 @@ class Manual < ApplicationRecord
     end
 
     new_tags.each do |new_name|
-      manual_tag = Tag.find_or_create_by(name: new_name, user_id: self.user_id)
-      self.tags << manual_tag
+      if new_name.length <= 20
+        manual_tag = Tag.find_or_create_by(name: new_name, user_id: self.user_id)
+        self.tags << manual_tag
+      end
     end
   end
 

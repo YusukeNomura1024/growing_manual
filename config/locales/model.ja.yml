@@ -7,6 +7,7 @@ ja:
       manual: "マニュアル"
       review: "評価"
       message: "メッセージ"
+      category: "カテゴリー"
     attributes:
       admin_user:
         id: "登録番号"
@@ -39,4 +40,6 @@ ja:
         updated_at: "更新日"
       message:
         user: "送り主"
+      category:
+        name: "カテゴリー名"
 
