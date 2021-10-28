@@ -4,6 +4,9 @@ class Review < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  validates :rate, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 0}
+
+
   def star
     case rate
     when 0

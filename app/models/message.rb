@@ -6,7 +6,13 @@ class Message < ApplicationRecord
 
   enum type: { contact: 0, violation_report: 1, from_admin: 2 }
 
-  validates :comment, presence: true
+  with_options presence: true do
+    validates :user_id
+    validates :comment
+    validates :type
+  end
+
+  validates :comment, length: {maximum: 100}
 
   scope :contact, -> {where(type: 'contact')}
   scope :violation_report, -> {where(type: 'violation_report')}

@@ -67,13 +67,11 @@ RSpec.describe Memo, "モデルに関するテスト", type: :model do
   describe 'アソシエーションのテスト' do
     describe 'userとの関係性' do
       it 'N:1である' do
-        expect(Memo.reflect_on_association(:user).macro).not_to eq :has_many
         expect(Memo.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
     describe 'categoryとの関係性' do
       it 'N:1である' do
-        expect(Memo.reflect_on_association(:category).macro).not_to eq :has_many
         expect(Memo.reflect_on_association(:category).macro).to eq :belongs_to
       end
     end
