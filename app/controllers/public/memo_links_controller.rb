@@ -62,7 +62,7 @@ class Public::MemoLinksController < ApplicationController
       @memo_link.save
       flash.now[:notice] = "#{@memo_link.memo.name}を登録しました"
     else
-      flash[:alert] = "既に登録済みです"
+      flash.now[:alert] = "既に登録済みです"
 
     end
   end

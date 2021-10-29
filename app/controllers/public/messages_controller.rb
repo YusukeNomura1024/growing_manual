@@ -22,17 +22,37 @@ class Public::MessagesController < ApplicationController
   end
 
   def create
-    message = Message.new(message_params)
-    message.save
+    @message = Message.new(message_params)
+
     # 違反報告時とお問い合わせの処理
     case params[:message][:report_target]
+
     when 'manual'
-      manual = Manual.find(params[:message][:manual_id])
-      redirect_to manual_path(manual)
+      if @message.save
+        flash[:notice] = "送信しました"
+      else
+        error_messages = @message.errors.full_messages
+        flash[:alert] = "送信できませんでした#{error_messages}"
+      end
+      @manual = Manual.find(params[:message][:manual_id])
+      redirect_to manual_path(@manual)
+
     when 'review'
+      if @message.save
+        flash[:notice] = "送信しました"
+      else
+        error_messages = @message.errors.full_messages
+        flash[:alert] = "送信できませんでした#{error_messages}"
+      end
       redirect_to request.referer
+
     when 'no_target'
-      flash[notice] = "送信しました"
+      if @message.save
+        flash[:notice] = "送信しました"
+      else
+        error_messages = @message.errors.full_messages
+        flash[:alert] = "送信できませんでした#{error_messages}"
+      end
       redirect_to user_messages_path(current_user)
     end
   end

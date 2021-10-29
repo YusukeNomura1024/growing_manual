@@ -61,6 +61,7 @@ class Public::ManualsController < ApplicationController
 
   def update
     @manual = Manual.find(params[:id])
+    @tag_names = @manual.tags.map { |tag| tag.name}.join(' ')
     tag_list = params[:manual][:tag_name].split(nil)
     if @manual.update(manual_params)
       @manual.save_manuals(tag_list)

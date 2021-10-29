@@ -23,10 +23,13 @@
         <%= render 'partial/other_head' %>
       <% end %>
     </header>
+    <div class="header__flash">
+      <%= render 'partial/flash' %>
+    </div>
     <div class="header__under"></div>
-    
-    <%= render 'partial/flash' %>
-    
+
+
+
     <%= yield %>
   </body>
 </html>

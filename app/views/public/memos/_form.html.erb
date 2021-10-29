@@ -46,9 +46,9 @@
             <% if !params[:procedure_id].nil? %>
               <%= f.hidden_field :procedure_id, value: params[:procedure_id] %>
               <%= f.submit '新規作成して手順にも登録する', class: "btn btn-outline-primary btn-block" %>
-            <% elsif request.path.include?('new') %>
+            <% elsif request.path.include?('new') || @page == "new" %>
               <%= f.submit '新規作成', class: "btn btn-outline-primary btn-block" %>
-            <% elsif request.path.include?('edit') %>
+            <% elsif request.path.include?('edit') || @page == "edit" %>
               <% if !params[:manual_id].nil? %>
                 <%= f.hidden_field :manual_id, value: params[:manual_id] %>
                 <%= f.submit '更新してマニュアルに戻る', class: "btn btn-outline-primary flex-grow-1" %>

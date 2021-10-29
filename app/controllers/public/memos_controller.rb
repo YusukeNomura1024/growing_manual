@@ -45,33 +45,40 @@ class Public::MemosController < ApplicationController
 
   def create
     @memo = Memo.new(memo_params)
-    if params[:preview_button]
-      @categories = Category.where(user_id: current_user.id)
-      @category = Category.new
-      render :new
-    else
-      @memo.save
+    @categories = where_user_id_is_current_user_id(Category)
+    @category = Category.new
 
-      # procedureにも登録するかどうか判断
-      if !params[:memo][:procedure_id].nil?
-        manual = Procedure.find(params[:memo][:procedure_id]).manual
-
-        # manualの製作者かどうか判断
-        if manual.user == current_user
-          memo_link = MemoLink.new
-          memo_link.procedure_id = params[:memo][:procedure_id]
-          memo_link.memo_id = @memo.id
-          memo_link.save
-          redirect_to manual_path(manual)
-        else
-          flash[:error] = "他人のマニュアルにメモを登録はできません"
-          redirect_to memo_path(@memo)
-        end
+    # procedureにも登録するかどうか判断
+    if !params[:memo][:procedure_id].nil?
+      if @memo.save
+        flash[:notice] = "登録しました"
       else
+        flash[:alert] = "登録できませんでした（入力漏れ・文字数オーバー）"
+      end
+      manual = Procedure.find(params[:memo][:procedure_id]).manual
+      # manualの製作者かどうか判断
+      if manual.user == current_user
+        memo_link = MemoLink.new
+        memo_link.procedure_id = params[:memo][:procedure_id]
+        memo_link.memo_id = @memo.id
+        memo_link.save
+        redirect_to manual_path(manual)
+      else
+        flash[:error] = "他人のマニュアルにメモを登録はできません"
         redirect_to memo_path(@memo)
       end
+    else
 
+      if @memo.save
+        flash[:notice] = "登録しました"
+        redirect_to memo_path(@memo)
+      else
+        flash.now[:alert] = "登録できませんでした"
+        @page = "new"
+        render :new
+      end
     end
+
   end
 
   def edit
@@ -83,23 +90,27 @@ class Public::MemosController < ApplicationController
 
   def update
     @memo = Memo.find(params[:id])
-    if !params[:preview_button].nil?
-      @memo = Memo.new(memo_params)
-      @categories = where_user_id_is_current_user_id(Category)
-      @category = Category.new
-      render :edit
-    else
-
-      @memo.update(memo_params)
-      # マニュアルからの遷移の場合はマニュアルページに戻る
-      if !params[:memo][:manual_id].nil?
-        manual = Manual.find(params[:memo][:manual_id])
-        redirect_to manual_path(manual)
+    @categories = where_user_id_is_current_user_id(Category)
+    @category = Category.new
+    # マニュアルからの遷移の場合はマニュアルページに戻る
+    if !params[:memo][:manual_id].nil?
+      if @memo.update(memo_params)
+        flash[:notice] = "更新しました"
       else
-      redirect_to memo_path(@memo)
+        flash[:alert] = "更新できませんでした（入力漏れ・文字数オーバー）"
+      end
+      manual = Manual.find(params[:memo][:manual_id])
+      redirect_to manual_path(manual)
+    else
+      if @memo.update(memo_params)
+        flash[:notice] = "更新しました"
+        redirect_to memo_path(@memo)
+      else
+        flash.now[:alert] = "更新できませんでした"
+        @page = "edit"
+        render :edit
       end
     end
-
   end
 
   def destroy
