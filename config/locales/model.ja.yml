@@ -8,6 +8,7 @@ ja:
       review: "評価"
       message: "メッセージ"
       category: "カテゴリー"
+      tag: "タグ"
     attributes:
       admin_user:
         id: "登録番号"
@@ -42,4 +43,6 @@ ja:
         user: "送り主"
       category:
         name: "カテゴリー名"
+      tag:
+        name: "タグ名"
 

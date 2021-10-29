@@ -3,7 +3,8 @@ class Tag < ApplicationRecord
   has_many :manuals, through: :tag_maps
   belongs_to :user
 
+
   validates :user_id, presence: true
-  validates :name   , presence: true, length: {maximum: 20}
+  validates :name   , presence: true, length: {maximum: NAME_MAXIMUM_LENGTH = 20}
 
 end
