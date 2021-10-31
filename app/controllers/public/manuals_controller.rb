@@ -92,7 +92,7 @@ class Public::ManualsController < ApplicationController
   def search
     # みんなのマニュアルを表示させる場合はtargetがeveryone
     if params[:target] == 'everyone'
-      @tags = Tag.all
+      @tags = Manual.joins(:tags).group("tags.name").order('count_all DESC').count
       @total_manuals = Manual.where(status: true).search(params[:keyword])
       @manuals = @total_manuals.page(params[:page]).reverse_order
       list_title_set

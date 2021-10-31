@@ -5,7 +5,6 @@ class Procedure < ApplicationRecord
   acts_as_list scope: :manual
 
   validates :manual_id, presence: true
-  validates :title, presence: true
-  validates :position, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates :title, presence: true, length: { maximum: TITLE_MAXIMUM_LENGTH = 20 }
 
 end

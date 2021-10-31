@@ -9,6 +9,7 @@ ja:
       message: "メッセージ"
       category: "カテゴリー"
       tag: "タグ"
+      procedure: "手順"
     attributes:
       admin_user:
         id: "登録番号"
@@ -45,4 +46,6 @@ ja:
         name: "カテゴリー名"
       tag:
         name: "タグ名"
+      procedure:
+        title: "タイトル"
 

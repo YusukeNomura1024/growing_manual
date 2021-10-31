@@ -17,6 +17,13 @@ RSpec.describe Procedure, "モデルに関するテスト", type: :model do
           expect(@procedure.errors[:title]).to include("を入力してください")
         end
       end
+      context "titleが#{Procedure::TITLE_MAXIMUM_LENGTH + 1}文字以上の場合" do
+        it '保存されずに、エラーメッセージに「」が含まれる' do
+          @procedure.title = Faker::Lorem.characters(number: Procedure::TITLE_MAXIMUM_LENGTH + 1)
+          expect(@procedure).to be_invalid
+          expect(@procedure.errors[:title]).to include("は#{Procedure::TITLE_MAXIMUM_LENGTH}文字以内で入力してください")
+        end
+      end
     end
     describe 'positionカラムに関して' do
       context 'positionが空白の場合' do

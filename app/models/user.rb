@@ -21,7 +21,6 @@ class User < ApplicationRecord
   validates :email              , presence: true, uniqueness: true
   validates :full_name          , presence: true, length: { maximum: FULL_NAME_MAXIMUM_LENGTH = 20}
   validates :pen_name           , presence: true, length: { maximum: PEN_NAME_MAXIMUM_LENGTH = 20}, uniqueness: true
-  validates :is_active          , presence: true
   validates :encrypted_password , presence: true
 
   def bookmarked_count

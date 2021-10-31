@@ -22,12 +22,21 @@
       </ul>
       <% end %>
       <ul class="info">
-        <li class="info__label">公開中のマニュアルの数</li>
-        <li><%= @user.manuals.count %></li>
+        <li class="info__label">作成したマニュアルの数</li>
+        <li><%= "#{@user.manuals.count}" %></li>
       </ul>
       <ul class="info">
+        <li class="info__label">公開中のマニュアルの数</li>
+        <li><%= link_to "#{@user.manuals.where(status: true).count}", root_path(sort: "creator", creator_id: @user.id) %></li>
+      </ul>
+
+      <ul class="info">
         <li class="info__label">作成したメモの数</li>
-        <li><%= @user.memos.count %></li>
+        <% if @oneself %>
+          <li><%= link_to "#{@user.memos.count}", memos_path %></li>
+        <% else %>
+          <li>@user.memos.count</li>
+        <% end %>
       </ul>
       <ul class="info">
         <li class="info__label">ブックマークされた数</li>

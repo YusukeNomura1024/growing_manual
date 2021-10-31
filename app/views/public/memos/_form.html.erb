@@ -3,6 +3,11 @@
 
   <div class="form-field__header panel">
     <div class="form-field__wrap">
+      <% memo.errors.full_messages.each do |message| %>
+        <div class="error_area">
+          <%= message %>
+        </div>
+      <% end %>
       <div class="row">
         <div class="form col-6 d-flex d-flex--align_items_center form--control_width_max">
           <%= f.label :name, '題名', class: "form__label" %>

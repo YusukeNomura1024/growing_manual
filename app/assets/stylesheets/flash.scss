@@ -40,6 +40,17 @@
   animation: shrink 2s;
 
 }
+.flash-bookmark{
+  text-align: center;
+  background-color: $bookmark-color;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 15px;
+  margin: 0 auto;
+  animation: shrink 2s;
+
+}
+
 
 .flash-notice_tag{
   text-align: center;

@@ -28,24 +28,36 @@ class Public::ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    review.save
     @manual = Manual.find(params[:manual_id])
 
-    #通知の作成
-    @manual.create_notification_review!(current_user, review.id, @manual.user_id)
-
+    if review.save
+      flash[:notice] = "評価しました"
+      #通知の作成
+      @manual.create_notification_review!(current_user, review.id, @manual.user_id)
+    else
+      flash[:alert] = "評価できませんでした#{review.errors.full_messages}"
+    end
     redirect_to manual_reviews_path(@manual)
   end
 
   def update
     review = Review.find(params[:id])
-    review.update(review_params)
+    if review.update(review_params)
+      flash[:notice] = "評価しました"
+    else
+      flash[:alert] = "更新できませんでした#{review.errors.full_messages}"
+    end
     redirect_to manual_reviews_path(@manual)
   end
 
   def destroy
     review = Review.find(params[:id])
-    review.destroy
+    if review.user_id == current_user.id
+      review.destroy
+      flash[:notice] = "削除しました"
+    else
+      flash[:alert] = "削除できませんでした"
+    end
     redirect_to manual_reviews_path(@manual)
   end
 

@@ -6,6 +6,11 @@
     </h2>
     <%= form_with(model: [@manual, @manual.procedures.build], local: true) do |f| %>
     <div class="form">
+      <% @procedure.errors.full_messages.each do |message| %>
+        <div class="error_area">
+          <%= message %>
+        </div>
+      <% end %>
       <%= f.label :title, "手順タイトル", class: "procedure-form__title-label column_form__label" %>
       <div class="input_group">
         <%= f.text_field :title, placeholder: "手順内容を登録", class: "input_group__form form-control", autofocus: true %>

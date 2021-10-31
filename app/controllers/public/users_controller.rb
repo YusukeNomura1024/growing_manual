@@ -17,10 +17,14 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = current_user
-    user.update(user_params)
-    redirect_to user_path(user.id)
-
+    @user = current_user
+    if @user.update(user_params)
+      flash[:notice] = "更新しました"
+      redirect_to user_path(@user.id)
+    else
+      flash.now[:alert] = "更新できませんでした"
+      render :edit
+    end
   end
 
   def unsubscribe
@@ -31,7 +35,7 @@ class Public::UsersController < ApplicationController
     user.update(is_active: false)
 
     reset_session
-    flash[:notice] = "ありがとうございました"
+    flash[:notice] = "ありがとうございました退会手続きが完了いたしました"
     redirect_to '/'
 
   end

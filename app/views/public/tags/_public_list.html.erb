@@ -1,0 +1,8 @@
+<div class="tag_search panel">
+  <h3 class="tag_search__title">人気タグ検索</h3>
+  <ul>
+  <% tags.each do |tag| %>
+    <li><%= link_to "#{tag[0]}（#{tag[1]}件）", "/tags/#{tag[0]}?target=everyone" %></li>
+  <% end %>
+  </ul>
+</div>

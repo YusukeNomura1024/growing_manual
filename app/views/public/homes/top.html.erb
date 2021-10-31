@@ -2,7 +2,7 @@
   <%= render 'breadlists/top' %>
   <div class="main__top_content">
 
-    <h2>みんなのマニュアル
+    <h2>公開中のマニュアル<br>
       <% if @list_title.nil? %>
       <% else %>
         <%= @list_title %>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="main__left_content">
-    <%= render 'public/tags/list', tags: @tags %>
+    <%= render 'public/tags/public_list', tags: @tags %>
   </div>
 
   <div class="main__center_content everyone_manual_list list__group">
