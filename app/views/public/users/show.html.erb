@@ -35,7 +35,7 @@
         <% if @oneself %>
           <li><%= link_to "#{@user.memos.count}", memos_path %></li>
         <% else %>
-          <li>@user.memos.count</li>
+          <li><%= @user.memos.count %></li>
         <% end %>
       </ul>
       <ul class="info">

@@ -5,7 +5,7 @@
     <div class="message__list_area">
       <h2 class="title--center">メッセージ一覧</h2>
       <ul class="list_group scroll-list" id="jscroll">
-      <% @messages.each do |message| %>
+      <% @messages.preload(:user).each do |message| %>
         <li class="list_group__item d-flex">
           <% if message.type != 'from_admin' %>
           <div class="user_icon">

@@ -3,12 +3,12 @@ class Public::ManualsController < ApplicationController
   before_action :non_owner_to_root, only: [:destroy, :update, :edit]
 
   def index
-    @tags = Tag.where(user_id: current_user.id)
+    @tags = Tag.preload(:manuals).where(user_id: current_user.id)
     if params[:sort] == 'created_at' || params[:sort].nil?
-      @manuals = Manual.where(user_id: current_user.id).page(params[:page]).reverse_order
+      @manuals = Manual.preload(:tag_maps, :bookmarked_users, :bookmarks, :reviews).where(user_id: current_user.id).page(params[:page]).reverse_order
       params[:sort] = 'created_at'
     elsif params[:sort] == 'bookmarks'
-      @manuals = Manual.includes(:bookmarked_users).where(user_id: current_user).sort {|a,b| b.bookmarked_users.size <=> a.bookmarked_users.size}
+      @manuals = Manual.includes(:tag_maps, :bookmarked_users, :bookmarks, :reviews).where(user_id: current_user).sort {|a,b| b.bookmarked_users.size <=> a.bookmarked_users.size}
       @manuals = Kaminari.paginate_array(@manuals).page(params[:page])
     end
   end

@@ -20,11 +20,11 @@
       <div class="sidebar__visible_button invisible"><i class="fas fa-arrow-circle-right text--danger_color"></i></div>
     </div>
     <ul class="tab-list" style="list-style: none;">
-      <% @procedures.each do |procedure| %>
+      <% @procedures.preload(:memo_links).each do |procedure| %>
         <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
             <%= procedure.position %>
             <%= procedure.title %>
-            :（<%= procedure.memo_links.count %>）
+            :（<%= procedure.memo_links.size %>）
         </li>
       <% end %>
     </ul>
@@ -32,7 +32,7 @@
 
   <div class="main__center_content main__content--narrow sidebar_second">
       <ul class="tab-list" style="list-style: none;">
-        <% @procedures.each do |procedure| %>
+        <% @procedures.preload(:memo_links).each do |procedure| %>
           <li class="tabbox -outer_radius_border panel" id="<%= 'tab' + procedure.id.to_s %>">
             <% if procedure.memo_links.empty? %>
               メモが登録されていません

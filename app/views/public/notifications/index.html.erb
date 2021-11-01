@@ -1,13 +1,13 @@
 <main>
   <div class="main__content main__content_w500 panel notifications">
     <h2 class="title--center">通知一覧</h2>
-
-    <!--自分のマニュアルに対する通知は表示しない-->
-    <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
-    <% if notifications.exists? %>
-
-      <%= render notifications %>
-      <%= paginate notifications %>
+    <% if @notifications.exists? %>
+      <div class="scroll-list" id="jscroll">
+        <%= render @notifications.preload(:visitor, :visited, :manual, :review) %>
+        <div class="invisible">
+          <%= paginate @notifications %>
+        </div>
+      </div>
     <% else %>
       <p>通知はありません</p>
     <% end %>

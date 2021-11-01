@@ -29,11 +29,11 @@ class Message < ApplicationRecord
   def report_target
     if violation_report?
       if !self.manual_id.nil?
-        target_manual = Manual.find(self.manual_id)
+        target_manual = self.manual
         "マニュアル[#{target_manual.title}]"
       elsif !self.review_id.nil?
-        target_review = Review.find(self.review_id)
-        target_user = User.find(target_review.user_id)
+        target_review = self.review
+        target_user = target_review.user
         "#{target_user.pen_name}のレビュー"
       end
     else
@@ -58,10 +58,10 @@ class Message < ApplicationRecord
   # 管理者用メソッド
   def report_target_admin_link
     if !self.manual_id.nil?
-      target_manual = Manual.find(self.manual_id)
+      target_manual = self.manual
       "/admin/manuals/#{target_manual.id}"
     elsif !self.review_id.nil?
-      target_review = Review.find(self.review_id)
+      target_review = self.review
       "/admin/reviews/#{target_review.id}"
     else
       nil

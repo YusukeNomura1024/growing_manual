@@ -1,8 +1,8 @@
 <div class="tag_search panel">
   <h3 class="tag_search__title">タグ検索</h3>
   <ul>
-  <% tags.each do |tag| %>
-    <li><%= link_to "#{tag.name}(#{tag.manuals.count}件)", admin_tag_path(tag) %></li>
+  <% tags.preload(:manuals).each do |tag| %>
+    <li><%= link_to "#{tag.name}(#{tag.manuals.size}件)", admin_tag_path(tag) %></li>
   <% end %>
   </ul>
 </div>

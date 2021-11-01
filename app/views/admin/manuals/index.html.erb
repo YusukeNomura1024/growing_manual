@@ -32,7 +32,7 @@
     <ul class="list_group__item list__body d-flex--wrap">
       <li class="admin_manual created_at"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
       <li class="admin_manual title"><%= link_to "#{manual.title}", admin_manual_path(manual) %></li>
-      <li class="admin_manual bookmarks">♥<%= manual.bookmarks.count %></li>
+      <li class="admin_manual bookmarks">♥<%= manual.bookmarks.size %></li>
       <li class="admin_manual raviews"><%= manual.average_star %><%= manual.average_rate %></li>
       <li class="admin_manual user">by:<%= link_to "#{manual.user.full_name}(#{manual.user.pen_name})", admin_user_path(manual.user) %></li>
       <li class="admin_manual status" style="<%= manual.status_style %>"><%= manual.status_text %></li>

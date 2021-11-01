@@ -1,7 +1,7 @@
 <% if memo_links.empty? %>
   <p class="title--center text--disabled_color disabled_area mt-1">メモ未登録</p>
 <% else %>
-  <% memo_links.each do |memo_link| %>
+  <% memo_links.preload(:memo).each do |memo_link| %>
     <p><%= link_to memo_link.memo.name, memo_link_path(memo_link, manual_id: params[:id]), remote: true, class: "memo__list_item" %></p>
   <% end %>
 <% end %>

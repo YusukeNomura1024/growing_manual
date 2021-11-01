@@ -40,11 +40,13 @@ class Public::UsersController < ApplicationController
 
   end
 
+  private
+
   def oneself?
     params[:id] == current_user.id
   end
 
-  private
+
 
   def user_params
     params.require(:user).permit(:full_name, :pen_name, :email, :image)

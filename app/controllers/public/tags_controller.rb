@@ -13,11 +13,10 @@ class Public::TagsController < ApplicationController
       @search_tag_ids = @search_tags.each {|search_tag| search_tag.id }
       @tags = Manual.joins(:tags).group("tags.name").order('count_all DESC').count
       @manuals = []
-      @search_tag_ids.each do |search_tag_id|
-        TagMap.where(tag_id: search_tag_id).each do |tag_map|
-          @manuals << tag_map.manual
-        end
+      TagMap.preload(:manual).where(tag_id: @search_tag_ids).each do |tag_map|
+        @manuals << tag_map.manual
       end
+      @manuals = Manual.preload(:bookmarked_users, :user, :reviews).where(id: @manuals.map(&:id))
       @manuals = Kaminari.paginate_array(@manuals).page(params[:page])
       public_list_title_set
 

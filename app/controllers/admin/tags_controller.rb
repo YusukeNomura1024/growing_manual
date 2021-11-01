@@ -2,7 +2,7 @@ class Admin::TagsController < ApplicationController
   def show
     @tag = Tag.find(params[:id])
     @tags = Tag.all
-    @manuals = @tag.manuals.page(params[:page])
+    @manuals = @tag.manuals.preload(:bookmarks, :reviews, :user, :bookmarked_users).page(params[:page])
     list_title_set
 
     render 'admin/manuals/index'

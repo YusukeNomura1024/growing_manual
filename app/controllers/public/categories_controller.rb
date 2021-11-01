@@ -4,7 +4,7 @@ class Public::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     @category.user_id = current_user.id
-    @categories = Category.where(user_id: current_user.id)
+    @categories = Category.preload(:memos).where(user_id: current_user.id)
 
     if @category.save
       flash[:notice] = "登録しました"
@@ -18,12 +18,12 @@ class Public::CategoriesController < ApplicationController
 
   def index
     @category = Category.new
-    @categories = Category.where(user_id: current_user.id)
+    @categories = Category.preload(:memos).where(user_id: current_user.id)
   end
 
   def show
     @category = Category.find(params[:id])
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = where_user_id_is_current_user_id(Category.preload(:memos))
     @memos = @category.memos.page(params[:page]).reverse_order
 
     if @memos.count == 0

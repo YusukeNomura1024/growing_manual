@@ -13,7 +13,7 @@
       <% else %>
         <h3 class="everyone_review__title">みんなの評価</h3>
         <ul class="panel everyone_review__body list_group">
-          <% @reviews.each do |review| %>
+          <% @reviews.preload(:user).each do |review| %>
             <li class="list_group__item d-flex">
               <div class="everyone_review__body_left">
                 <%= attachment_image_tag review.user, :image, size: "100x100", fallback: "no_image.jpg" %>

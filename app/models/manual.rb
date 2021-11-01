@@ -23,11 +23,13 @@ class Manual < ApplicationRecord
 
 
   def average_rate
-    rate_hash = Review.group(:manual_id).average(:rate)
-    if rate_hash[self.id].nil?
+    total_point = self.reviews.inject(0){|sum, add| sum + add.rate}
+    nunber_of_people = self.reviews.inject(0){ |sum| sum + 1 }.to_f
+    if nunber_of_people == 0
       0
     else
-      BigDecimal(rate_hash[self.id].to_s).floor(2).to_f
+      average = (total_point / nunber_of_people).round(2)
+      return average
     end
   end
 

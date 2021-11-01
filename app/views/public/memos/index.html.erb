@@ -37,7 +37,7 @@
     </div>
 
     <div class="scroll-list" id="jscroll">
-      <% @memos.each do |memo| %>
+      <% @memos.preload(:category).each do |memo| %>
         <%= link_to memo_path(memo), class: "memo_link" do %>
           <ul class="memo_list list__body panel">
             <li><%= memo.name %></li>
@@ -54,7 +54,4 @@
       </div>
     </div>
   </div>
-
-
-
 </main>

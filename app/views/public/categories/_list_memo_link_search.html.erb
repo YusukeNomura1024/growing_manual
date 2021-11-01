@@ -4,8 +4,8 @@
     カテゴリー管理<i class="fas fa-pen"></i>
   <% end %>
   <ul>
-  <% categories.each do |category| %>
-    <li><%= link_to "#{category.name} (#{category.memos.count}件)", search_procedure_memo_link_path(@procedure, keyword: "#{category.name}", category_id: "#{category.id}") %></li>
+  <% categories.preload(:memos).each do |category| %>
+    <li><%= link_to "#{category.name} (#{category.memos.size}件)", search_procedure_memo_link_path(@procedure, keyword: "#{category.name}", category_id: "#{category.id}") %></li>
   <% end %>
   </ul>
 </div>

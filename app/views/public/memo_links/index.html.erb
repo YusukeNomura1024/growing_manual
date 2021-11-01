@@ -2,7 +2,7 @@
   <%= render 'breadlists/memo_link_index', memo: @memo %>
   <div class="main__content main__content_w800">
     <div class="panel -outer_radius_border">
-      <% @memo_links.each do |memo_link| %>
+      <% @memo_links.preload(:procedure).each do |memo_link| %>
         <%= link_to manual_path(memo_link.procedure.manual), class: "memo_link" do %>
           <ul class="memo_link_list list__body panel">
             <li>マニュアル：<%= memo_link.procedure.manual.title %><span class="memo_link_list__manual_created_at">作成日：<%= memo_link.procedure.manual.created_at.strftime('%Y.%m.%d') %></span></li>

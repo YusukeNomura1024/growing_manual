@@ -73,6 +73,8 @@ class Public::MemoLinksController < ApplicationController
     redirect_to manual_path(@manual)
   end
 
+  private
+
   def non_owner_to_root
     @memo_link = MemoLink.find(params[:id])
     if @memo_link.memo.user != current_user
@@ -80,7 +82,6 @@ class Public::MemoLinksController < ApplicationController
     end
   end
 
-  private
 
   def memo_link_params
     params.require(:memo_link).permit(:memo_id, :procedure_id)

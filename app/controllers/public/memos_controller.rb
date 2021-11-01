@@ -116,8 +116,11 @@ class Public::MemosController < ApplicationController
   def destroy
     memo = Memo.find(params[:id])
     memo.destroy
+    flash[:notice] = "削除しました"
     redirect_to memos_path
   end
+
+  private
 
   def non_owner_to_root
     @memo = Memo.find(params[:id])
@@ -126,8 +129,6 @@ class Public::MemosController < ApplicationController
     end
   end
 
-
-private
 
   def memo_params
     params.require(:memo).permit(:category_id, :name, :description, :url, :code).merge(user_id: current_user.id)

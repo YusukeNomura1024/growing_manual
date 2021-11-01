@@ -11,11 +11,12 @@ class Admin::MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.is_replied = true
     if @message.save
-      flash[notice] = "送信しました"
+      flash[:notice] = "送信しました"
+      @user.create_notification_from_admin!
       redirect_to admin_user_messages_path(@user)
     else
-      flash.now[:error] = "送信できませんでした"
-      render 'create'
+      flash[:alert] = "送信できませんでした#{@message.errors.full_messages}"
+      redirect_to admin_user_messages_path(@user)
     end
   end
 

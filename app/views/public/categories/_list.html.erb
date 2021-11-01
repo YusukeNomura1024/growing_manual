@@ -4,8 +4,8 @@
     カテゴリー管理<i class="fas fa-pen"></i>
   <% end %>
   <ul>
-  <% categories.each do |category| %>
-    <li><%= link_to "#{category.name} (#{category.memos.count}件)", category_path(category) %></li>
+  <% categories.preload(:memos).each do |category| %>
+    <li><%= link_to "#{category.name} (#{category.memos.size}件)", category_path(category) %></li>
   <% end %>
   </ul>
 </div>
