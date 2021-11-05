@@ -31,3 +31,12 @@ every 30.minute do
     raise e
   end
 end
+
+every 1.day, :at => '6:00 am' do
+  begin
+    runner "Batch::ManualActiveBatch.manualactive"
+  rescue => e
+    Rails.logger.error("aborted rails runner")
+    raise e
+  end
+end
