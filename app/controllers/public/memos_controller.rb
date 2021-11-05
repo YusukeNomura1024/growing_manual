@@ -55,6 +55,7 @@ class Public::MemosController < ApplicationController
       else
         flash[:alert] = "登録できませんでした#{@memo.errors.full_messages}"
       end
+
       manual = Procedure.find(params[:memo][:procedure_id]).manual
       # manualの製作者かどうか判断
       if manual.user == current_user
@@ -85,7 +86,6 @@ class Public::MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     @categories = where_user_id_is_current_user_id(Category)
     @category = Category.new
-
   end
 
   def update

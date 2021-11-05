@@ -81,3 +81,4 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'font-awesome-sass'
 gem 'coderay'
+gem 'whenever', require: false
