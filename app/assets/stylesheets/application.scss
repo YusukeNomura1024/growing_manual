@@ -38,7 +38,7 @@ body {
 
 .body_color__about_page{
   background: linear-gradient(-135deg, rgba(169, 254, 255, 0.9), rgba(174, 195, 239, 0.9)),
-  url(/assets/background-about.jpg);
+  image-url("background-about.jpg");
   background-size: cover;
   background-position: top;
 }
@@ -598,7 +598,7 @@ pre{
 
 .confirmation__list_group li{
   text-align: left;
-  background-image: url(danger_circle.png);
+  background-image: image-url("danger_circle.png");
   background-repeat: no-repeat;
   background-size: 1em;
   background-position: 0px 3px;
