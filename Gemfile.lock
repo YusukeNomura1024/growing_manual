@@ -343,6 +343,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
+  coderay
   coffee-rails (~> 4.2)
   database_cleaner
   devise

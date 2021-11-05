@@ -17,12 +17,16 @@ class Public::MemoLinksController < ApplicationController
   end
 
   def new
-
-    if params[:sort] == 'created_at' || params[:sort].nil?
-      @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+    begin
+      if params[:sort] == 'created_at' || params[:sort].nil?
+        @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+        params[:sort] = 'created_at'
+      elsif params[:sort] == 'updated_at'
+        @memos = where_user_id_is_current_user_id(Memo).order(updated_at: "DESC").page(params[:page])
+      end
+    rescue
       params[:sort] = 'created_at'
-    elsif params[:sort] == 'updated_at'
-      @memos = where_user_id_is_current_user_id(Memo).order(updated_at: "DESC").page(params[:page])
+      flash[:notice] = "無効な操作がされましたので、ソートをデフォルトに戻しました"
     end
 
     @categories = Category.where(user_id: current_user.id)

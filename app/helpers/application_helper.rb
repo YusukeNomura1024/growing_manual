@@ -1,5 +1,7 @@
 module ApplicationHelper
   require "uri"
+  require "redcarpet"
+  require "coderay"
 
   def text_url_to_link(text)
     URI.extract(text, ['http', 'https']).uniq.each do |url|
@@ -11,4 +13,6 @@ module ApplicationHelper
 
     return text
   end
+
+  
 end

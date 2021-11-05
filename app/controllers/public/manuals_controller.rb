@@ -110,6 +110,8 @@ class Public::ManualsController < ApplicationController
 
   end
 
+  private
+
   def non_owner_to_root
     @manual = Manual.find(params[:id])
     unless current_user.id == @manual.user_id || admin_user_signed_in?
@@ -118,7 +120,6 @@ class Public::ManualsController < ApplicationController
     end
   end
 
-  private
 
   def manual_params
     params.require(:manual).permit(:title, :image, :description, :status, :release_date).merge(user_id: current_user.id)

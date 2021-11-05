@@ -53,7 +53,7 @@ class Public::MemosController < ApplicationController
       if @memo.save
         flash[:notice] = "登録しました"
       else
-        flash[:alert] = "登録できませんでした（入力漏れ・文字数オーバー）"
+        flash[:alert] = "登録できませんでした#{@memo.errors.full_messages}"
       end
       manual = Procedure.find(params[:memo][:procedure_id]).manual
       # manualの製作者かどうか判断
