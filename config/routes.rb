@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root  "homes#top"
     get   "about"                 , to: 'homes#about'
+    get   'users/:id/password_edit', to: 'users#password_edit', as: 'user_password_edit'
+    patch 'users/:id/password_reset', to: 'users#password_reset', as: 'user_password_reset'
     get   'users/:id/unsubscribe' , to: 'users#unsubscribe' , as: 'user_unsubscribe'
     patch 'users/:id/withdraw'    , to: 'users#withdraw'    , as: 'user_withdraw'
     resources :categories         , only: [:create, :destroy, :show, :index, :new]

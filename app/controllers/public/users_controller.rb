@@ -26,6 +26,21 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
+  
+  def password_edit
+    @user = User.find(current_user)
+  end
+  
+  def password_reset
+    @user = current_user
+    if @user.updata(user_params)
+      flash[:notice] = "更新しました"
+      redirect_to user_path(@user.id)
+    else
+      flash.now[:alert] = "更新できませんでした"
+      render :password_edit
+    end
+  end
 
   def unsubscribe
   end
