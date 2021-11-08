@@ -42,6 +42,7 @@
     <%= f.submit '編集内容を保存', class: "btn btn-block btn-outline-primary" %>
     <% end %>
     <%= link_to 'キャンセル', user_path(current_user), class: "btn btn-outline-cancel" %>
+    <%= link_to 'パスワード再設定', user_password(current_user), class: "btn btn-outline-success" %>
     <%= link_to '退会する', user_unsubscribe_path(current_user), class: "btn btn-outline-danger -float_right" %>
   </div>
 </main>
