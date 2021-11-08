@@ -1,7 +1,7 @@
 <div class="body_color__about_page">
-  <div class="container">
+  <div class="container about_container">
 
-    <section class="container__section">
+    <section class="container__section about0">
       <h2 class="container__title about__title">
         <%= image_tag 'takenoko.png', style: "width: 100px;", class: "about__title_image" %><br>
         <span class="title_text__strong">G</span>rowin<span class="title_text__strong">g</span> Manua<span class="title_text__strong">l</span>
@@ -13,36 +13,54 @@
       <span class="annotation">※公開中のマニュアルは閲覧できますが、マニュアルやメモの作成には会員登録が必要です。</span>
     </section>
 
-    <section class="container__section panel">
-      <h2 class="container__title">
-        メモの作成
-      </h2>
-      <p>
-        備忘録や学習の記録として<br>メモを作成できる
-      </p>
-      <%= image_tag 'make_memos.png' %>
+    <section class="container__section container__about_section about1">
+      <div class="inner">
+        <div class="block-left">
+          <h2 class="container__title">
+            メモの作成
+          </h2>
+          <%= image_tag 'make_memos.png', class: "panel" %>
+        </div>
+        <div class="block-right">
+          <p>
+            備忘録や学習の記録として<br>メモを作成できる
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section class="container__section panel">
-      <h2 class="container__title">
-        マニュアルの登録
-      </h2>
-      <p>
-        大量のメモの中から必要なものだけを<br>
-        マニュアルの手順に登録
-      </p>
-      <%= image_tag 'manual_entry.png' %>
+    <section class="container__section container__about_section about2">
+      <div class="inner">
+        <div class="block-left">
+          <h2 class="container__title">
+            マニュアルの登録
+          </h2>
+          <%= image_tag 'manual_entry.png', class: "panel" %>
+        </div>
+        <div class="block-right">
+          <p>
+            大量のメモの中から<br>必要なものだけを<br>
+            マニュアルの手順に登録
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section class="container__section panel">
-      <h2 class="container__title">
-        マニュアルの活用
-      </h2>
-      <p>
-        マニュアルを開いて必要なときに<br>
-        必要なメモだけを取り出せる
-      </p>
-      <%= image_tag 'show_manual.png' %>
+    <section class="container__section container__about_section about3">
+      <div class="inner">
+        <div class="block-left">
+          <h2 class="container__title">
+            マニュアルの活用
+          </h2>
+          <%= image_tag 'show_manual.png', class: "panel" %>
+        </div>
+        <div class="block-right">
+          <p>
+            マニュアルを開いて必要なときに<br>
+            必要なメモだけを取り出せる
+          </p>
+        </div>
+      </div>
     </section>
 
   </div>
