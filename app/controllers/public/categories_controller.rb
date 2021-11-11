@@ -23,7 +23,7 @@ class Public::CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @categories = where_user_id_is_current_user_id(Category.preload(:memos))
+    @categories = current_user.categories.preload(:memos)
     @memos = @category.memos.page(params[:page]).reverse_order
 
     if @memos.count == 0

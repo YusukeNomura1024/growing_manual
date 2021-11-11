@@ -19,10 +19,10 @@ class Public::MemoLinksController < ApplicationController
   def new
     begin
       if params[:sort] == 'created_at' || params[:sort].nil?
-        @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+        @memos = current_user.memos.page(params[:page]).reverse_order
         params[:sort] = 'created_at'
       elsif params[:sort] == 'updated_at'
-        @memos = where_user_id_is_current_user_id(Memo).order(updated_at: "DESC").page(params[:page])
+        @memos = current_user.memos.order(updated_at: "DESC").page(params[:page])
       end
     rescue
       params[:sort] = 'created_at'
@@ -41,11 +41,11 @@ class Public::MemoLinksController < ApplicationController
   end
 
   def search
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     if params[:category_id].nil?
       params[:category_id] = ""
     end
-    @total_memos = where_user_id_is_current_user_id(Memo).search(params[:keyword], params[:category_id])
+    @total_memos = current_user.memos.search(params[:keyword], params[:category_id])
     @memos = @total_memos.page(params[:page]).reverse_order
     @procedure = Procedure.find(params[:id])
     @manual = Manual.find(@procedure.manual_id)

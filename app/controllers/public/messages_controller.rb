@@ -3,7 +3,7 @@ class Public::MessagesController < ApplicationController
   before_action :non_owner_to_root, only: [:index, :create]
 
   def index
-    @messages = where_user_id_is_current_user_id(Message).page(params[:page]).per(8).reverse_order
+    @messages = current_user.messages.page(params[:page]).per(8).reverse_order
     @message = Message.new
   end
 

@@ -3,21 +3,21 @@ class Public::MemosController < ApplicationController
   before_action :non_owner_to_root, only: [:show, :destroy, :update, :edit]
 
   def index
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     if params[:sort] == 'created_at' || params[:sort].nil?
-      @memos = where_user_id_is_current_user_id(Memo).page(params[:page]).reverse_order
+      @memos = current_user.memos.page(params[:page]).reverse_order
       params[:sort] = 'created_at'
     elsif params[:sort] == 'updated_at'
-      @memos = where_user_id_is_current_user_id(Memo).order(updated_at: "DESC").page(params[:page]).per(9)
+      @memos = current_user.memos.order(updated_at: "DESC").page(params[:page]).per(9)
     end
   end
 
   def search
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     if params[:category_id].nil?
       params[:category_id] = ""
     end
-    @memos = where_user_id_is_current_user_id(Memo).search(params[:keyword], params[:category_id]).page(params[:page]).per(9).reverse_order
+    @memos = current_user.memos.search(params[:keyword], params[:category_id]).page(params[:page]).per(9).reverse_order
     if @memos.count == 0
       @list_title = "キーワード「#{params[:keyword]}」 の該当なし"
     else
@@ -39,13 +39,13 @@ class Public::MemosController < ApplicationController
 
   def new
     @memo = Memo.new
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     @category = Category.new
   end
 
   def create
     @memo = Memo.new(memo_params)
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     @category = Category.new
 
     # procedureにも登録するかどうか判断
@@ -84,13 +84,13 @@ class Public::MemosController < ApplicationController
 
   def edit
     @memo = Memo.find(params[:id])
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     @category = Category.new
   end
 
   def update
     @memo = Memo.find(params[:id])
-    @categories = where_user_id_is_current_user_id(Category)
+    @categories = current_user.categories
     @category = Category.new
     # マニュアルからの遷移の場合はマニュアルページに戻る
     if !params[:memo][:manual_id].nil?
