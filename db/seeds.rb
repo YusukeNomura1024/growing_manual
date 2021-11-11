@@ -16,6 +16,9 @@
 # User.create!(full_name: '福島千夏', pen_name: 'チナツ', email: 'hukushima@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 # Manual.create!(user_id: 1, title: "基本のマニュアル", image_id: nil, description: "基本のマニュアルです", status: false, release_date: nil) if Rails.env.development?
+# for num in 1..10 do
+#   Manual.create!(user_id: 3, title: "マニュアル#{num}", image_id: nil, description: "基本のマニュアルです", status: true, release_date: nil) if Rails.env.development?
+# end
 
 # Review.create!(user_id: 2, manual_id: 1, comment: 'いいですね。', rate: 3) if Rails.env.development?
 # Review.create!(user_id: 3, manual_id: 1, comment: 'いいですね。', rate: 3) if Rails.env.development?

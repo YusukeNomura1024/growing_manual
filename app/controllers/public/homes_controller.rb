@@ -14,7 +14,6 @@ class Public::HomesController < ApplicationController
       @manuals = Manual.preload(:bookmarked_users, :reviews, :user).where(status: true, user_id: @user.id).page(params[:page]).reverse_order
       @list_title = "#{@user.pen_name} のマニュアル一覧 （全 #{@manuals.count}件）"
     end
-
   end
 
 

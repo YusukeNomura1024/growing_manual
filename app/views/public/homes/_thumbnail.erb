@@ -1,0 +1,15 @@
+これが表示されればサムネイル成功です。
+<% manuals.each do |manual| %>
+  <ul class="list__body panel">
+    <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
+    <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
+    <li class="list__bookmarked_users"><span class="bookmark-color">♥ <%= manual.bookmarked_users.size %></span></li>
+    <li class="list__rate"><%= manual.average_star %></li>
+    <li class="list_thumbnail">
+      <%= link_to user_path(manual.user) do %>
+        <%= attachment_image_tag manual.user, :image, size: "40x40", fallback: "no_image.jpg", class: "panel" %>
+      <% end %>
+    </li>
+    <li class="list__creator"><%= link_to manual.user.pen_name, user_path(manual.user) %></li>
+  </ul>
+<% end %>
