@@ -34,11 +34,11 @@
     <%= render 'public/tags/public_list', tags: @tags %>
   </div>
 
-  <div class="main__center_content everyone_manual_list list__group">
-    <div class="scroll-list" id="jscroll">
-      <% if params[:display_type] == "thumbnail" %>
-        <%= render 'thumbnail', manuals: @manuals %>
-      <% else %>
+  <% if params[:display_type] == "thumbnail" %>
+    <%= render 'thumbnail', manuals: @manuals %>
+  <% else %>
+    <div class="main__center_content everyone_manual_list list__group">
+      <div class="scroll-list" id="jscroll">
         <% @manuals.each do |manual| %>
           <ul class="list__body panel">
             <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
@@ -53,12 +53,13 @@
             <li class="list__creator"><%= link_to manual.user.pen_name, user_path(manual.user) %></li>
           </ul>
         <% end %>
-      <% end %>
-      <div class="invisible" style="height: 1px;">
-        <%= paginate @manuals %>
+        <div class="invisible" style="height: 1px;">
+          <%= paginate @manuals %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
+
 
 
 </main>
