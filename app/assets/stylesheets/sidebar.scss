@@ -9,8 +9,16 @@
 
 }
 
+.sidebar__list--scroll{
+  overflow-y: scroll;
+  height: 90%;
+  overflow-wrap: break-word;
+}
 
-
+.sidebar.-fixed,
+.sidebar_second.-fixed{
+  position: fixed;
+}
 .sidebar--hidden {
     left: -170px;
     transition: left 0.5s;
@@ -23,6 +31,11 @@
   width: 200px;
   max-height: calc(100% - 70px);
   transition: left 0.5s;
+}
+.sidebar_second__list--scroll{
+  overflow-y: scroll;
+  max-height: 75vh;
+  overflow-wrap: break-word;
 }
 
 .sidebar_second--hidden {

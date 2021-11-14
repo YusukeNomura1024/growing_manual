@@ -31,7 +31,7 @@
 
   </div>
 
-  <div class="main__left_content -outer_radius_border panel sidebar">
+  <div class="main__left_content -max_width_300px -outer_radius_border panel sidebar -fixed">
     <div class="procedure__list_group_head sidebar__hidden_parent">
       <h3>手順</h3>
       <div class="sidebar__hidden_button"><i class="fas fa-arrow-circle-left text--danger_color"></i></div>
@@ -42,18 +42,16 @@
         <% end %>
       <% end %>
     </div>
-    <ul class="tab-list" style="list-style: none;">
+    <ul class="tab-list sidebar__list--scroll" style="list-style: none;">
     <% @procedures.preload(:memo_links).each do |procedure| %>
       <li class="tab" href="<%= '#' + 'tab' + procedure.id.to_s %>">
-          <%= procedure.position %>
-          <%= procedure.title %>
-          :（<%= procedure.memo_links.size %>）
+          <%= procedure.position %> <%= procedure.title %>:（<%= procedure.memo_links.size %>）
       </li>
     <% end %>
     </ul>
   </div>
 
-  <div class="main__center_content main__content--narrow sidebar_second">
+  <div class="main__center_content main__content--narrow sidebar_second -fixed">
     <ul class="tab-list" style="list-style: none;">
     <% @procedures.preload(:memo_links).each do |procedure| %>
       <li class="tabbox -outer_radius_border panel" id="<%= 'tab' + procedure.id.to_s %>">
