@@ -784,6 +784,69 @@ pre{
 
 .about0{
   margin-bottom: 30px;
+  height: calc(100vh - 130px);
+}
+
+@keyframes bar {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+
+  16% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    height: 8rem;
+  }
+
+  45% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    height: 0;
+  }
+
+  66.6% {
+    -webkit-transform: scaleY(1) translate3d(0,100%,0);
+    transform: scaleY(1) translate3d(0,100%,0);
+    height: 0;
+  }
+
+  to {
+    -webkit-transform: scaleY(1) translate3d(0,100%,0);
+    transform: scaleY(1) translate3d(0,100%,0);
+    height: 0;
+  }
+}
+
+.eyecatch{
+  position: relative;
+  &::before{
+    content: "";
+    height: 8rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 2px;
+    background: hsla(0,0%,100%,.6);
+    z-index: 1;
+  }
+  &::after{
+    width: 6px;
+    background: linear-gradient(-135deg, #3ab4ff, #005fbf);
+    z-index: 1;
+    content: "";
+    height: 8rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 2px 2px 0 0;
+    transform-origin: 50% 0;
+    animation: bar 2s ease-out 3s infinite;
+  }
 }
 
 .about1{
@@ -808,7 +871,7 @@ pre{
 .container__about_section:before{
   content: "";
   height: 10px;
-  background-color: #2179c9;
+  background: linear-gradient(-135deg, #3ab4ff, #005fbf);
   display: block;
   width: 100%;
   margin: 0;
