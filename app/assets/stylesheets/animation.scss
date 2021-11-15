@@ -1,0 +1,9 @@
+@keyframes spacing {
+  from { letter-spacing: normal; }
+  to   { letter-spacing: .5em; }
+}
+
+.text_move--spacing{
+  animation: spacing 1s linear 1s 7 alternate;
+  letter-spacing: .5em;
+}
