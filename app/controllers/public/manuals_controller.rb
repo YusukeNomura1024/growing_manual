@@ -11,6 +11,9 @@ class Public::ManualsController < ApplicationController
       @manuals = Manual.includes(:tag_maps, :bookmarked_users, :bookmarks, :reviews).where(user_id: current_user).sort {|a,b| b.bookmarked_users.size <=> a.bookmarked_users.size}
       @manuals = Kaminari.paginate_array(@manuals).page(params[:page])
     end
+    if params[:display_type].nil?
+      params[:display_type] = "list"
+    end
   end
 
   def show

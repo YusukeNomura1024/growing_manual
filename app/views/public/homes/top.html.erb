@@ -1,6 +1,18 @@
 <main class=main>
-  <%= link_to "サムネイルボタン", root_path(display_type: "thumbnail") %>
+
+  <div class="<%= "display_type_#{params[:display_type]}" %>">
+    <%= link_to root_path(display_type: "thumbnail"), class: "thumbnail_btn" do %>
+      <i class="fas fa-th-large"></i> サムネイル表示
+    <% end %>
+  </div>
+  <div class="<%= "display_type_#{params[:display_type]}" %>">
+    <%= link_to root_path(display_type: "list"), class: "list_btn" do %>
+      <i class="fas fa-bars"></i> リスト表示
+    <% end %>
+  </div>
+
   <%= render 'breadlists/top' %>
+
   <div class="main__top_content">
 
     <h2>公開中のマニュアル<br>
@@ -14,9 +26,9 @@
       <!--新着順クリックしたら、paramsにsort:を送る-->
       <% case params[:sort] %>
       <% when 'bookmarks' %>
-        <h2><i class="fas fa-caret-right"></i>人気順<i class="fas fa-caret-left"></i><%= link_to '新着順', root_path(sort: 'created_at'), class: "switch_order__right_btn" %></h2>
+        <h2><i class="fas fa-caret-right"></i>人気順<i class="fas fa-caret-left"></i><%= link_to '新着順', root_path(sort: 'created_at', display_type: params[:display_type] ), class: "switch_order__right_btn" %></h2>
       <% when 'created_at' %>
-        <h2><%= link_to '人気順', root_path(sort: 'bookmarks'), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>新着順<i class="fas fa-caret-left"></i></h2>
+        <h2><%= link_to '人気順', root_path(sort: 'bookmarks', display_type: params[:display_type]), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>新着順<i class="fas fa-caret-left"></i></h2>
       <% end %>
     </div>
 
@@ -24,6 +36,7 @@
       <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
         <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
         <%= f.hidden_field :target, value: 'everyone' %>
+        <%= f.hidden_field :display_type, value: params[:display_type] %>
         <%= button_tag "検索", type: 'submit', class: "search_button" %>
       <% end %>
     </div>
@@ -35,7 +48,7 @@
   </div>
 
   <% if params[:display_type] == "thumbnail" %>
-    <%= render 'thumbnail', manuals: @manuals %>
+    <%= render 'public/homes/thumbnail', manuals: @manuals %>
   <% else %>
     <div class="main__center_content everyone_manual_list list__group">
       <div class="scroll-list" id="jscroll">

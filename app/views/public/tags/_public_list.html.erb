@@ -2,7 +2,7 @@
   <h3 class="tag_search__title">人気タグ検索</h3>
   <ul>
   <% tags.each do |tag| %>
-    <li><%= link_to "#{tag[0]}（#{tag[1]}件）", "/tags/#{tag[0]}?target=everyone" %></li>
+    <li><%= link_to "#{tag[0]}（#{tag[1]}件）", "/tags/#{tag[0]}?target=everyone&display_type=#{params[:display_type]}" %></li>
   <% end %>
   </ul>
 </div>

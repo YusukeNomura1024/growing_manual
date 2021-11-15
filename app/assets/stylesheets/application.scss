@@ -1141,3 +1141,19 @@ pre{
 .-word_wrap{
   word-wrap: break-word;
 }
+.display_type_thumbnail .thumbnail_btn,
+.display_type_list .list_btn {
+  background: rgba(0, 0, 0, 0.4);
+  padding: .2rem .5rem;
+  border-radius: 15px;
+  color: #fff;
+}
+.thumbnail_btn{
+  margin-right: 10px;
+  text-decoration: none;
+  color: #000;
+}
+.list_btn{
+  text-decoration: none;
+  color: #000;
+}

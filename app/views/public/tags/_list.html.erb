@@ -3,9 +3,9 @@
   <ul>
   <% tags.preload(:manuals).each do |tag| %>
     <% if current_page?(root_path) || params[:target] == 'everyone' %>
-      <li><%= link_to "#{tag.name}(#{tag.manuals.size}件)", tag_path(tag, target: 'everyone') %></li>
+      <li><%= link_to "#{tag.name}(#{tag.manuals.size}件)", tag_path(tag, target: 'everyone', display_type: params[:display_type]) %></li>
     <% else %>
-      <li><%= link_to "#{tag.name}(#{tag.manuals.size}件)", tag_path(tag, target: 'mine') %></li>
+      <li><%= link_to "#{tag.name}(#{tag.manuals.size}件)", tag_path(tag, target: 'mine', display_type: params[:display_type]) %></li>
     <% end %>
   <% end %>
   </ul>
