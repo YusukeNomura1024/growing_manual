@@ -412,7 +412,7 @@ pre{
 
 .tag_search__title,
 .category_search__title{
-  background-color: $main-color;
+  background-color: $accent-color;
   border-radius: 15px;
   padding: 0 10px;
   margin-bottom: 10px;
@@ -427,7 +427,7 @@ pre{
   padding: 2px 0;
 
   &:hover {
-    background-color: $main-color;
+    background-color: $accent-color;
   }
 
   a{
@@ -625,7 +625,7 @@ pre{
 
   display: flex;
   position: relative;
-  border-left: solid 8px #000000;
+  border-left: solid 8px $accent-color;
   background-color: #ffffff;
   margin-bottom: 5px;
   line-height: 2rem;
@@ -848,32 +848,15 @@ pre{
   }
 }
 
-.about1{
-  background-color: #707070;
-  background-image: image-url("takenoko.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-attachment: fixed;
-}
-.about2{
-  background-color: #707070;
-  background-image: image-url("takenoko.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-attachment: fixed;
-}
-.about3{
-  background-color: #707070;
-  background-image: image-url("takenoko.png");
+.about1, .about2, .about3{
+  background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   background-attachment: fixed;
 }
 
-.container__about_section:before{
+.about1:before{
   content: "";
   height: 10px;
   background: linear-gradient(-135deg, #3ab4ff, #005fbf);
@@ -907,17 +890,9 @@ pre{
   padding: 70px 0;
 }
 .container__section_bg_block_right{
-  background-image: image-url("right_bg.png");
-  background-size: 70% 100%;
-  background-repeat: no-repeat;
-  background-position: right 0;
   height: 100%;
 }
 .container__section_bg_block_left{
-  background-image: image-url("left_bg.png");
-  background-size: 70% 100%;
-  background-repeat: no-repeat;
-  background-position: left 0;
   height: 100%;
 }
 

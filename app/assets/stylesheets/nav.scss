@@ -13,32 +13,33 @@
   text-align: center;
   display: table;
   width: 110px;
-  border-right: 1px solid #e5e5e5;
   cursor: pointer;
   &:first-child{
     border-left: 1px solid #e5e5e5;
   }
 
   &:hover:not(.danger){
-    border-bottom: 2px solid $primary-color;
-    a{
+
+    >a{
       color: $primary-color;
+      border-bottom: 2px solid $primary-color;
     }
   }
   &:hover.danger{
     background-color: $danger-color;
     transition: background-color 0.5s;
-    a.danger{
+    >a.danger{
       color: #fff;
     }
   }
 
 
-  a{
+  >a{
     display: table-cell;
     vertical-align: top;
     font-size: 12px;
     color: #000000;
+    border-right: 1px solid #e5e5e5;
     &.danger{
       color: $danger-color;
     }
@@ -48,6 +49,17 @@
   i{
     font-size: 17px;
   }
+}
+
+.nav_btn__hidden_list{
+  display: none;
+
+}
+.nav_btn:hover .nav_btn__hidden_list{
+  display: table-row;
+  background-color: $accent-color;
+  color: white;
+  border-radius: 10px;
 }
 
 .nav__admin_login_msg{
