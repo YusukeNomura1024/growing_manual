@@ -766,7 +766,6 @@ pre{
 
 .container__about_section {
   padding: 0;
-  height: 700px;
 }
 
 .container__about_section .inner{
@@ -850,21 +849,27 @@ pre{
 }
 
 .about1{
-  background-image: image-url("block01-bg.jpg");
-  background-position: left 0;
-  background-size: cover;
+  background-color: #707070;
+  background-image: image-url("takenoko.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-attachment: fixed;
 }
 .about2{
-  background-image: image-url("block03-bg.jpg");
-  background-position: left 0;
-  background-size: cover;
+  background-color: #707070;
+  background-image: image-url("takenoko.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-attachment: fixed;
 }
 .about3{
-  background-image: image-url("block02-bg.jpg");
-  background-position: left 0;
-  background-size: cover;
+  background-color: #707070;
+  background-image: image-url("takenoko.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-attachment: fixed;
 }
 
@@ -903,14 +908,14 @@ pre{
 }
 .container__section_bg_block_right{
   background-image: image-url("right_bg.png");
-  background-size: 65% 100%;
+  background-size: 70% 100%;
   background-repeat: no-repeat;
   background-position: right 0;
   height: 100%;
 }
 .container__section_bg_block_left{
   background-image: image-url("left_bg.png");
-  background-size: 65% 100%;
+  background-size: 70% 100%;
   background-repeat: no-repeat;
   background-position: left 0;
   height: 100%;
