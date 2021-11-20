@@ -484,6 +484,10 @@ pre{
   flex-grow: 1;
   height: 100%;
 }
+.main__left_content--type_category{
+  width: 200px;
+}
+
 
 .main__left_content.-max_width_300px{
   max-width: 300px;
@@ -494,6 +498,9 @@ pre{
   width: calc(100% - 470px);
   margin-left: 10px;
   flex-grow: 1;
+}
+.-margin_left_sidebar{
+  margin-left: 100px;
 }
 
 
@@ -1136,4 +1143,7 @@ pre{
 .list_btn{
   text-decoration: none;
   color: #000;
+}
+.color-white{
+  color: white;
 }

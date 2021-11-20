@@ -18,11 +18,11 @@
     <% end %>
   </div>
 
-  <div class="main__left_content">
+  <div class="main__left_content sidebar sidebar--radius -fixed">
     <%= render 'public/categories/list', categories: @categories %>
   </div>
 
-  <div class="main__center_content main__center_content--plus_right">
+  <div class="main__center_content -margin_left_sidebar main__center_content--plus_right">
     <div class="d-flex d-flex--align_items_center mb-1">
       <%= link_to '新規作成', new_memo_path, class: "btn btn-outline-primary" %>
       <div class="d-flex d-flex--flex_direction_column ml-auto">

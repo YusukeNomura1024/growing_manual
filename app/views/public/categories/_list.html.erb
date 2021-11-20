@@ -1,11 +1,11 @@
-<div class="category_search panel">
+<div class="category_sidebar">
   <h3 class="category_search__title">カテゴリー検索</h3>
   <%= link_to categories_path, class: "btn btn-outline-success btn--small mb-1 mt-0" do %>
     カテゴリー管理<i class="fas fa-pen"></i>
   <% end %>
-  <ul>
+  <ul class="sidebar__list--scroll">
   <% categories.preload(:memos).each do |category| %>
-    <li><%= link_to "#{category.name} (#{category.memos.size}件)", category_path(category) %></li>
+    <li><%= link_to "#{category.name} (#{category.memos.size}件)", category_path(category), class: "color-white" %></li>
   <% end %>
   </ul>
 </div>
