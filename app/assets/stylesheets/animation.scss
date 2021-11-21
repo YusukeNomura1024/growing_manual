@@ -18,7 +18,36 @@
     opacity: 1;
   }
 }
+@keyframes slidein-X {
+  0% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes slidein-X-reverse {
+  0% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
 
 .text_move--slidein_y{
   animation: slidein-Y 1s ease 0s forwards;
+}
+.text_move--slidein_reverse_x{
+  animation: slidein-X-reverse 1s ease 0s forwards;
+}
+
+
+.img_move--slidein_x{
+  animation: slidein-X 1s ease 0s forwards;
 }
