@@ -783,6 +783,9 @@ pre{
   justify-content: center;
   margin: 0 auto;
   text-shadow: 2px 2px 2px white, -2px -2px 2px white, -2px 2px 2px white, 2px -2px 2px white;
+  position: relative;
+  padding: 30px;
+  background-color: #ffffff;
   p{
     font-size: 2rem;
   }
@@ -856,7 +859,7 @@ pre{
 }
 
 .about1, .about2, .about3{
-  background-color: #fff;
+  background-color: #f2f2f2;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

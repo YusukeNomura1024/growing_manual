@@ -7,3 +7,18 @@
   animation: spacing 1s linear 1s 7 alternate;
   letter-spacing: .5em;
 }
+
+@keyframes slidein-Y {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.text_move--slidein_y{
+  animation: slidein-Y 1s ease 0s forwards;
+}

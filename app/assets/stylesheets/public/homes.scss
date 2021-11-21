@@ -5,6 +5,49 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.about__title_back_text{
+  font-size: 7rem;
+  color: rgba(147, 84, 250, 0.3);
+  font-weight: 600;
+  line-height: 1.0;
+  background: -webkit-linear-gradient(0deg, rgba(147, 84, 250, 0.1), rgba(194, 77, 233, 0.3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  top: 20%;
+  right: 0;
+  left: 0;
+  font-family: "游ゴシック", "游ゴシック体";
+}
+.inner > .inner__title_back_text{
+  font-size: 5rem!important;
+  color: rgba(147, 84, 250, 0.1);
+  font-weight: 600;
+  line-height: 1.0;
+  background: -webkit-linear-gradient(0deg, rgba(147, 84, 250, 0.1), rgba(194, 77, 233, 0.1));
+  -webkit-background-clip: text;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  font-family: "游ゴシック", "游ゴシック体";
+  text-shadow: none;
+  opacity: 0;
+}
+.inner::before{
+  content: "";
+  width: calc(100% - 10px);
+  height: calc(100% - 8px);
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: 0 auto;
+  position: absolute;
+  border-top: solid 2px #f2f2f2;
+  border-left: solid 2px #f2f2f2;
+  border-right: solid 2px #f2f2f2;
+  border-bottom: solid 2px #f2f2f2;
+}
 
 .about__title::after{
   content: "";
