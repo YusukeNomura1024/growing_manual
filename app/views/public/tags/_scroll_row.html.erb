@@ -1,0 +1,21 @@
+<ul class="tag_row__list_group">
+  <div class="tag_row__list_group_x_padding">
+    <div class="tag_row__list_group_y_padding">
+      <div class="tag_row__list_group_inner">
+        <% tags.each do |tag| %>
+          <li class="tag_row__list_item">
+            <%= link_to "/tags/#{tag[0]}?target=everyone&display_type=#{params[:display_type]}", class: "tag_row__list_item_link" do %>
+              <div class="tag_row__list_item_text_box">
+                <div class="tag_row__list_item_text_detail">
+                  <div class="tag_row__list_item_title">
+                    <%= "\##{tag[0]}" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</ul>
