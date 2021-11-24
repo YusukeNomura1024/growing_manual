@@ -13,37 +13,6 @@
 
   <%= render 'breadlists/top' %>
 
-  <div class="tag_row">
-    <div class="tag_row__inner">
-      <div id="tag_row__list_area" class="tag_row__list_area">
-        <%= render 'public/tags/scroll_row', tags: @tags %>
-      </div>
-      <div class="tag_row__list_scroller">
-        <button type="button" id="list_scroller__left_btn" class="list_scroller__left_btn" style="left: -24px; padding-left: 0px; padding-bottom: 0px;">
-          <div class="list_scroller__left_btn_frame">
-            <svg class="list_scroller__left_btn_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.5 428.81">
-              <defs>
-                <style>.cls-1{fill:currentcolor;stroke:currentcolor;stroke-linecap:round;stroke-miterlimit:10;stroke-width:60px;}</style>
-              </defs>
-              <line class="cls-1" x1="214.5" y1="398.81" x2="30" y2="214.31"/>
-              <line class="cls-1" x1="30" y1="214.5" x2="214.5" y2="30"/>
-            </svg>
-          </div>
-        </button>
-        <button type="button" id="list_scroller__right_btn" class="list_scroller__right_btn" style="right: -24px; padding-right: 0px; padding-bottom: 0px;">
-          <div class="list_scroller__right_btn_frame">
-            <svg class="list_scroller__right_btn_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.5 428.81">
-              <defs>
-                <style>.cls-1{fill:currentcolor;stroke:currentcolor;stroke-linecap:round;stroke-miterlimit:10;stroke-width:60px;}</style>
-              </defs>
-              <line class="cls-1" x1="30" y1="30" x2="214.5" y2="214.5"/>
-              <line class="cls-1" x1="214.5" y1="214.31" x2="30" y2="398.81"/>
-            </svg>
-          </div>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <div class="main__top_content">
 
@@ -71,6 +40,38 @@
         <%= f.hidden_field :display_type, value: params[:display_type] %>
         <%= button_tag "検索", type: 'submit', class: "search_button" %>
       <% end %>
+    </div>
+
+    <div class="tag_row">
+      <div class="tag_row__inner">
+        <div id="tag_row__list_area" class="tag_row__list_area">
+          <%= render 'public/tags/scroll_row', tags: @tags %>
+        </div>
+        <div class="tag_row__list_scroller">
+          <button type="button" id="list_scroller__left_btn" class="list_scroller__left_btn" style="left: -24px; padding-left: 0px; padding-bottom: 0px;">
+            <div class="list_scroller__left_btn_frame">
+              <svg class="list_scroller__left_btn_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.5 428.81">
+                <defs>
+                  <style>.cls-1{fill:currentcolor;stroke:currentcolor;stroke-linecap:round;stroke-miterlimit:10;stroke-width:60px;}</style>
+                </defs>
+                <line class="cls-1" x1="214.5" y1="398.81" x2="30" y2="214.31"/>
+                <line class="cls-1" x1="30" y1="214.5" x2="214.5" y2="30"/>
+              </svg>
+            </div>
+          </button>
+          <button type="button" id="list_scroller__right_btn" class="list_scroller__right_btn" style="right: -24px; padding-right: 0px; padding-bottom: 0px;">
+            <div class="list_scroller__right_btn_frame">
+              <svg class="list_scroller__right_btn_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.5 428.81">
+                <defs>
+                  <style>.cls-1{fill:currentcolor;stroke:currentcolor;stroke-linecap:round;stroke-miterlimit:10;stroke-width:60px;}</style>
+                </defs>
+                <line class="cls-1" x1="30" y1="30" x2="214.5" y2="214.5"/>
+                <line class="cls-1" x1="214.5" y1="214.31" x2="30" y2="398.81"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
     </div>
 
   </div>
