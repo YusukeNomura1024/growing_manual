@@ -97,6 +97,9 @@
     <div class="container__section">
       <div class="other_user_system_bg">
         <div class="other_user_system">
+          <p class="inner__title_back_text text_move--slidein_y">
+            Other User Communication
+          </p>
           <h2 class="section__title">
             他のユーザーとのやり取り
           </h2>
@@ -118,15 +121,70 @@
             </div>
           </div>
           <div class="entry_btn">
-            <%= link_to '#', class: "btn btn-outline-primary" do %>
+            <%= link_to new_user_registration_path, class: "btn btn-outline-primary" do %>
               登録してほかの仲間を見つけよう
-              <span>
-                →
-              </span>
             <% end %>
           </div>
         </div>
       </div>
     </div>
+    <footer class="container__section footer_section">
+      <div class="sitemap">
+        <div class="sitemap__row">
+          <div class="sitemap__row_box_left">
+            <div class="sitemap__row_box_left_item">
+              GrowingManualについて
+            </div>
+            <div class="sitemap__row_box_left_item_flex">
+              <%= link_to 'トップページ', root_path, class: "sitemap__row_box_left_link sitemap__row_box_left_link_toppage" %>
+              <%= link_to 'アバウトページ', '/about', class: "sitemap__row_box_left_link sitemap__row_box_left_link_aboutpage" %>
+            </div>
+          </div>
+          <div class="sitemap__row_box_middle">
+            <div class="sitemap__row_box_middle_title">
+              使い方ガイド
+            </div>
+            <div class="sitemap__row_box_middle_flex">
+              <div class="sitemap__row_box_middle_left">
+                <div class="sitemap__row_box_middle_desc">
+                  <%= link_to '準備中', '#' %>
+                </div>
+                <div class="sitemap__row_box_middle_desc">
+                  <%= link_to '準備中', '#' %>
+                </div>
+                <div class="sitemap__row_box_middle_desc">
+                  <%= link_to '準備中', '#' %>
+                </div>
+              </div>
+              <div class="sitemap__row_box_middle_right">
+                <div class="sitemap__row_box_middle_desc">
+                  <%= link_to '準備中', '#' %>
+                </div>
+                <div class="sitemap__row_box_middle_desc">
+                  <%= link_to '準備中', '#' %>
+                </div>
+                <div class="sitemap__row_box_middle_desc">
+                  <%= link_to '準備中', '#' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sitemap__row_box_right">
+            <div class="sitemap__row_box_right_left">
+              <div class="sitemap__row_box_right_item">
+                <%= link_to 'GrowingManual ログイン', new_user_session_path %>
+              </div>
+            </div>
+            <div class="sitemap__row_box_right_right"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__logo">
+        <h2 class="container__title about__title">
+          <%= image_tag 'takenoko.png', style: "width: 100px;", class: "about__title_image" %><br>
+          <span class="title_text__strong">G</span>rowin<span class="title_text__strong">g</span> Manua<span class="title_text__strong">l</span>
+        </h2>
+      </div>
+    </footer>
   </div>
 </div>

@@ -4,7 +4,7 @@
     <div class="thumbnail_card_group">
       <% manuals.each do |manual| %>
         <ul class="panel thumbnail_card">
-          <li class="thumbnail_img"><%= attachment_image_tag manual, :image, size: "100x100", fallback: "no_image.jpg", class: "panel" %></li>
+          <li class="thumbnail_img"><%= attachment_image_tag manual, :image, width: "100%", fallback: "no_image.jpg", class: "panel" %></li>
           <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
           <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
           <li class="list__bookmarked_users"><span class="bookmark-color">♥ <%= manual.bookmarked_users.size %></span></li>
