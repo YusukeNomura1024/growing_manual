@@ -77,6 +77,38 @@
   background: linear-gradient(-135deg, rgba(58, 180, 255, 1), rgba(0, 95, 191, 1));
 }
 
+.case_row{
+  display: flex;
+  justify-content: space-between;
+}
+.case_row__dl{
+  background-color: #ba91ff;
+  strong{
+    font-size: 1.05rem;
+    display: block;
+    margin: 0 auto 15px;
+    text-align: center;
+  }
+  dt {
+    color: #116bb7;
+    font-size: 1.3rem;
+    font-weight: 400;
+    height: 108px;
+    line-height: 110%;
+    margin: 0 auto;
+    padding: 25px 0 0;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 100px;
+  }
+  .txt {
+    color: #116bb7;
+  }
+}
+
 .other_user_system_bg{
   background-image: image-url("other_user_system_bg.png");
   background-color: #ffffff;
