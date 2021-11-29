@@ -7,6 +7,7 @@ window.document.addEventListener('turbolinks:load', function(){
     const innerTitleBackText = document.getElementsByClassName('inner__title_back_text');
     const innerImg = document.getElementsByClassName('inner__img');
     const innerDirection = document.getElementsByClassName('inner__direction');
+    const caseRow = document.getElementsByClassName('case_row')[0];
 
 
     const position = Math.floor(window.innerHeight * .75);
@@ -27,6 +28,13 @@ window.document.addEventListener('turbolinks:load', function(){
       let offsetTop = Math.floor(innerDirection[i].getBoundingClientRect().top);
       if (offsetTop < position) {
         innerDirection[i].classList.add('text_move--slidein_reverse_x');
+      }
+    }
+    let offsetTop = Math.floor(caseRow.getBoundingClientRect().top);
+    if (offsetTop < position) {
+      const caseDl = document.getElementsByClassName('case_row__dl');
+      for (let i = 0; i < caseDl.length; i++) {
+        caseDl[i].classList.add('slide_move_y');
       }
     }
   };
