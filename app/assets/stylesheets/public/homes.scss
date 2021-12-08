@@ -212,3 +212,43 @@
   justify-content: center;
   margin-top: 20px;
 }
+
+.bg-shadow{
+  &.panel {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  &::before {
+    content: "";
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    position: absolute;
+    background: #003162;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 8px 20px 8px 20px;
+    // border: 2px solid #003162;
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    background-color: #fff;
+    z-index: -1;
+    // border: 2px solid #003162;
+  }
+}
+
+.active_slide {
+  &:hover {
+    transform: translateX(-5px);
+    border-left-width: 0px;
+    transition: transform 0.3s;
+  }
+}

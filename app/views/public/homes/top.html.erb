@@ -83,7 +83,7 @@
     <div class="main__center_content everyone_manual_list list__group">
       <div class="scroll-list" id="jscroll">
         <% @manuals.each do |manual| %>
-          <ul class="list__body panel">
+          <ul class="list__body panel active_slide">
             <li class="list__created_at_date"><%= manual.created_at.strftime('%Y.%m.%d') %></li>
             <li class="list__title"><%= link_to "#{manual.title}", manual_path(manual) %></li>
             <li class="list__bookmarked_users"><span class="bookmark-color">♥ <%= manual.bookmarked_users.size %></span></li>
