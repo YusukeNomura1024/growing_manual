@@ -58,19 +58,20 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  span {
+  &::before {
+    content: "";
     display: inline-block;
     width: 100%;
     height: 100%;
     background-color: #003162;
     position: absolute;
     transform: scale(0%);
-    transition: transform 0.5s;
+    transition: transform 0.5s ease-in-out;
     border-radius: 50%;
     z-index: -1;
   }
   &:hover {
-    span {
+    &::before {
     transform: scale(100%);
     }
     div {
