@@ -25,6 +25,10 @@
   height: 410px;
   padding: 5px;
   margin: 2px;
+  overflow: hidden;
+  &:hover {
+    background-color: #ededed;
+  }
 }
 .thumbnail_img{
   margin: 0 auto;

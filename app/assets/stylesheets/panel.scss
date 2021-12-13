@@ -5,7 +5,17 @@
   box-shadow: 0 1px 3px rgba(21, 27, 38, 0.25);
   border-radius: 8px;
   background-color: #ffffff;
+
+  &.panel--hover_change_border {
+    height: 50px;
+    &:hover{
+      border: 3px solid #055b5c;
+      background-color: #ffffff;
+
+    }
+  }
 }
+
 
 .panel__heading{
   display: table;

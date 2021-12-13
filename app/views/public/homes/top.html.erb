@@ -1,3 +1,14 @@
+<div class="title_area">
+  <div class="title_area__wrap">
+    <h2 class="title_area__text top_page_icon">公開中のマニュアル<br>
+      <% if @list_title.nil? %>
+      <% else %>
+        <%= @list_title %>
+      <% end %>
+    </h2>
+  </div>
+</div>
+
 <main class=main>
 
   <div class="<%= "display_type_#{params[:display_type]}" %>">
@@ -13,15 +24,8 @@
 
   <%= render 'breadlists/top' %>
 
-
   <div class="main__top_content">
 
-    <h2>公開中のマニュアル<br>
-      <% if @list_title.nil? %>
-      <% else %>
-        <%= @list_title %>
-      <% end %>
-    </h2>
 
     <div class="switch_order">
       <!--新着順クリックしたら、paramsにsort:を送る-->

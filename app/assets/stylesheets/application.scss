@@ -33,7 +33,7 @@ html {
 body {
   font-family: $gothic-group;
   // background-color: #f0f0f0;
-  background: linear-gradient(-135deg, rgba(169, 254, 255, 0.9), rgba(186, 145, 255, 0.9));
+  background: linear-gradient(-135deg, rgba(169, 254, 255, 0.9), rgba(184, 211, 255, 0.9));
 }
 
 .body_color__about_page{
@@ -770,7 +770,7 @@ pre{
   border-radius: 0 15px 15px 0;
   padding: 0.5em;
   &:hover {
-    background-color: #cdcdcd;
+    background-color: #ededed;
   }
   li{
     color: $main-color;
@@ -1111,6 +1111,45 @@ pre{
   cursor: pointer;
   display: inline-block;
   font-size: 1.2rem;
+}
+
+/******************
+タイトルエリア
+*******************/
+.title_area{
+  position: relative;
+  color: #004298;
+  background-color: #ecf9fd;
+  padding-top: 0;
+  height: 418px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.title_area__wrap{
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+.title_area__text{
+  font-family: Font Awesome\ 5 Free;
+  font-size: 42px;
+  padding-top: 170px;
+  padding-left: 60px;
+  padding-bottom: 25px;
+  opacity: 1;
+  &.top_page_icon::after {
+    content: "\f7a2";
+    text-align: center;
+    top: 70px;
+    right: 0;
+    font-size: 200px;
+    border-radius: 20px;
+    position: absolute;
+    background-color: #fff;
+    width: 426px;
+    height: 280px;
+    line-height: 280px;
+  }
 }
 
 .w-80{
