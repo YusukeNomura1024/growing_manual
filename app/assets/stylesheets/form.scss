@@ -232,3 +232,32 @@
     border-radius: 0 10px 10px 0;
   }
 }
+.search_box.search_box--block {
+  .search_box__form{
+    width: 680px;
+    background-color: #fff;
+    border: none;
+    height: 50px;
+    font-size: 1.5rem;
+    padding: 10px 10px 10px 50px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    vertical-align: middle;
+  }
+  .search_button {
+    top: 0.1px;
+    border: none;
+    height: 50px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    font-weight: bold;
+    vertical-align: middle;
+    background-color: #004298;
+    color: #FFFFFF;
+    transition: all .3s;
+    font-size: 1.5rem;
+    width: 150px;
+    letter-spacing: 10px;
+    padding: 10px 10px 10px 10px;
+  }
+}

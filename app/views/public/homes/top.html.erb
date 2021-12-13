@@ -37,7 +37,7 @@
       <% end %>
     </div>
 
-    <div class="search_box d-inline-block">
+    <div class="search_box search_box--block d-inline-block">
       <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
         <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
         <%= f.hidden_field :target, value: 'everyone' %>

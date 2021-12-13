@@ -1121,7 +1121,7 @@ pre{
   color: #004298;
   background-color: #ecf9fd;
   padding-top: 0;
-  height: 418px;
+  min-height: 418px;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -1133,9 +1133,7 @@ pre{
 .title_area__text{
   font-family: Font Awesome\ 5 Free;
   font-size: 42px;
-  padding-top: 170px;
-  padding-left: 60px;
-  padding-bottom: 25px;
+  padding: 170px 426px 25px 60px;
   opacity: 1;
   &.top_page_icon::after {
     content: "\f7a2";
