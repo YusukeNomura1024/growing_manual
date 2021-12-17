@@ -1135,8 +1135,9 @@ pre{
   font-size: 42px;
   padding: 170px 426px 25px 60px;
   opacity: 1;
-  &.top_page_icon::after {
-    content: "\f7a2";
+  &.top_page_icon::after,
+  &.manual_index_icon::after{
+
     text-align: center;
     top: 70px;
     right: 0;
@@ -1147,6 +1148,12 @@ pre{
     width: 426px;
     height: 280px;
     line-height: 280px;
+  }
+  &.top_page_icon::after{
+    content: "\f7a2";
+  }
+  &.manual_index_icon::after {
+    content: "\f518";
   }
 }
 

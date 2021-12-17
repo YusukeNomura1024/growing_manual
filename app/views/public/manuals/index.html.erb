@@ -1,3 +1,14 @@
+<div class="title_area">
+  <div class="title_area__wrap">
+    <h2 class="title_area__text manual_index_icon">マニュアル管理ページ<br>
+      <% unless @list_title.nil? %>
+       <%= @list_title %>
+      <% end %>
+    </h2>
+  </div>
+</div>
+
+
 <main class="main">
   <div class="<%= "display_type_#{params[:display_type]}" %>">
     <%= link_to manuals_path(display_type: "thumbnail"), class: "thumbnail_btn" do %>
@@ -21,11 +32,6 @@
       <% end %>
     </div>
 
-    <div>
-      <% unless @list_title.nil? %>
-        <h2><%= @list_title %></h2>
-      <% end %>
-    </div>
     <div class="d-flex  d-flex--align_items_center">
       <%= link_to '新規作成', new_manual_path, class: "btn btn-outline-primary" %>
       <div class="d-flex d-flex--flex_direction_column ml-auto">
