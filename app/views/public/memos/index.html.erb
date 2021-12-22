@@ -1,7 +1,16 @@
+<div class="title_area">
+  <div class="title_area__wrap">
+    <h2 class="title_area__text memo_index_icon">メモ管理ページ<br>
+      <% unless @list_title.nil? %>
+       <%= @list_title %>
+      <% end %>
+    </h2>
+  </div>
+</div>
+
 <main class="main">
   <%= render 'breadlists/memo_index', memo: @memo %>
   <div class="main__top_content">
-    <h2>メモ管理ページ</h2>
     <div class="switch_order">
       <% case params[:sort] %>
       <% when 'updated_at' %>
@@ -10,15 +19,9 @@
         <h2><%= link_to '更新日', memos_path(sort: 'updated_at'), class: "switch_order__left_btn" %><i class="fas fa-caret-right"></i>作成日<i class="fas fa-caret-left"></i></h2>
       <% end %>
     </div>
-
-    <% if @list_title.nil? %>
-
-    <% else %>
-      <h2><%= @list_title %></h2>
-    <% end %>
   </div>
 
-  <div class="main__left_content sidebar sidebar--radius -fixed">
+  <div class="main__left_content sidebar sidebar--radius -fixed" style="top: 95px;">
     <%= render 'public/categories/list', categories: @categories %>
   </div>
 
