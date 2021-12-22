@@ -33,10 +33,9 @@
     </div>
 
     <div class="d-flex  d-flex--align_items_center">
-      <%= link_to '新規作成', new_manual_path, class: "btn btn-outline-primary" %>
+      <%= link_to '新規作成', new_manual_path, class: "btn btn-outline-theme-color btn--large" %>
       <div class="d-flex d-flex--flex_direction_column ml-auto">
-        <h3 class="search_title">自分のマニュアルを検索</h3>
-        <div class="search_box">
+        <div class="search_box search_box--block d-inline-block">
         <%= form_with url: search_manual_path, method: :get, local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
           <%= f.hidden_field :target, value: 'mine' %>

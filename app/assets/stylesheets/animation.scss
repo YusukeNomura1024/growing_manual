@@ -1,4 +1,16 @@
 @import "variables";
+@import "mixin";
+
+@keyframes kf-animate-chars {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @keyframes spacing {
   from { letter-spacing: normal; }
@@ -79,3 +91,21 @@
     }
   }
 }
+
+.animate_title{
+  & .char {
+    display: inline-block;
+    @include animation($name: kf-animate-chars,
+      $duration: 1s,
+      $timing-function: ease-in-out,
+      $fill-mode: backwards
+    )
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.2s;
+      }
+    }
+  }
+}
+

@@ -27,10 +27,9 @@
 
   <div class="main__center_content -margin_left_sidebar main__center_content--plus_right">
     <div class="d-flex d-flex--align_items_center mb-1">
-      <%= link_to '新規作成', new_memo_path, class: "btn btn-outline-primary" %>
+      <%= link_to '新規作成', new_memo_path, class: "btn btn-outline-theme-color btn--large" %>
       <div class="d-flex d-flex--flex_direction_column ml-auto">
-        <h3 class="search_title">メモを検索</h3>
-        <div class="search_box">
+        <div class="search_box search_box--block d-inline-block">
           <%= form_with url: search_memo_path, method: :get, local: true do |f| %>
             <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "search_box__form" %>
             <%= button_tag "検索", type: 'submit', class: "search_button" %>

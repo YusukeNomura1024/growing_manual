@@ -117,16 +117,23 @@
     margin-bottom: 20px;
 }
 
+$btn-pattern: (
+  "btn-outline-theme-color": $theme-color,
+  "btn-outline-primary": #0d6efd,
+  "btn-outline-success": #28a745,
+);
 
-.btn.btn-outline-primary{
-  color: #0d6efd;
-  border: 1px solid #0d6efd;
+@each $key, $value in $btn-pattern {
+  .btn.#{$key}{
+    color: $value;
+    border: 1px solid $value;
+  }
+  .btn.#{$key}:hover{
+    color: white;
+    background-color: $value;
+  }
 }
 
-.btn.btn-outline-primary:hover{
-  color: white;
-  background-color: #0d6efd;
-}
 
 .btn.btn-outline-danger,
 .category_list .btn.btn-outline-danger{
@@ -139,19 +146,6 @@
   background-color: #dc3545;
 }
 
-
-
-.btn.btn-outline-success{
-  color: #28a745;
-  border: 1px solid #28a745;
-  text-decoration: none;
-}
-
-
-.btn.btn-outline-success:hover{
-  color: white;
-  background-color: #28a745;
-}
 
 
 .btn.btn-outline-bookmark{
@@ -223,5 +217,16 @@
   display: flex;
   .btn{
     margin:1px;
+  }
+}
+
+.btn--large {
+  height: 50px;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px 15px;
+  width: 200px;
+  &:hover:not(.non-btn) {
+    padding: 10px 15px;
   }
 }
