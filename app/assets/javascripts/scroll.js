@@ -11,32 +11,33 @@ window.document.addEventListener('turbolinks:load', function(){
 
 
     const position = Math.floor(window.innerHeight * .75);
-
-    for (let i = 0; i < innerTitleBackText.length; i++) {
-      let offsetTop = Math.floor(innerTitleBackText[i].getBoundingClientRect().top);
+    if(caseRow != null){
+      for (let i = 0; i < innerTitleBackText.length; i++) {
+        let offsetTop = Math.floor(innerTitleBackText[i].getBoundingClientRect().top);
+        if (offsetTop < position) {
+          innerTitleBackText[i].classList.add('text_move--slidein_y');
+        }
+      }
+      for (let i = 0; i < innerImg.length; i++) {
+        let offsetTop = Math.floor(innerImg[i].getBoundingClientRect().top);
+        if (offsetTop < position) {
+          innerImg[i].classList.add('img_move--slidein_x');
+        }
+      }
+      for (let i = 0; i < innerDirection.length; i++) {
+        let offsetTop = Math.floor(innerDirection[i].getBoundingClientRect().top);
+        if (offsetTop < position) {
+          innerDirection[i].classList.add('text_move--slidein_reverse_x');
+        }
+      }
+      let offsetTop = Math.floor(caseRow.getBoundingClientRect().top);
       if (offsetTop < position) {
-        innerTitleBackText[i].classList.add('text_move--slidein_y');
+        const caseDl = document.getElementsByClassName('case_row__dl');
+        for (let i = 0; i < caseDl.length; i++) {
+          caseDl[i].classList.add('slide_move_y');
+        }
       }
-    }
-    for (let i = 0; i < innerImg.length; i++) {
-      let offsetTop = Math.floor(innerImg[i].getBoundingClientRect().top);
-      if (offsetTop < position) {
-        innerImg[i].classList.add('img_move--slidein_x');
-      }
-    }
-    for (let i = 0; i < innerDirection.length; i++) {
-      let offsetTop = Math.floor(innerDirection[i].getBoundingClientRect().top);
-      if (offsetTop < position) {
-        innerDirection[i].classList.add('text_move--slidein_reverse_x');
-      }
-    }
-    let offsetTop = Math.floor(caseRow.getBoundingClientRect().top);
-    if (offsetTop < position) {
-      const caseDl = document.getElementsByClassName('case_row__dl');
-      for (let i = 0; i < caseDl.length; i++) {
-        caseDl[i].classList.add('slide_move_y');
-      }
-    }
+    };
   };
   const backTextHidden = function(){
     const innerTitleBackText = document.getElementsByClassName('inner__title_back_text');
@@ -80,4 +81,13 @@ window.document.addEventListener('turbolinks:load', function(){
     }
   };
   areaSideScroll();
+  //aboutページのタイトルのアニメーション
+  const aboutTitle = document.querySelector('.animate_title');
+  if (aboutTitle != null) {
+    const aboutTitleStr = aboutTitle.innerHTML.trim().split('');
+    aboutTitle.innerHTML = aboutTitleStr.reduce((acc, curr) => {
+      curr = curr.replace(/\s+/, '&nbsp;');
+      return `${acc}<span class="title_text__strong char">${curr}</span>`;
+    }, "");
+  };
 });
