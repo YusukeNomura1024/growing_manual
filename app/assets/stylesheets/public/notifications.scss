@@ -1,7 +1,12 @@
-.notifications.panel ul{
-  border-bottom: 1px solid #f0f0f0;
-}
+.notifications {
+  &.panel ul{
+    border-bottom: 1px solid #f0f0f0;
 
-.notifications.panel ul:hover{
-  background-color: #f0f0f0;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+  &__nonmessage {
+    margin-left: 10px;
+  }
 }
